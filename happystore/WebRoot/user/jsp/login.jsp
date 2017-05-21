@@ -153,7 +153,7 @@ font {
 							</div>
 							<div class="col-sm-3">
 								<img
-									src="${pageContext.request.contextPath}/user/image/captcha.jhtml" />
+									src="${pageContext.request.contextPath}/user/Code" />
 							</div>
 
 						</div>
