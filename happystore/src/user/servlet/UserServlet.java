@@ -20,10 +20,10 @@ import user.utils.MD5Utils;
 /**
  * 和用户相关的servlet
  */
-public class UserServlet implements BaseServlet {
+public class UserServlet extends BaseServlet {
 
 	/**
-	 * 跳转到 注册页面
+	 * 跳转到注册页面
 	 */
 	public String registUI(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -68,13 +68,8 @@ public class UserServlet implements BaseServlet {
 
 	/**
 	 * 登录
-	 * 
-	 * @param request
-	 * @param response
-	 * @return
-	 * @throws Exception
 	 */
-	public void login(HttpServletRequest request, HttpServletResponse response)
+	public String login(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		// 1.获取用户名和密码
 		String username = request.getParameter("username");
@@ -89,31 +84,33 @@ public class UserServlet implements BaseServlet {
 		if (user == null) {
 			// 用户名密码不匹配
 			request.setAttribute("msg", "账号密码不匹配,请重新<a href='www.baidu.com'>登陆</a>");
-			return;
+			return null;
 		} else {
-			// 继续判断用户的状态是否激活
-			if (Constant.USER_IS_ACTIVE != user.getState()) {
-				request.setAttribute("msg", "用户未激活");
-				return "/jsp/login.jsp";
+			// 继续判断用户的状态是否可以正常使用
+			if (0 != user.getState()) {
+				request.setAttribute("msg", "账号不能正常使用,可能被注销或被禁用,请与系统管理员联系!!");
+				return null;
 			}
 		}
 
 		// 4.将user放入session中 重定向
 		request.getSession().setAttribute("user", user);
-		response.sendRedirect(request.getContextPath() + "/");// /store
+		response.sendRedirect(request.getContextPath());
 
 		return null;
 	}
 
+	/**
+	 * 用户登出 
+	 */
 	public String logout(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		
 		// 干掉session
 		request.getSession().invalidate();
 
 		// 重定向
-		response.sendRedirect(request.getContextPath());
-
-		// 处理自动登录
+		response.sendRedirect(request.getContextPath()+"/");
 
 		return null;
 	}
