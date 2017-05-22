@@ -16,7 +16,7 @@
 		<div class="container-fluid">
 
 			<!-- 动态包含 -->
-	<jsp:include page="/jsp/head.jsp"></jsp:include>
+	<jsp:include page="/user/jsp/head.jsp"></jsp:include>
 			<div class="container-fluid">
 				<h1>${msg }</h1>
 			</div>
