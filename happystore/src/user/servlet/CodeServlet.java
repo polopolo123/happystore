@@ -74,8 +74,7 @@ public class CodeServlet extends HttpServlet {
 			graphics.drawLine(x1, y1, x2, y2);
 		}
 
-		// 
-		System.out.println("msg=" + msg);
+		request.getSession().setAttribute("yzmsg", msg);
 		
 		// สอทลืสิด
 		graphics.dispose();

@@ -1,29 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!--
-            	时间：2015-12-30
-            	描述：菜单栏
-            -->
 <div class="container-fluid">
 	<div class="col-md-4">
-		<img src="${pageContext.request.contextPath}/img/logo2.png" />
+		<img src="${pageContext.request.contextPath}/user/img/logo2.png" />
 	</div>
 	<div class="col-md-5">
-		<img src="${pageContext.request.contextPath}/img/header.png" />
+		<img src="${pageContext.request.contextPath}/user/img/header.png" />
 	</div>
 	<div class="col-md-3" style="padding-top: 20px">
 		<ol class="list-inline">
 			<c:if test="${empty user }">
 				<li><a
-					href="${pageContext.request.contextPath }/user?method=loginUI">登录</a></li>
+					href="${pageContext.request.contextPath }/User?method=loginUI">登录</a></li>
 				<li><a
-					href="${pageContext.request.contextPath }/user?method=registUI">注册</a></li>
+					href="${pageContext.request.contextPath }/User?method=registUI">注册</a></li>
 			</c:if>
 			<c:if test="${not empty user }">
 							${user.name }:您好
 							<li><a
-					href="${pageContext.request.contextPath }/user?method=logout">退出</a></li>
+					href="${pageContext.request.contextPath }/User?method=logout">退出</a></li>
 				<li><a
 					href="${pageContext.request.contextPath }/order?method=findAllByPage&currPage=1">我的订单</a></li>
 			</c:if>
@@ -31,10 +27,6 @@
 		</ol>
 	</div>
 </div>
-<!--
-            	时间：2015-12-30
-            	描述：导航条
-            -->
 <div class="container-fluid">
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -60,17 +52,15 @@
 				</ul>
 				<form class="navbar-form navbar-right" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="Search">
+						<input type="text" class="form-control" placeholder="搜索">
 					</div>
-					<button type="submit" class="btn btn-default">Submit</button>
+					<button type="submit" class="btn btn-default" disabled="disabled">搜索</button>
 				</form>
-
 			</div>
-			<!-- /.navbar-collapse -->
 		</div>
-		<!-- /.container-fluid -->
 	</nav>
 </div>
+
 <script>
 	$(function(){
 		//发送ajax请求

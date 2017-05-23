@@ -39,6 +39,15 @@
 		<url-pattern>/Base</url-pattern>
 	</servlet-mapping>
 
+	<filter>
+		<filter-name>EncodingFilter</filter-name>
+		<filter-class>user.filter.EncodingFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>EncodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+
 
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

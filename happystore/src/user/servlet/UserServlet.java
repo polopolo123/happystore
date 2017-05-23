@@ -27,7 +27,7 @@ public class UserServlet extends BaseServlet {
 	 */
 	public String registUI(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		return "/jsp/register.jsp";
+		return "/user/jsp/register.jsp";
 	}
 
 	/**
@@ -37,7 +37,15 @@ public class UserServlet extends BaseServlet {
 			HttpServletResponse response) throws Exception {
 		// 1.封装数据
 		User user = new User();
-
+		
+		String yzmcode = request.getParameter("yzmcode");
+		
+		String zcmsg = (String) request.getSession(false).getAttribute("yzmsg");
+		if(!yzmcode.equalsIgnoreCase(zcmsg)) {
+			request.setAttribute("msg", "验证码出错!!");
+			return "/user/jsp/msg.jsp";
+		}
+		
 		// 注册自定义转化器
 		ConvertUtils.register(new MyConventer(), Date.class);
 		BeanUtils.populate(user, request.getParameterMap());
@@ -53,9 +61,9 @@ public class UserServlet extends BaseServlet {
 		s.regist(user);
 
 		// 页面请求转发
-		request.setAttribute("msg", "用户注册已成功,请点击<a href='www.baidu.com'>登陆</a>");
+		request.setAttribute("msg", "用户注册已成功,请点击<a href='"+request.getContextPath()+"/user/jsp/login.jsp'>登陆</a>");
 
-		return "/jsp/msg.jsp";
+		return "/user/jsp/msg.jsp";
 	}
 
 	/**
@@ -63,7 +71,7 @@ public class UserServlet extends BaseServlet {
 	 */
 	public String loginUI(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		return "/jsp/login.jsp";
+		return "/user/jsp/login.jsp";
 	}
 
 	/**
@@ -74,6 +82,16 @@ public class UserServlet extends BaseServlet {
 		// 1.获取用户名和密码
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String logincode = request.getParameter("logincode");
+		
+		String loginmsg = (String) request.getSession(false).getAttribute("yzmsg");
+		
+		if(!logincode.equalsIgnoreCase(loginmsg)) {
+			request.setAttribute("msg", "验证码出错!!");
+			return "/user/jsp/login.jsp";
+		}
+		
+		
 		password = MD5Utils.md5(password);
 
 		// 2.调用serive完成登录操作 返回user
@@ -83,13 +101,13 @@ public class UserServlet extends BaseServlet {
 		// 3.判断用户
 		if (user == null) {
 			// 用户名密码不匹配
-			request.setAttribute("msg", "账号密码不匹配,请重新<a href='www.baidu.com'>登陆</a>");
-			return null;
+			request.setAttribute("msg", "账号密码不匹配,请重新登陆");
+			return "/user/jsp/login.jsp";
 		} else {
 			// 继续判断用户的状态是否可以正常使用
 			if (0 != user.getState()) {
 				request.setAttribute("msg", "账号不能正常使用,可能被注销或被禁用,请与系统管理员联系!!");
-				return null;
+				return "/user/jsp/msg.jsp";
 			}
 		}
 
