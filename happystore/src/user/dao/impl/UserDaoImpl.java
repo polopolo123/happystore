@@ -1,7 +1,5 @@
 package user.dao.impl;
 
-import java.sql.SQLException;
-
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 
@@ -43,7 +41,7 @@ public class UserDaoImpl implements UserDao {
 	public User updatePwd(String uid, String pwd) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
 		String sql = "update user set password = ? where uid =?";
-		qr.update(sql, new BeanHandler<>(User.class), pwd, uid);
+		qr.update(sql, pwd, uid);
 		sql = "select * from user where uid = ? limit 1";
 		return qr.query(sql, new BeanHandler<>(User.class), uid);
 	}

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="container-fluid">
 	<div class="col-md-4">
 		<img src="${pageContext.request.contextPath}/user/img/logo2.png" />
@@ -20,6 +20,12 @@
 							${user.name }:您好
 							<li><a
 					href="${pageContext.request.contextPath }/User?method=logout">退出</a></li>
+				<li><a
+					href="${pageContext.request.contextPath }/User?method=logout">修改基础信息</a></li>
+				<li><a
+					href="${pageContext.request.contextPath }/User?method=updatePwd&newPwd=321">修改密码</a></li>
+				<li><a
+					href="${pageContext.request.contextPath }/User?method=stopUser">注销账号</a></li>
 				<li><a
 					href="${pageContext.request.contextPath }/order?method=findAllByPage&currPage=1">我的订单</a></li>
 			</c:if>
@@ -62,16 +68,26 @@
 </div>
 
 <script>
-	$(function(){
+	$(function() {
 		//发送ajax请求
-		$.get("${pageContext.request.contextPath}/category?method=findAll",function(data){
-			//获取menu的ul标签
-			var $ul=$("#menuId");
-			
-			//遍历数组
-			$(data).each(function(){
-				$ul.append($("<li><a href='${pageContext.request.contextPath}/product?method=findByPage&cid="+this.cid+"&currPage=1'>"+this.cname+"</a></li>"));
-			});
-		},"json");
+		$
+				.get(
+						"${pageContext.request.contextPath}/category?method=findAll",
+						function(data) {
+							//获取menu的ul标签
+							var $ul = $("#menuId");
+
+							//遍历数组
+							$(data)
+									.each(
+											function() {
+												$ul
+														.append($("<li><a href='${pageContext.request.contextPath}/product?method=findByPage&cid="
+																+ this.cid
+																+ "&currPage=1'>"
+																+ this.cname
+																+ "</a></li>"));
+											});
+						}, "json");
 	});
 </script>

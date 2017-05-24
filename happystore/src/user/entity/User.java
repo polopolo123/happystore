@@ -1,11 +1,12 @@
 package user.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * 用户实体
  */
-public class User {
+public class User implements Serializable{
 
 	private String uid;
 	private String username;

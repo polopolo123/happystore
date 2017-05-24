@@ -7,6 +7,7 @@ import java.util.UUID;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
@@ -37,15 +38,15 @@ public class UserServlet extends BaseServlet {
 			HttpServletResponse response) throws Exception {
 		// 1.封装数据
 		User user = new User();
-		
+
 		String yzmcode = request.getParameter("yzmcode");
-		
+
 		String zcmsg = (String) request.getSession(false).getAttribute("yzmsg");
-		if(!yzmcode.equalsIgnoreCase(zcmsg)) {
+		if (!yzmcode.equalsIgnoreCase(zcmsg)) {
 			request.setAttribute("msg", "验证码出错!!");
 			return "/user/jsp/msg.jsp";
 		}
-		
+
 		// 注册自定义转化器
 		ConvertUtils.register(new MyConventer(), Date.class);
 		BeanUtils.populate(user, request.getParameterMap());
@@ -61,7 +62,9 @@ public class UserServlet extends BaseServlet {
 		s.regist(user);
 
 		// 页面请求转发
-		request.setAttribute("msg", "用户注册已成功,请点击<a href='"+request.getContextPath()+"/user/jsp/login.jsp'>登陆</a>");
+		request.setAttribute("msg",
+				"用户注册已成功,请点击<a href='" + request.getContextPath()
+						+ "/user/jsp/login.jsp'>登陆</a>");
 
 		return "/user/jsp/msg.jsp";
 	}
@@ -83,15 +86,15 @@ public class UserServlet extends BaseServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String logincode = request.getParameter("logincode");
-		
-		String loginmsg = (String) request.getSession(false).getAttribute("yzmsg");
-		
-		if(!logincode.equalsIgnoreCase(loginmsg)) {
+
+		String loginmsg = (String) request.getSession(false).getAttribute(
+				"yzmsg");
+
+		if (!logincode.equalsIgnoreCase(loginmsg)) {
 			request.setAttribute("msg", "验证码出错!!");
 			return "/user/jsp/login.jsp";
 		}
-		
-		
+
 		password = MD5Utils.md5(password);
 
 		// 2.调用serive完成登录操作 返回user
@@ -119,17 +122,83 @@ public class UserServlet extends BaseServlet {
 	}
 
 	/**
-	 * 用户登出 
+	 * 用户登出
 	 */
 	public String logout(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		// 干掉session
 		request.getSession().invalidate();
 
 		// 重定向
-		response.sendRedirect(request.getContextPath()+"/");
+		response.sendRedirect(request.getContextPath() + "/");
 
 		return null;
 	}
+
+	/**
+	 * 用户账号注销
+	 */
+	public String stopUser(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		// 通过session，获取账户的uid
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		String uid = user.getUid();
+
+		// 干掉session
+		session.invalidate();
+
+		// 调用Service，注销账号
+		UserService s = new UserServiceImpl();
+		try {
+			s.cancel(uid);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		// 重定向
+		response.sendRedirect(request.getContextPath() + "/");
+		return null;
+	}
+
+	/**
+	 * 用户账号密码修改
+	 */
+	public String updatePwd(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		// 通过session，获取账户的uid
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+		String uid = user.getUid();
+
+		// 干掉session
+		session.invalidate();
+		
+		// 获得账户的密码
+		String newPwd = request.getParameter("newPwd");
+		
+		// 加密密码
+		String pwd = MD5Utils.md5(newPwd);
+
+		// 调用Service，注销账号
+		UserService s = new UserServiceImpl();
+		
+		User newUser = null;
+		try {
+			// 获取最新的User，保存到session中
+			newUser = s.updatePwd(uid, pwd);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// 将新用户保存到session中
+		request.getSession().setAttribute("user", newUser);
+		response.sendRedirect(request.getContextPath());
+		
+		return null;
+	}
+
 }
