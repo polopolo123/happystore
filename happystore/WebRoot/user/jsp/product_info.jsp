@@ -58,7 +58,7 @@ body {
 
 				<div class="col-md-6">
 					<form id="formId"
-						action="${pageContext.request.contextPath }/cart?method=add"
+						action="${pageContext.request.contextPath }/Cart?method=add"
 						method="post">
 						<input type="hidden" name="pid" value="${product.pid }">
 						<div>
@@ -76,8 +76,7 @@ body {
 						</div>
 
 						<div style="margin:10px 0 10px 0;">
-							促销: <a target="_blank" title="限时抢购 (2014-07-30 ~ 2015-01-01)"
-								style="background-color: #f07373;">限时抢购</a>
+							促销:  <strong style="color:#ef0101;">${product.promotion.pnname }</strong>
 						</div>
 
 						<div

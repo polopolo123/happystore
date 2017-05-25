@@ -10,7 +10,7 @@ public class Product implements Serializable {
 	private String pid;
 	private String pname;
 	private Double market_price;
-
+	private Integer pnumber;
 	private Double shop_price;
 	private String pimage;
 	private Date pdate;
@@ -36,6 +36,14 @@ public class Product implements Serializable {
 
 	public String getPname() {
 		return pname;
+	}
+
+	public Integer getPnumber() {
+		return pnumber;
+	}
+
+	public void setPnumber(Integer pnumber) {
+		this.pnumber = pnumber;
 	}
 
 	public void setPname(String pname) {
@@ -113,5 +121,5 @@ public class Product implements Serializable {
 	public void setBusiness(Business business) {
 		this.business = business;
 	}
-	
+
 }

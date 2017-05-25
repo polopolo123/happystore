@@ -51,8 +51,9 @@ font {
 	<jsp:include page="/user/jsp/head.jsp"></jsp:include>
 
 	<div class="container"
-		style="width:100%;height:460px;background:#FF2C4C url('${pageContext.request.contextPath}/user/images/loginbg.jpg') no-repeat;">
-		<div class="row">
+		style="width:92%;height:434px;background:#FFFFFF url('${pageContext.request.contextPath}/user/images/loginbg1.jpg') no-repeat;">
+
+		<div class="row" style="margin-left:250px;height:434px">
 			<div class="col-md-7">
 				<!--<img src="${pageContext.request.contextPath}/image/login.jpg" width="500" height="330" alt="会员登录" title="会员登录">-->
 			</div>
@@ -60,8 +61,7 @@ font {
 			<div class="col-md-5">
 				<div
 					style="width:440px;border:1px solid #E7E7E7;padding:20px 0 20px 30px;border-radius:5px;margin-top:60px;background:#fff;">
-					<font>用户登录</font>USER LOGIN${msg }
-
+					<font>用户登录</font>USER LOGIN
 					<div>&nbsp;</div>
 					<form class="form-horizontal"
 						action="${pageContext.request.contextPath }/User?method=login"
@@ -88,11 +88,21 @@ font {
 									placeholder="请输入验证码" name="logincode">
 							</div>
 							<div class="col-sm-3">
-								<img src="${pageContext.request.contextPath}/user/Code" />
+								<img src="${pageContext.request.contextPath}/user/Code"
+									style="cursor: pointer;"
+									onclick="this.src='${pageContext.request.contextPath}/user/Code?a='+ Math.random()" />
 							</div>
 
 						</div>
-						<div class="form-group">
+
+
+
+						<div class="form-group"
+							style="font-color:red;font-size:16px;margin-left:68px">
+							${msg }</div>
+
+
+						<div class="form-group" style="visibility:hidden;">
 							<div class="col-sm-offset-2 col-sm-10">
 								<div class="checkbox">
 									<label> <input type="checkbox"> 自动登录
@@ -102,6 +112,8 @@ font {
 								</div>
 							</div>
 						</div>
+
+
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-10">
 								<input type="submit" width="100" value="登录" name="submit"
