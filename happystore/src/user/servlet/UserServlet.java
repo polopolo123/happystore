@@ -30,6 +30,27 @@ public class UserServlet extends BaseServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		return "/user/jsp/register.jsp";
 	}
+	
+	/**
+	 * ajax 检验账号是否重复
+	 */
+	public String checkUser(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setContentType("text/html;charset=utf-8");
+		
+		String userName = null;
+		userName = request.getParameter("username");
+		UserService userService = new UserServiceImpl();
+		try {
+			if(userService.checkUser(userName)) {
+				response.getWriter().write("no");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	/**
 	 * 用户注册

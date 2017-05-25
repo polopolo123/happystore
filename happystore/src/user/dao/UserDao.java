@@ -18,5 +18,8 @@ public interface UserDao {
 	
 	// 用户注销
 	public void cancel(String uid) throws Exception;
+	
+	// 检查是否被注册
+	public boolean checkUser(String uid) throws Exception;
 
 }

@@ -39,29 +39,19 @@ function createAjax()
 	alert('浏览器版本太低，请更换浏览器！！！');
 }
 
-function $(id){
-	 return document.getElementById(id);
-}
-
-
-
-
-
+	function $(id){
+	 	return document.getElementById(id);
+	}
 
 	window.onload=function(){
-
-	
-	$("username").onblur=function(){
-		
+		$("username").onblur=function(){
 			var username=this.value;
-			
 			var ajax = createAjax();
-			var url='index.php?module=privilege&action=checkuser&user='+username;
+			var url='${pageContext.request.contextPath}/User?method=checkUser&username='+username;
 			ajax.open('get', url);
 			ajax.onreadystatechange = function() {
 				if (ajax.readyState == 4&&ajax.status==200) {
-					if (ajax.responseText == -1) {
-						
+					if (ajax.responseText == "no") {
 						$('div1').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/888.png"   /><font color=red>用户名已经被占用</font>';
 						
 					} else {
@@ -278,7 +268,7 @@ font {
 					<div class="form-group">
 						<label for="date" class="col-sm-2 control-label">出生日期</label>
 						<div class="col-sm-6">
-							<input type="date" id="mybirth" class="form-control" name="birthday" placeholder="请输入出生日期" style="width:300px; >
+							<input type="date" id="mybirth" class="form-control" name="birthday" placeholder="请输入出生日期" style="width:300px;" >
 						</div>
 						<div id="div8"></div>
 					</div>

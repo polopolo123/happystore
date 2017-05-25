@@ -71,16 +71,16 @@
 			<div class="col-md-2"
 				style="border:1px solid #E7E7E7;border-right:0;padding:0;">
 				<img
-					src="${pageContext.request.contextPath}/user/products/hao/big01.jpg"
+					src="${pageContext.request.contextPath}/user/img/77.jpg"
 					width="205" height="404" style="display: inline-block;" />
 			</div>
 			<div class="col-md-10">
 				<div class="col-md-6"
 					style="text-align:center;height:200px;padding:0px;">
-					<a href="#"> <img
-						src="${pageContext.request.contextPath}/user/products/hao/middle01.jpg"
+					 <img
+						src="${pageContext.request.contextPath}/user/img/99.jpg"
 						width="516px" height="200px" style="display: inline-block;">
-					</a>
+					
 				</div>
 				<c:forEach items="${hotList }" var="hl">
 					<div class="col-md-2"
@@ -105,30 +105,30 @@
 			</div>
 		</div>
 		<div class="container-fluid">
-			<img
+			<%-- <img
 				src="${pageContext.request.contextPath}/user/products/hao/ad.jpg"
-				width="100%" />
+				width="100%" /> --%>
 		</div>
 		<div class="container-fluid">
 			<div class="col-md-12">
 				<h2>
-					热门商品&nbsp;&nbsp;<img
+					最新商品&nbsp;&nbsp;<img
 						src="${pageContext.request.contextPath}/user/img/title2.jpg" />
 				</h2>
 			</div>
 			<div class="col-md-2"
 				style="border:1px solid #E7E7E7;border-right:0;padding:0;">
 				<img
-					src="${pageContext.request.contextPath}/user/products/hao/big01.jpg"
+					src="${pageContext.request.contextPath}/user/img/66.jpg"
 					width="205" height="404" style="display: inline-block;" />
 			</div>
 			<div class="col-md-10">
 				<div class="col-md-6"
 					style="text-align:center;height:200px;padding:0px;">
-					<a href="product_info.htm"> <img
-						src="${pageContext.request.contextPath}/user/products/hao/middle01.jpg"
+					 <img
+						src="${pageContext.request.contextPath}/user/img/88.jpg"
 						width="516px" height="200px" style="display: inline-block;">
-					</a>
+					
 				</div>
 				<c:forEach items="${newList }" var="pro">
 					<div class="col-md-2"

@@ -19,4 +19,7 @@ public interface UserService {
 	// 用户登陆
 	public User login(String username, String password) throws Exception;
 
+	// 检查是否被注册
+	public boolean checkUser(String username) throws Exception;
+
 }

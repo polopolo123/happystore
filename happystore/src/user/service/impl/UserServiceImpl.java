@@ -52,4 +52,11 @@ public class UserServiceImpl implements UserService {
 		return dao.getByUsernameAndPwd(username, password);
 	}
 
+	// ¼ì²éÊÇ·ñ±»×¢²á
+	@Override
+	public boolean checkUser(String username) throws Exception {
+		UserDao dao = new UserDaoImpl();
+		return dao.checkUser(username);
+	}
+
 }

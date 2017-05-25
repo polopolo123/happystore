@@ -54,4 +54,17 @@ public class UserDaoImpl implements UserDao {
 		qr.update(sql, 1, uid);
 	}
 
+	// ¼ì²éÊÇ·ñ±»×¢²á
+	@Override
+	public boolean checkUser(String userName) throws Exception {
+		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
+		String sql = "select * from user where username = ? limit 1";
+		User user = null;
+		user = qr.query(sql, new BeanHandler<>(User.class), userName);
+		if(user != null) {
+			return true;
+		}
+		return false;
+	}
+
 }
