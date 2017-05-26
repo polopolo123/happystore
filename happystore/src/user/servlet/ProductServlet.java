@@ -44,8 +44,8 @@ public class ProductServlet extends BaseServlet {
 		// Collection -> LinkedList
 		LinkedList list = new LinkedList(colls);
 		
-		//不超过3个
-		if(list.size()<3){
+		//不超过7个
+		if(list.size()<7){
 			//id重复
 			if(list.contains(id)){
 				//去除重复id，把传入的id放最前面

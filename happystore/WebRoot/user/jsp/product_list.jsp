@@ -44,11 +44,7 @@ body {
 
 
 	<div class="row" style="width:1210px;margin:0 auto;">
-		<div class="col-md-12">
-			<ol class="breadcrumb">
-				<li><a href="${pageContext.request.contextPath}/user/Index">首页</a></li>
-			</ol>
-		</div>
+
 		<c:forEach items="${pageBean.list }" var="p">
 			<div class="col-md-2">
 				<a

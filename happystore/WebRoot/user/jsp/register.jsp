@@ -19,9 +19,167 @@
 	href="${pageContext.request.contextPath}/user/css/style.css"
 	type="text/css" />
 
+<style>
+body {
+	margin-top: 20px;
+	margin: 0 auto;
+}
+
+.carousel-inner .item img {
+	width: 100%;
+	height: 300px;
+}
+
+.container .row div {
+	/* position:relative;
+	 float:left; */
+	
+}
+
+font {
+	color: #3164af;
+	font-size: 18px;
+	font-weight: normal;
+	padding: 0 10px;
+}
+</style>
+</head>
+<body>
+	<!-- 动态包含 -->
+	<jsp:include page="/user/jsp/head.jsp"></jsp:include>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2"></div>
+
+			<div class="col-md-8"
+				style="background:#fff;padding:40px 80px;margin:30px;border:7px solid #ccc;">
+				<font>会员注册</font>USER REGISTER
+				<form class="form-horizontal" style="margin-top:5px;"
+					action="${pageContext.request.contextPath }/User?method=regist"
+					method="post">
+					<div class="form-group">
+						<label for="username" class="col-sm-2 control-label">用户名</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="username"
+								placeholder="请输入用户名" name="username" style="width:300px;">
+						</div>
+						<div id="div1"></div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="inputPassword3"
+								placeholder="请输入密码" name="password" style="width:300px;">
+						</div>
+						<div id="div2"></div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="confirmpwd" class="col-sm-2 control-label">确认密码</label>
+						<div class="col-sm-6">
+							<input type="password" class="form-control" id="confirmpwd"
+								placeholder="请输入确认密码" style="width:300px;">
+						</div>
+						<div id="div3"></div>
+					</div>
+
+					<div class="form-group">
+						<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+						<div class="col-sm-6">
+							<input type="email" class="form-control" id="inputEmail3"
+								placeholder="Email" name="email" style="width:300px;">
+						</div>
+						<div id="div4"></div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="usercaption" class="col-sm-2 control-label">姓名</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="usercaption"
+								placeholder="请输入姓名" name="name" style="width:300px;">
+						</div>
+						<div id="div5"></div>
+					</div>
+
+
+					<div class="form-group opt">
+						<label for="inlineRadio1" class="col-sm-2 control-label">性别</label>
+						<div class="col-sm-6">
+							<label class="radio-inline"> <input type="radio"
+								id="inlineRadio1" name="sex" value="男"> 男
+							</label> <label class="radio-inline"> <input type="radio"
+								id="inlineRadio2" name="sex" value="女"> 女
+							</label>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="date" class="col-sm-2 control-label">出生日期</label>
+						<div class="col-sm-6">
+							<input type="date" id="mybirth" class="form-control"
+								name="birthday" placeholder="请输入出生日期" style="width:300px;">
+						</div>
+						<div id="div8"></div>
+					</div>
+
+					<!--xiaobin添加手机input  -->
+					<div class="form-group">
+						<label for="usercaption" class="col-sm-2 control-label">手机</label>
+						<div class="col-sm-6">
+							<input type="text" id="phone" class="form-control"
+								id="usercaption" placeholder="请输入手机" name="telephone"
+								style="width:300px;">
+						</div>
+						<div id="div7"></div>
+					</div>
+
+
+					<div class="form-group">
+						<label for="date" class="col-sm-2 control-label">验证码</label>
+						<div class="col-sm-3">
+							<input type="text" class="form-control" name="yzmcode" id="code"
+								placeholder="请输入验证码">
+
+						</div>
+						<div class="col-sm-2">
+							<img src="${pageContext.request.contextPath}/user/Code" />
+
+
+						</div>
+
+						<span id="span1" style="margin-left:65px;"></span>
+
+
+
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10">
+							<input type="submit" width="100" value="注册" name="submit"
+								border="0"
+								style="background: url('${pageContext.request.contextPath}/user/images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+				    height:35px;width:100px;color:white;">
+						</div>
+					</div>
+				</form>
+			</div>
+
+			<div class="col-md-2"></div>
+
+		</div>
+	</div>
+
+	<!-- 动态包含 -->
+	<jsp:include page="/user/jsp/foot.jsp"></jsp:include>
+
+</body>
 <script>
-
-
 function createAjax()
 {
 	try {
@@ -150,181 +308,6 @@ function createAjax()
 		};
 		
 	}
-</script>
-<style>
-body {
-	margin-top: 20px;
-	margin: 0 auto;
-}
-
-.carousel-inner .item img {
-	width: 100%;
-	height: 300px;
-}
-
-.container .row div {
-	/* position:relative;
-	 float:left; */
-	
-}
-
-font {
-	color: #3164af;
-	font-size: 18px;
-	font-weight: normal;
-	padding: 0 10px;
-}
-</style>
-</head>
-<body>
-
-
-
-
-	<!-- 动态包含 -->
-	<jsp:include page="/user/jsp/head.jsp"></jsp:include>
-
-
-
-
-	<div class="container"
-		style="width:100%;background:url('${pageContext.request.contextPath}/user/image/regist_bg.jpg');">
-		<div class="row">
-
-			<div class="col-md-2"></div>
-
-
-
-
-			<div class="col-md-8"
-				style="background:#fff;padding:40px 80px;margin:30px;border:7px solid #ccc;">
-				<font>会员注册</font>USER REGISTER
-				<form class="form-horizontal" style="margin-top:5px;"
-					action="${pageContext.request.contextPath }/User?method=regist"
-					method="post">
-					<div class="form-group">
-						<label for="username" class="col-sm-2 control-label">用户名</label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" id="username"
-								placeholder="请输入用户名" name="username"  style="width:300px;" >
-						</div>
-						<div id="div1">
-						
-						</div>
-					</div>
-					
-					
-					<div class="form-group">
-						<label for="inputPassword3" class="col-sm-2 control-label">密码</label>
-						<div class="col-sm-6">
-							<input type="password" class="form-control" id="inputPassword3"
-								placeholder="请输入密码" name="password"  style="width:300px;">
-						</div>
-						<div id="div2"></div>
-					</div>
-					
-					
-					<div class="form-group">
-						<label for="confirmpwd" class="col-sm-2 control-label">确认密码</label>
-						<div class="col-sm-6">
-							<input type="password" class="form-control" id="confirmpwd"
-								placeholder="请输入确认密码" style="width:300px;">
-						</div>
-						<div id="div3"></div>
-					</div>
-					
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-						<div class="col-sm-6">
-							<input type="email" class="form-control" id="inputEmail3"
-								placeholder="Email" name="email" style="width:300px;">
-						</div>
-						<div id="div4"></div>
-					</div>
-					
-					
-					<div class="form-group">
-						<label for="usercaption" class="col-sm-2 control-label">姓名</label>
-						<div class="col-sm-6">
-							<input type="text" class="form-control" id="usercaption"
-								placeholder="请输入姓名" name="name" style="width:300px;">
-						</div>
-						<div id="div5"></div>
-					</div>
-					
-					
-					<div class="form-group opt">
-						<label for="inlineRadio1" class="col-sm-2 control-label">性别</label>
-						<div class="col-sm-6">
-							<label class="radio-inline"> <input type="radio"
-								id="inlineRadio1" name="sex" value="男"> 男
-							</label> <label class="radio-inline"> <input type="radio"
-								id="inlineRadio2" name="sex" value="女"> 女
-							</label>
-						</div>
-					</div>
-					
-					
-					<div class="form-group">
-						<label for="date" class="col-sm-2 control-label">出生日期</label>
-						<div class="col-sm-6">
-							<input type="date" id="mybirth" class="form-control" name="birthday" placeholder="请输入出生日期" style="width:300px;" >
-						</div>
-						<div id="div8"></div>
-					</div>
-					
-					<!--xiaobin添加手机input  -->
-				<div class="form-group">
-						<label for="usercaption" class="col-sm-2 control-label">手机</label>
-						<div class="col-sm-6">
-							<input type="text"  id="phone" class="form-control" id="usercaption"
-								placeholder="请输入手机" name="telephone" style="width:300px;" >
-						</div> 
-						<div id="div7"></div>
-						</div>
-					
-					
-					<div class="form-group">
-						<label for="date" class="col-sm-2 control-label">验证码</label>
-						<div class="col-sm-3">
-							<input type="text" class="form-control" name="yzmcode" id="code" placeholder="请输入验证码">
-
-						</div>
-						<div class="col-sm-2">
-							<img src="${pageContext.request.contextPath}/user/Code" />
-							
-							
-						</div>
-						
-						<span id="span1" style="margin-left:65px;"></span>
-						
-						
-
-					</div>
-
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<input type="submit" width="100" value="注册" name="submit"
-								border="0" 
-								style="background: url('${pageContext.request.contextPath}/user/images/register.gif') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-				    height:35px;width:100px;color:white;">
-						</div>
-					</div>
-				</form>
-			</div>
-
-			<div class="col-md-2"></div>
-
-		</div>
-	</div>
-
-	<!-- 动态包含 -->
-	<jsp:include page="/user/jsp/foot.jsp"></jsp:include>
-
-</body>
-<script>
-	
-
 </script>
 </html>
 

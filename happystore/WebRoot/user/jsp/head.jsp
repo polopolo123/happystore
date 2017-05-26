@@ -15,27 +15,26 @@
 				<li><a
 					href="${pageContext.request.contextPath }/User?method=loginUI">登录</a></li>
 				<li><a
-					href="${pageContext.request.contextPath }/User?method=registUI">注册</a></li>
+					href="${pageContext.request.contextPath }/user/jsp/register.jsp">注册</a></li>
 			</c:if>
 			<c:if test="${not empty user }">
-							${user.name }:您好
-							<li><a
-					href="${pageContext.request.contextPath }/User?method=logout" onclick="return confirm('确定要退出吗？');">退出</a></li>
+				<li style="margin-left:140px;font-size:16px">欢迎 ：${user.name }</li>
+				<li style="margin-left:20px"><a
+					href="${pageContext.request.contextPath }/User?method=logout"
+					onclick="return confirm('确定要退出吗？');">退出</a></li>
 				<li><a
-					href="${pageContext.request.contextPath }/User?method=logout">修改基础信息</a></li>
+					href="${pageContext.request.contextPath }/user/jsp/user_editinfo.jsp">修改基础信息</a></li>
 				<li><a
-					href="${pageContext.request.contextPath }/User?method=updatePwd&newPwd=321">修改密码</a></li>
+					href="${pageContext.request.contextPath }/user/jsp/user_changepwd.jsp">修改密码</a></li>
 				<li><a
-					href="${pageContext.request.contextPath }/User?method=stopUser">注销账号</a></li>
-				<li><a
-					href="${pageContext.request.contextPath }/order?method=findAllByPage&currPage=1">我的订单</a></li>
+					href="${pageContext.request.contextPath }/Order?method=findAllByPage&currPage=1">我的订单</a></li>
 			</c:if>
 			<li><a
 				href="${pageContext.request.contextPath }/user/jsp/cart.jsp">购物车</a></li>
 		</ol>
 	</div>
 </div>
-<div class="container-fluid" >
+<div class="container-fluid">
 	<nav class="navbar navbar-inverse" style="background:#b50319;">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->

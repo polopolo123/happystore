@@ -32,6 +32,11 @@
     <servlet-name>CategoryServlet</servlet-name>
     <servlet-class>user.servlet.CategoryServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>OrderServlet</servlet-name>
+    <servlet-class>user.servlet.OrderServlet</servlet-class>
+  </servlet>
+
 
 
 
@@ -73,6 +78,10 @@
   <servlet-mapping>
     <servlet-name>CategoryServlet</servlet-name>
     <url-pattern>/Category</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>OrderServlet</servlet-name>
+    <url-pattern>/Order</url-pattern>
   </servlet-mapping>
 
 	<filter>

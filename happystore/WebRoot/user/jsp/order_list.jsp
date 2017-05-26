@@ -9,15 +9,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>我的订单</title>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath}/user/css/bootstrap.min.css"
 	type="text/css" />
-<script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js"
+<script
+	src="${pageContext.request.contextPath}/user/js/jquery-1.11.3.min.js"
 	type="text/javascript"></script>
-<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"
+<script
+	src="${pageContext.request.contextPath}/user/js/bootstrap.min.js"
 	type="text/javascript"></script>
 <!-- 引入自定义css文件 style.css -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css" type="text/css" />
+	href="${pageContext.request.contextPath}/user/css/style.css"
+	type="text/css" />
 
 <style>
 body {
@@ -43,22 +46,34 @@ body {
 			<div style="margin:0 auto; margin-top:10px;width:950px;">
 				<strong>我的订单</strong>
 				<table class="table table-bordered">
-
+					<c:if test="${pb == null || pb.list == null }">
+						<br>
+						<h2>暂无数据</h2>
+					</c:if>
 					<c:forEach items="${pb.list }" var="o">
 						<tbody>
 							<tr class="success">
 								<th colspan="5">订单编号:${o.oid } 订单金额:${o.total } <c:if
 										test="${o.state==0 }">
 										<a
-											href="${pageContext.request.contextPath }/order?method=getById&oid=${o.oid}">付款</a>
+											href="${pageContext.request.contextPath }/Order?method=getById&oid=${o.oid}">付款</a>
 									</c:if> <c:if test="${o.state==1 }">
 											已付款
 										</c:if> <c:if test="${o.state==2 }">
 										<a
-											href="${pageContext.request.contextPath }/order?method=updateState&oid=${o.oid}">确认收货</a>
+											href="${pageContext.request.contextPath }/Order?method=updateState&oid=${o.oid}" onclick="return confirm('确定完成订单吗？');">确认收货</a>
 									</c:if> <c:if test="${o.state==3 }">
 											已完成
-										</c:if>
+										</c:if> <c:if test="${o.state==0 }">
+										<a
+											href="${pageContext.request.contextPath }/Order?method=quitItem&oid=${o.oid}">退单</a>
+									</c:if> 
+									<c:if test="${o.state==1 }">
+										<a
+											href="${pageContext.request.contextPath }/Order?method=quitMoney&oid=${o.oid}">退款</a>
+									</c:if><c:if test="${o.state==2 }">
+										已发货
+									</c:if>
 								</th>
 							</tr>
 							<tr class="warning">
@@ -95,7 +110,7 @@ body {
 				</c:if>
 				<c:if test="${1!=pb.currPage }">
 					<li><a
-						href="${pageContext.request.contextPath }/order?method=findAllByPage&currPage=${pb.currPage-1}"
+						href="${pageContext.request.contextPath }/Order?method=findAllByPage&currPage=${pb.currPage-1}"
 						aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
 				</c:if>
 
@@ -105,7 +120,7 @@ body {
 					</c:if>
 					<c:if test="${n!=pb.currPage }">
 						<li><a
-							href="${pageContext.request.contextPath }/order?method=findAllByPage&currPage=${n}">${n }</a></li>
+							href="${pageContext.request.contextPath }/Order?method=findAllByPage&currPage=${n}">${n }</a></li>
 					</c:if>
 				</c:forEach>
 				<c:if test="${pb.currPage== pb.totalPage }">
@@ -115,7 +130,7 @@ body {
 				</c:if>
 				<c:if test="${pb.currPage!= pb.totalPage }">
 					<li><a
-						href="${pageContext.request.contextPath }/order?method=findAllByPage&currPage=${pb.currPage+1}"
+						href="${pageContext.request.contextPath }/Order?method=findAllByPage&currPage=${pb.currPage+1}"
 						aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 					</a></li>
 				</c:if>

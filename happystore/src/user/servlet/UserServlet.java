@@ -1,6 +1,8 @@
 package user.servlet;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.UUID;
 
@@ -24,26 +26,18 @@ import user.utils.MD5Utils;
 public class UserServlet extends BaseServlet {
 
 	/**
-	 * 跳转到注册页面
-	 */
-	public String registUI(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		return "/user/jsp/register.jsp";
-	}
-	
-	/**
 	 * ajax 检验账号是否重复
 	 */
 	public String checkUser(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		
+
 		response.setContentType("text/html;charset=utf-8");
-		
+
 		String userName = null;
 		userName = request.getParameter("username");
 		UserService userService = new UserServiceImpl();
 		try {
-			if(userService.checkUser(userName)) {
+			if (userService.checkUser(userName)) {
 				response.getWriter().write("no");
 			}
 		} catch (Exception e) {
@@ -185,6 +179,52 @@ public class UserServlet extends BaseServlet {
 	}
 
 	/**
+	 * 用户账号基础信息修改
+	 */
+	public String updateUser(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		// 通过session，获取账户的uid
+		HttpSession session = request.getSession();
+		User user = (User) session.getAttribute("user");
+
+		// 获得前台取得的数据
+		String email = request.getParameter("email");
+		user.setEmail(email);
+		String name = request.getParameter("name");
+		user.setName(name);
+		String sex = request.getParameter("sex");
+		user.setSex(sex);
+		String birthday = request.getParameter("birthday");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			Date date = sdf.parse(birthday);
+			user.setBirthday(date);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String telephone = request.getParameter("telephone");
+		user.setTelephone(telephone);
+
+		// 调用Service，更改信息
+		UserService s = new UserServiceImpl();
+		User newUser = null;
+		try {
+			newUser = s.updateUser(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		// 干掉session,并重新把用户添加到session中
+		session.invalidate();
+		request.getSession().setAttribute("user", newUser);
+
+		// 重定向
+		response.sendRedirect(request.getContextPath() + "/");
+		return null;
+	}
+
+	/**
 	 * 用户账号密码修改
 	 */
 	public String updatePwd(HttpServletRequest request,
@@ -195,18 +235,24 @@ public class UserServlet extends BaseServlet {
 		User user = (User) session.getAttribute("user");
 		String uid = user.getUid();
 
-		// 干掉session
-		session.invalidate();
+		// 获得账户的密码
+		String oldpwd = request.getParameter("oldpwd");
+		if(!MD5Utils.md5(oldpwd).equals(user.getPassword())) {
+			request.setAttribute("msg", "修改时，密码出错!!");
+			return "/user/jsp/msg.jsp";
+		}
 		
 		// 获得账户的密码
-		String newPwd = request.getParameter("newPwd");
-		
+		String newPwd = request.getParameter("newpwd");
+		if(newPwd == null) {
+			request.setAttribute("msg", "新密码为空!!");
+			return "/user/jsp/msg.jsp";
+		}
 		// 加密密码
 		String pwd = MD5Utils.md5(newPwd);
 
 		// 调用Service，注销账号
 		UserService s = new UserServiceImpl();
-		
 		User newUser = null;
 		try {
 			// 获取最新的User，保存到session中
@@ -214,11 +260,13 @@ public class UserServlet extends BaseServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
+		// 干掉session
+		session.invalidate();
 		// 将新用户保存到session中
 		request.getSession().setAttribute("user", newUser);
 		response.sendRedirect(request.getContextPath());
-		
+
 		return null;
 	}
 

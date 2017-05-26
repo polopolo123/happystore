@@ -38,11 +38,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User updateUser(User user) throws Exception {
 		UserDao dao = new UserDaoImpl();
-		if (user != null) {
+		if (user == null) {
 			throw new RuntimeException();
 		}
 		dao.updateUser(user);
-		return dao.getByUsernameAndPwd(user.getName(),user.getPassword());
+		return dao.getByUsernameAndPwd(user.getUsername(),user.getPassword());
 	}
 
 	// ÓÃ»§µÇÂ½
