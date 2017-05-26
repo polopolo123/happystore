@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	亲,不好意思,您访问的资源不存在,~~!~
+	要访问的资源不存在，请检查url路径
 </body>
 </html>

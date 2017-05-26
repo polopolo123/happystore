@@ -56,7 +56,6 @@ public class ProductServlet extends BaseServlet {
 				list.addFirst(id);
 			}
 		}else{
-			//等于3个
 			//id重复
 			if(list.contains(id)){
 				//去除重复id，把传入的id放最前面

@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	亲,不好意思,我们正在努力抢修~~~
+	系统故障中，请过段时间重新访问或与系统管理员联系
 </body>
 </html>

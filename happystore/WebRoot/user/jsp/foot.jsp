@@ -10,13 +10,13 @@
 
 	<div style="text-align: center;margin-top: 5px;">
 		<ul class="list-inline">
-			<li><a href="#">关于我们</a></li>
-			<li><a href="#">法律声明</a></li>
+			<li><a href="${pageContext.request.contextPath}/business/jsp/index.jsp">店铺管理</a></li>
+			<li><a href="${pageContext.request.contextPath}/business/jsp/register.jsp">我要开店</a></li>
 			<li><a href="#">购物指南</a></li>
 			<li><a href="#">支付方式</a></li>
 			<li><a href="#">配送方式</a></li>
 			<li><a href="#">服务声明</a></li>
-			<li><a href="#">服务中心</a></li>
+			<li><a href="#">管理员登录</a></li>
 		</ul>
 	</div>
 	<div style="text-align: center;margin-top: 5px;margin-bottom:20px;">

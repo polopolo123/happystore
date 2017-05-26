@@ -15,6 +15,8 @@ public class DataSourceUtils {
 	
 	/**
 	 * 从线程中获取连接
+	 * @return
+	 * @throws SQLException
 	 */
 	public static Connection getConnection() throws SQLException {
 		//从线程中获取conneciton
