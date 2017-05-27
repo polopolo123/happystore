@@ -1,4 +1,4 @@
-package user.utils;
+package business.utils;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

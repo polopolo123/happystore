@@ -1,4 +1,4 @@
-package user.entity;
+package business.entity;
 
 import java.util.List;
 

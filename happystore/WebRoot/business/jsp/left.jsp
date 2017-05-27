@@ -29,8 +29,8 @@
 		d.add('010202','0102','查询基础信息','${pageContext.request.contextPath}/adminCategory?method=findAll','','mainFrame');
 		d.add('010203','0102','更改信息','${pageContext.request.contextPath}/adminCategory?method=findAll','','mainFrame');
 		d.add('0104','01','商品管理');
-		d.add('010401','0104','商品列表','${pageContext.request.contextPath}/adminProduct?method=findAll','','mainFrame');
-		d.add('010402','0104','发布商品','${pageContext.request.contextPath}/adminProduct?method=findAll','','mainFrame');
+		d.add('010401','0104','商品列表','${pageContext.request.contextPath}/Business_Pro?method=findAllByBid','','mainFrame');
+		d.add('010402','0104','发布商品','${pageContext.request.contextPath}/Business_Pro?method=addUI','','mainFrame');
 		d.add('0105','01','订单项管理');
 		d.add('010501','0105','所有订单项','${pageContext.request.contextPath}/adminOrder?method=findAllByState','','mainFrame');
 		d.add('010502','0105','未发货订单项','${pageContext.request.contextPath}/adminOrder?method=findAllByState&state=0','','mainFrame');

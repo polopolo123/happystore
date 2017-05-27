@@ -9,7 +9,6 @@
 		<script type="text/javascript" src="${pageContext.request.contextPath}/layer/layer.js"></script>
 		<script type="text/javascript">
 				function showDetail(oid){
-					//alert(oid);
 					$.post("${pageContext.request.contextPath}/adminOrder",{"method":"getDetailByOid","oid":oid},function(data){
 						var s="<table width='99%' border='1'><tr><th>商品名称</th><th>购买数量</th></tr>";
 						$(data).each(function(){

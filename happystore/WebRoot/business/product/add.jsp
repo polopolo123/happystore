@@ -4,12 +4,12 @@
 	<HEAD>
 		<meta http-equiv="Content-Language" content="zh-cn">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<LINK href="${pageContext.request.contextPath}/css/Style1.css" type="text/css" rel="stylesheet">
+		<LINK href="${pageContext.request.contextPath}/business/css/Style1.css" type="text/css" rel="stylesheet">
 	</HEAD>
 	
 	<body>
-		<!--  -->
-		<form id="userAction_save_do" name="Form1" action="${pageContext.request.contextPath}/addProduct" method="post" enctype="multipart/form-data">
+		<form id="userAction_save_do" name="Form1" action="${pageContext.request.contextPath}/business/AddProduct" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="bid" value="${Business.bid }">
 			&nbsp;
 			<table cellSpacing="1" cellPadding="5" width="100%" align="center" bgColor="#eeeeee" style="border: 1px solid #8ba7e3" border="0">
 				<tr>
@@ -39,16 +39,24 @@
 				</tr>
 				<tr>
 					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
-						市场价格：
+						店铺售价：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
 						<input type="text" name="market_price" value="" id="userAction_save_do_logonName" class="bg"/>
 					</td>
 					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
-						商城价格：
+						市场参考价：
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
 						<input type="text" name="shop_price" value="" id="userAction_save_do_logonName" class="bg"/>
+					</td>
+				</tr>
+								<tr>
+					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
+						商品数量：
+					</td>
+					<td class="ta_01" bgColor="#ffffff" colspan="3">
+						<input type="text" name="pnumber" value="" id="userAction_save_do_logonName" class="bg"/>
 					</td>
 				</tr>
 				<tr>
@@ -65,8 +73,20 @@
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colspan="3">
 						<select name="cid">
-							<c:forEach items="${clist }" var="c">
+							<c:forEach items="${categoryList }" var="c">
 								<option value="${c.cid }">${c.cname }</option>
+							</c:forEach>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
+						促销类型：
+					</td>
+					<td class="ta_01" bgColor="#ffffff" colspan="3">
+						<select name="pnid">
+							<c:forEach items="${promotionList }" var="pro">
+								<option value="${pro.pnid }">${pro.pnname }</option>
 							</c:forEach>
 						</select>
 					</td>
