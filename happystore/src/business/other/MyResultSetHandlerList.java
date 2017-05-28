@@ -9,7 +9,6 @@ import org.apache.commons.dbutils.ResultSetHandler;
 
 import user.entity.Business;
 import user.entity.Category;
-import user.entity.Product;
 import user.entity.Promotion;
 import user.service.BusinessService;
 import user.service.CategoryService;
@@ -17,6 +16,7 @@ import user.service.PromotionService;
 import user.service.impl.BusinessServiceImpl;
 import user.service.impl.CategoryServiceImpl;
 import user.service.impl.PromotionServiceImpl;
+import business.entity.Product;
 
 
 public class MyResultSetHandlerList implements ResultSetHandler {
@@ -37,6 +37,7 @@ public class MyResultSetHandlerList implements ResultSetHandler {
 			product.setPdesc(rs.getString("pdesc"));
 
 			String pro_id = rs.getString("pro_id");
+			
 			// ·â×°Promotion
 			PromotionService promotionService = new PromotionServiceImpl();
 			Promotion promotion = null;
@@ -45,7 +46,10 @@ public class MyResultSetHandlerList implements ResultSetHandler {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			product.setPromotion(promotion);
+			business.entity.Promotion bpromotion = new business.entity.Promotion();
+			bpromotion.setPnid(promotion.getPnid());
+			bpromotion.setPnname(promotion.getPnname());
+			product.setPromotion(bpromotion);
 
 			String cid = rs.getString("cid");
 			// ·â×°Category
@@ -56,7 +60,10 @@ public class MyResultSetHandlerList implements ResultSetHandler {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			product.setCategory(category);
+			business.entity.Category bcategory = new business.entity.Category();
+			bcategory.setCid(category.getCid());
+			bcategory.setCname(category.getCname());
+			product.setCategory(bcategory);
 
 			String bid = rs.getString("bid");
 			// ·â×°Business
@@ -67,7 +74,19 @@ public class MyResultSetHandlerList implements ResultSetHandler {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			product.setBusiness(business);
+			business.entity.Business bbusiness = new business.entity.Business();
+			bbusiness.setBid(business.getBid());
+			bbusiness.setAddress(business.getAddress());
+			bbusiness.setBname(business.getBname());
+			bbusiness.setBusername(business.getBusername());
+			bbusiness.setBuserpwd(business.getBuserpwd());
+			bbusiness.setCreatedate(business.getCreatedate());
+			bbusiness.setTelephone(business.getTelephone());
+			bbusiness.setState(business.getState());
+			bbusiness.setStars(business.getStars());
+			bbusiness.setSex(business.getSex());
+			bbusiness.setEmail(business.getEmail());
+			product.setBusiness(bbusiness);
 
 			list.add(product);
 		}

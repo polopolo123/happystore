@@ -15,7 +15,7 @@ import business.service.BusinessService;
 import business.service.impl.BusinessServiceImpl;
 
 /**
- * 商家订单管理模块
+ * 商家产品管理模块
  */
 public class BusinessServlet_b extends BaseServlet {
 	private static final long serialVersionUID = 1L;

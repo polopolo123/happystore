@@ -5,13 +5,12 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
-import user.entity.Order;
-import business.other.MyResultSetHandlerList;
 import business.dao.BusinessDao;
 import business.entity.Business;
 import business.entity.Category;
 import business.entity.Product;
 import business.entity.Promotion;
+import business.other.MyResultSetHandlerList;
 import business.utils.DataSourceUtils;
 
 public class BusinessDaoImpl implements BusinessDao {

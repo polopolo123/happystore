@@ -48,6 +48,16 @@
     <servlet-name>EditProductServlet</servlet-name>
     <servlet-class>business.servlet.EditProductServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>BusinessServlet_c</servlet-name>
+    <servlet-class>business.servlet.BusinessServlet_c</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BusinessServlet_a</servlet-name>
+    <servlet-class>business.servlet.BusinessServlet_a</servlet-class>
+  </servlet>
+
+
 
 
 
@@ -106,6 +116,14 @@
   <servlet-mapping>
     <servlet-name>EditProductServlet</servlet-name>
     <url-pattern>/business/EditProduct</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BusinessServlet_c</servlet-name>
+    <url-pattern>/BusinessServlet_c</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BusinessServlet_a</servlet-name>
+    <url-pattern>/BusinessServlet_a</url-pattern>
   </servlet-mapping>
 
 	<filter>

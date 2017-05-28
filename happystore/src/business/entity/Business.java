@@ -21,8 +21,8 @@ public class Business implements Serializable{
 	private String sex;	      // 店铺所有者性别
 	
 	private Integer stars;	   // 店铺的星级（1-5星）
-	private Integer state = 0; // 店铺的状态
-	// 激活状态 0:正常 1:被注销 2被挂起（店铺信用不好，或违法等等)
+	private Integer state = 0; // 店铺的状态 
+	// 0 待审核 1 正常 2 .。
 	public String getBid() {
 		return bid;
 	}

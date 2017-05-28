@@ -92,7 +92,6 @@ font {
 									style="cursor: pointer;"
 									onclick="this.src='${pageContext.request.contextPath}/user/Code?a='+ Math.random()" />
 							</div>
-
 						</div>
 
 

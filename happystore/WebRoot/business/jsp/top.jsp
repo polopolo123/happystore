@@ -24,12 +24,12 @@ TH {
 	COLOR: #000000
 }
 </style>
-		<link href="${pageContext.request.contextPath}/business/css/Style1.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/business/css/Style1.css" rel="stylesheet" type="text/css">
 	</HEAD>
 	<body>
 		<table width="100%" height="70%"  border="0" cellspacing="0" cellpadding="0">
 			<tr>
-				<td width="100%" background="${pageContext.request.contextPath}/business/images/top_100.jpg">
+				<td width="100%"  background="${pageContext.request.contextPath}/business/images/777.jpg" ><img src="${pageContext.request.contextPath}/business/images/888.png" width="430" height="75" />
 				</td>
 			</tr>
 		</table>
@@ -83,8 +83,8 @@ else
 										</td>
 										<td width="155" valign="bottom"
 											background="${pageContext.request.contextPath}/business/images/mis_05b.jpg">
-											用户名：
-											<font color="blue"><s:property value="#session.existAdminUser.username"/></font>
+											店铺名：
+											<font color="blue">${Business.busername }</font>
 										</td>
 										<td width="10" align="right"
 											background="${pageContext.request.contextPath}/business/images/mis_05b.jpg">

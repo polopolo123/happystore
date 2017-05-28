@@ -33,10 +33,10 @@ public class OrderDaoImpl implements OrderDao {
 	@Override
 	public void addItem(OrderItem oi) throws Exception {
 		QueryRunner qr = new QueryRunner();
-		String sql = "insert into orderitem values(?,?,?,?,?)";
+		String sql = "insert into orderitem values(?,?,?,?,?,?)";
 		qr.update(DataSourceUtils.getConnection(), sql, oi.getItemid(), oi
 				.getCount(), oi.getSubtotal(), oi.getProduct().getPid(), oi
-				.getOrder().getOid());
+				.getOrder().getOid(),0);
 	}
 
 	// 分页查询我的订单

@@ -139,24 +139,17 @@ font {
 						<div id="div7"></div>
 					</div>
 
-
 					<div class="form-group">
-						<label for="date" class="col-sm-2 control-label">验证码</label>
+						<label for="inputPassword3" class="col-sm-2 control-label">验证码</label>
 						<div class="col-sm-3">
-							<input type="text" class="form-control" name="yzmcode" id="code"
-								placeholder="请输入验证码">
-
+							<input type="text" class="form-control" id="inputPassword3"
+								placeholder="请输入验证码" name="yzmcode">
 						</div>
 						<div class="col-sm-2">
-							<img src="${pageContext.request.contextPath}/user/Code" />
-
-
+							<img src="${pageContext.request.contextPath}/user/Code"
+								style="cursor: pointer;"
+								onclick="this.src='${pageContext.request.contextPath}/user/Code?a='+ Math.random()" />
 						</div>
-
-						<span id="span1" style="margin-left:65px;"></span>
-
-
-
 					</div>
 
 					<div class="form-group">
@@ -180,56 +173,55 @@ font {
 
 </body>
 <script>
-function createAjax()
-{
-	try {
-		return new XMLHttpRequest();
-	} catch (e) {
+	function createAjax() {
+		try {
+			return new XMLHttpRequest();
+		} catch (e) {
 
+		}
+
+		try {
+			return new ActiveXObject('Microsoft.XMLHTTP');
+		} catch (e) {
+
+		}
+
+		alert('浏览器版本太低，请更换浏览器！！！');
 	}
 
-	try {
-		return new ActiveXObject('Microsoft.XMLHTTP');
-	} catch (e) {
-
+	function $(id) {
+		return document.getElementById(id);
 	}
 
-	alert('浏览器版本太低，请更换浏览器！！！');
-}
-
-	function $(id){
-	 	return document.getElementById(id);
-	}
-
-	window.onload=function(){
-		$("username").onblur=function(){
-			var username=this.value;
+	window.onload = function() {
+		$("username").onblur = function() {
+			var username = this.value;
 			var ajax = createAjax();
-			var url='${pageContext.request.contextPath}/User?method=checkUser&username='+username;
+			var url = '${pageContext.request.contextPath}/User?method=checkUser&username='
+					+ username;
 			ajax.open('get', url);
 			ajax.onreadystatechange = function() {
-				if (ajax.readyState == 4&&ajax.status==200) {
+				if (ajax.readyState == 4 && ajax.status == 200) {
 					if (ajax.responseText == "no") {
 						$('div1').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/888.png"   /><font color=red>用户名已经被占用</font>';
-						
+
 					} else {
-						if(username==''){
-						
-						$('div1').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/888.png"   /><font color=red>请输入要注册的帐号</font>';
-						}else{
-						
-						$('div1').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/999.png"   /><font color=red>帐号可以使用</font>';
+						if (username == '') {
+
+							$('div1').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/888.png"   /><font color=red>请输入要注册的帐号</font>';
+						} else {
+
+							$('div1').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/999.png"   /><font color=red>帐号可以使用</font>';
 						}
-						
-						
+
 					}
-					
+
 				}
 			};
 			ajax.send(null);
-			
+
 		};
-	
+
 		/* $("username").onblur=function(){
 			var a=this.value;
 			if(a){
@@ -238,75 +230,66 @@ function createAjax()
 				$('div1').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/888.png"   /><font color=red>用户名已经被占用</font>';
 			}
 		}; */
-		
-		$("inputPassword3").onblur=function(){
-			var a=this.value;
-			if(a){
+
+		$("inputPassword3").onblur = function() {
+			var a = this.value;
+			if (a) {
 				$('div2').innerHTML = '';
-			}else{
+			} else {
 				$('div2').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/888.png"   /><font color=red>请输入密码</font>';
 			}
 		};
-		
-		$("confirmpwd").onblur=function(){
-			var a=this.value;
-			var b=$("inputPassword3").value;
-			if(a){
-				if(a==b){
+
+		$("confirmpwd").onblur = function() {
+			var a = this.value;
+			var b = $("inputPassword3").value;
+			if (a) {
+				if (a == b) {
 					$('div3').innerHTML = '';
+				} else {
+					$('div3').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/888.png"   /><font color=red>2次密码不一致</font>';
 				}
-				else{
-				$('div3').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/888.png"   /><font color=red>2次密码不一致</font>';
-				}
-			}else{
+			} else {
 				$('div3').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/888.png"   /><font color=red>请重新输入密码</font>';
 			}
 		};
-		
-		
-		$("inputEmail3").onblur=function(){
-			var a=this.value;
-			if(a){
+
+		$("inputEmail3").onblur = function() {
+			var a = this.value;
+			if (a) {
 				$('div4').innerHTML = '';
-			}else{
+			} else {
 				$('div4').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/888.png"   /><font color=red>请输入email</font>';
 			}
 		};
-		
-		
-		$("usercaption").onblur=function(){
-			var a=this.value;
-			if(a){
+
+		$("usercaption").onblur = function() {
+			var a = this.value;
+			if (a) {
 				$('div5').innerHTML = '';
-			}else{
+			} else {
 				$('div5').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/888.png"   /><font color=red>请输入姓名</font>';
 			}
 		};
-		
-	
-		
-		
-		
-		$("phone").onblur=function(){
-			var a=this.value;
-			if(a){
+
+		$("phone").onblur = function() {
+			var a = this.value;
+			if (a) {
 				$('div7').innerHTML = '';
-			}else{
+			} else {
 				$('div7').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/888.png"   /><font color=red>请输入手机号码</font>';
 			}
 		};
-		
-		
-		
-		$("code").onblur=function(){
-			var a=this.value;
-			if(a){
+
+		$("code").onblur = function() {
+			var a = this.value;
+			if (a) {
 				$('span1').innerHTML = '';
-			}else{
+			} else {
 				$('span1').innerHTML = '<img src="${pageContext.request.contextPath}/user/images/888.png"   /><font color=red>请输入验证码</font>';
 			}
 		};
-		
+
 	}
 </script>
 </html>
