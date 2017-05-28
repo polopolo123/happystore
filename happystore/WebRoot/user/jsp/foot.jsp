@@ -16,7 +16,7 @@
 			<li><a href="#">支付方式</a></li>
 			<li><a href="#">配送方式</a></li>
 			<li><a href="#">服务声明</a></li>
-			<li><a href="#">管理员登录</a></li>
+			<li><a href="${pageContext.request.contextPath}/admin/jsp/login.jsp">管理员登录</a></li>
 		</ul>
 	</div>
 	<div style="text-align: center;margin-top: 5px;margin-bottom:20px;">
