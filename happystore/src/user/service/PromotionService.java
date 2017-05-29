@@ -4,6 +4,6 @@ import user.entity.Promotion;
 
 public interface PromotionService {
 	
-	// 通过id获取一个促销类型
+	// 閫氳繃id鑾峰彇涓�涓績閿�绫诲瀷
 	public Promotion getById(String pnid) throws Exception;
 }

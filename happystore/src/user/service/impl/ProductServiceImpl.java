@@ -10,7 +10,7 @@ import user.service.ProductService;
 
 public class ProductServiceImpl implements ProductService{
 	/**
-	 * ²éÑ¯µ¥¸öÉÌÆ·
+	 * æŸ¥è¯¢å•ä¸ªå•†å“
 	 */
 	@Override
 	public Product getByPid(String pid) throws Exception {
@@ -19,22 +19,22 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	/**
-	 * °´Àà±ğ·ÖÒ³²éÑ¯ÉÌÆ·
+	 * æŒ‰ç±»åˆ«åˆ†é¡µæŸ¥è¯¢å•†å“
 	 */
 	@Override
 	public PageBean<Product> findByPage(int currPage, int pageSize, String cid) throws Exception {
 		ProductDao productDao=new ProductDaoImpl();
-		//µ±Ç°Ò³Êı¾İ
+		//å½“å‰é¡µæ•°æ®
 		List<Product> list=productDao.findByPage(currPage,pageSize,cid);
 		
-		//×ÜÌõÊı
+		//æ€»æ¡æ•°
 		int totalCount = productDao.getTotalCount(cid);
 		
 		return new PageBean<>(list, currPage, pageSize, totalCount);
 	}
 
 	/*
-	 * ²éÑ¯×îĞÂÉÌÆ·
+	 * æŸ¥è¯¢æœ€æ–°å•†å“
 	 */
 	@Override
 	public List<Product> findNew() throws Exception {
@@ -43,7 +43,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	/*
-	 * ²éÑ¯ÈÈÃÅÉÌÆ·
+	 * æŸ¥è¯¢çƒ­é—¨å•†å“
 	 */
 	@Override
 	public List<Product> findHot() throws Exception {

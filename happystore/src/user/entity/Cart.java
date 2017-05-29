@@ -6,10 +6,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Cart implements Serializable {
-	// ´æ·Å¹ºÎï³µÏîµÄ¼¯ºÏ key:ÉÌÆ·µÄid cartitem:¹ºÎï³µÏî Ê¹ÓÃmap¼¯ºÏ±ãÓÚÉ¾³ıµ¥¸ö¹ºÎï³µÏî
+	// å­˜æ”¾è´­ç‰©è½¦é¡¹çš„é›†åˆ key:å•†å“çš„id cartitem:è´­ç‰©è½¦é¡¹ ä½¿ç”¨mapé›†åˆä¾¿äºåˆ é™¤å•ä¸ªè´­ç‰©è½¦é¡¹
 	private Map<String, CartItem> map = new LinkedHashMap<>();
 
-	// ×Ü½ğ¶î
+	// æ€»é‡‘é¢
 	private Double total = 0.0;
 
 	public Map<String, CartItem> getMap() {
@@ -29,7 +29,7 @@ public class Cart implements Serializable {
 	}
 
 	/**
-	 * »ñÈ¡ËùÓĞµÄ¹ºÎï³µÏî
+	 * è·å–æ‰€æœ‰çš„è´­ç‰©è½¦é¡¹
 	 */
 	public Collection<CartItem> getItem() {
 		return map.values();

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * ÓÃ»§ÊµÌå
+ * ç”¨æˆ·å®ä½“
  */
 public class User implements Serializable{
 
@@ -17,7 +17,7 @@ public class User implements Serializable{
 	private Date birthday;
 	private String sex;
 	private Integer state = 0;
-	// ¼¤»î×´Ì¬ 0:Õı³£ 1:±»×¢Ïú 2±»¹ÒÆğ£¨ÃÜÂë³ö´í¹ı¶à)
+	// æ¿€æ´»çŠ¶æ€ 0:æ­£å¸¸ 1:è¢«æ³¨é”€ 2è¢«æŒ‚èµ·ï¼ˆå¯†ç å‡ºé”™è¿‡å¤š)
 	
 	
 	public String getUid() {

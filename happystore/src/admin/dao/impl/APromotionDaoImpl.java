@@ -6,14 +6,13 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
-import user.entity.Category;
 import user.entity.Promotion;
 import user.utils.DataSourceUtils;
 import admin.dao.APromotionDao;
 
 public class APromotionDaoImpl implements APromotionDao {
 
-	// ²éÑ¯ËùÓĞµÄ´ÙÏúÀàĞÍ
+	// æŸ¥è¯¢æ‰€æœ‰çš„ä¿ƒé”€ç±»å‹
 	@Override
 	public List<Promotion> findAll() throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -21,7 +20,7 @@ public class APromotionDaoImpl implements APromotionDao {
 		return qr.query(sql, new BeanListHandler<>(Promotion.class));
 	}
 	
-	// Í¨¹ıid»ñÈ¡Ò»¸ö·ÖÀà
+	// é€šè¿‡idè·å–ä¸€ä¸ªåˆ†ç±»
 	@Override
 	public Promotion getById(String pnid) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -29,7 +28,7 @@ public class APromotionDaoImpl implements APromotionDao {
 		return qr.query(sql, new BeanHandler<>(Promotion.class), pnid);
 	}
 	
-	//¸üĞÂ´ÙÏúÀàĞÍ
+	//æ›´æ–°ä¿ƒé”€ç±»å‹
 	@Override
 	public void update(Promotion promotion) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -37,7 +36,7 @@ public class APromotionDaoImpl implements APromotionDao {
 		qr.update(sql,promotion.getPnname(),promotion.getPnid());
 	}
 
-	//É¾³ı´ÙÏúÁªÏë
+	//åˆ é™¤ä¿ƒé”€è”æƒ³
 	@Override
 	public void delete(String pnid) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -47,7 +46,7 @@ public class APromotionDaoImpl implements APromotionDao {
 		qr.update(sql,pnid);
 	}
 
-	//Ìí¼Ó·ÖÀà
+	//æ·»åŠ åˆ†ç±»
 	@Override
 	public void add(Promotion promotion) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());

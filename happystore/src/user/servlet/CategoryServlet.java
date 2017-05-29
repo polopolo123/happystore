@@ -14,11 +14,11 @@ import user.service.impl.CategoryServiceImpl;
 
 public class CategoryServlet extends BaseServlet {
 	/**
-	 * ²éÑ¯ËùÓĞµÄ·ÖÀà
+	 * æŸ¥è¯¢æ‰€æœ‰çš„åˆ†ç±»
 	 */
 	public String findAll(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// 1.µ÷ÓÃcategoryservice ²éÑ¯ËùÓĞµÄ·ÖÀà ·µ»ØÖµlist
+		// 1.è°ƒç”¨categoryservice æŸ¥è¯¢æ‰€æœ‰çš„åˆ†ç±» è¿”å›å€¼list
 		CategoryService cs = new CategoryServiceImpl();
 		List<Category> clist = null;
 		try {
@@ -27,10 +27,10 @@ public class CategoryServlet extends BaseServlet {
 			e.printStackTrace();
 		}
 
-		// 2.½«·µ»ØÖµ×ª³Éjson¸ñÊ½ ·µ»Øµ½Ò³ÃæÉÏ
+		// 2.å°†è¿”å›å€¼è½¬æˆjsonæ ¼å¼ è¿”å›åˆ°é¡µé¢ä¸Š
 		String json = JSONArray.fromObject(clist).toString();
 
-		// 3.Ğ´»ØÈ¥
+		// 3.å†™å›å»
 		response.setContentType("text/html;charset=utf-8");
 		response.getWriter().println(json);
 

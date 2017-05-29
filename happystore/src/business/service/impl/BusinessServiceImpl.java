@@ -11,41 +11,41 @@ import business.service.BusinessService;
 
 public class BusinessServiceImpl implements BusinessService{
 	
-	// 通过id获取该商家提供的商品列表
+	// 閫氳繃id鑾峰彇璇ュ晢瀹舵彁渚涚殑鍟嗗搧鍒楄〃
 	public List<Product> getListById(String bid) throws Exception {
 		BusinessDao businessDao = new BusinessDaoImpl(); 
 		return businessDao.getListById(bid);
 	}
 	
-	// 通过id获取删除产品
+	// 閫氳繃id鑾峰彇鍒犻櫎浜у搧
 	@Override
 	public void deleteById(String pid) throws Exception {
 		BusinessDao businessDao = new BusinessDaoImpl(); 
 		businessDao.deleteById(pid);
 	}
 
-	// 添加商品
+	// 娣诲姞鍟嗗搧
 	@Override
 	public void add(Product product) throws Exception {
 		BusinessDao businessDao = new BusinessDaoImpl(); 
 		businessDao.add(product);
 	}
 	
-	// 编辑商品
+	// 缂栬緫鍟嗗搧
 	@Override
 	public void update(Product product) throws Exception {
 		BusinessDao businessDao = new BusinessDaoImpl(); 
 		businessDao.update(product);
 	}
 
-	// 查询促销类型
+	// 鏌ヨ淇冮攢绫诲瀷
 	@Override
 	public List<Promotion> findPromotion() throws Exception {
 		BusinessDao businessDao = new BusinessDaoImpl(); 
 		return businessDao.findPromotion();
 	}
 
-	// 查询产品分类
+	// 鏌ヨ浜у搧鍒嗙被
 	@Override
 	public List<Category> findCategory() throws Exception {
 		BusinessDao businessDao = new BusinessDaoImpl(); 

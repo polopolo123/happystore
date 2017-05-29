@@ -2,18 +2,18 @@ package admin.dao;
 
 public interface ABusinessDao {
 
-	// ÉıĞÇ
+	// å‡æ˜Ÿ
 	public void changeaddStar(String bid) throws Exception;
 
-	// ½µĞÇ
+	// é™æ˜Ÿ
 	public void changejianStar(String bid) throws Exception;
 
 	public void stopBusiness(String bid) throws Exception;
 
-	//½â½ûÓÃ»§
+	//è§£ç¦ç”¨æˆ·
 	public void openBusiness(String bid) throws Exception;
 
-	//ÔÊĞíµêÆÌ×¢²á
+	//å…è®¸åº—é“ºæ³¨å†Œ
 	public void okbusiness(String bid) throws Exception;
 	
 }

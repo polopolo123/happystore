@@ -10,95 +10,95 @@ import user.service.ProductService;
 import user.service.impl.ProductServiceImpl;
 
 /**
- * ¹ºÎï³µÄ£¿é
+ * è´­ç‰©è½¦æ¨¡å—
  */
 public class CartServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * »ñÈ¡¹ºÎï³µ
+	 * è·å–è´­ç‰©è½¦
 	 */
 	public Cart getCart(HttpServletRequest request) {
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
-		// ÅĞ¶Ï¹ºÎï³µÊÇ·ñÎª¿Õ
+		// åˆ¤æ–­è´­ç‰©è½¦æ˜¯å¦ä¸ºç©º
 		if (cart == null) {
-			// ´´½¨Ò»¸öcart
+			// åˆ›å»ºä¸€ä¸ªcart
 			cart = new Cart();
 
-			// Ìí¼Óµ½sessionÖĞ
+			// æ·»åŠ åˆ°sessionä¸­
 			request.getSession().setAttribute("cart", cart);
 		}
 		return cart;
 	}
 
 	/**
-	 * Ìí¼Óµ½¹ºÎï³µ
+	 * æ·»åŠ åˆ°è´­ç‰©è½¦
 	 */
 	public String add(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		// 1.»ñÈ¡pidºÍÊıÁ¿
+		// 1.è·å–pidå’Œæ•°é‡
 		String pid = request.getParameter("pid");
 		int count = Integer.parseInt(request.getParameter("count"));
 
-		// 2.µ÷ÓÃproductservice Í¨¹ıpid»ñÈ¡Ò»¸öÉÌÆ·
+		// 2.è°ƒç”¨productservice é€šè¿‡pidè·å–ä¸€ä¸ªå•†å“
 		ProductService ps = new ProductServiceImpl();
 		Product product = ps.getByPid(pid);
 
-		// 3.×é×°³ÉCartItem
+		// 3.ç»„è£…æˆCartItem
 		CartItem cartItem = new CartItem(product, count);
 
-		// 4.Ìí¼Óµ½¹ºÎï³µ
+		// 4.æ·»åŠ åˆ°è´­ç‰©è½¦
 		Cart cart = getCart(request);
-		// 4.1ÏÈÅĞ¶Ï¹ºÎï³µÖĞÓĞÎŞ¸ÃÉÌÆ·
+		// 4.1å…ˆåˆ¤æ–­è´­ç‰©è½¦ä¸­æœ‰æ— è¯¥å•†å“
 		if (cart.getMap().containsKey(pid)) {
-			// ÓĞ
-			// ÉèÖÃ¹ºÂòÊıÁ¿ ĞèÒª»ñÈ¡¸ÃÉÌÆ·Ö®Ç°µÄ¹ºÂòÊıÁ¿+ÏÖÔÚµÄ¹ºÂòÊıÁ¿(item.getCount)
-			// »ñÈ¡¹ºÎï³µÖĞ¹ºÎï³µÏî
+			// æœ‰
+			// è®¾ç½®è´­ä¹°æ•°é‡ éœ€è¦è·å–è¯¥å•†å“ä¹‹å‰çš„è´­ä¹°æ•°é‡+ç°åœ¨çš„è´­ä¹°æ•°é‡(item.getCount)
+			// è·å–è´­ç‰©è½¦ä¸­è´­ç‰©è½¦é¡¹
 			CartItem oItem = cart.getMap().get(pid);
 			oItem.setCount(oItem.getCount() + cartItem.getCount());
 		} else {
-			// Ã»ÓĞ ½«¹ºÎï³µÏîÌí¼Ó½øÈ¥
+			// æ²¡æœ‰ å°†è´­ç‰©è½¦é¡¹æ·»åŠ è¿›å»
 			cart.getMap().put(pid, cartItem);
 		}
-		// 4.2.Ìí¼ÓÍê³ÉÖ®ºó ĞŞ¸Ä½ğ¶î
+		// 4.2.æ·»åŠ å®Œæˆä¹‹å ä¿®æ”¹é‡‘é¢
 		cart.setTotal(cart.getTotal() + cartItem.getSubtotal());
 
-		// 5.ÖØ¶¨Ïò
+		// 5.é‡å®šå‘
 		response.sendRedirect(request.getContextPath() + "/user/jsp/cart.jsp");
 		return null;
 	}
 
 	/**
-	 * ´Ó¹ºÎï³µÖĞÒÆ³ı¹ºÎï³µÏî
+	 * ä»è´­ç‰©è½¦ä¸­ç§»é™¤è´­ç‰©è½¦é¡¹
 	 */
 	public String remove(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// 1.»ñÈ¡ÉÌÆ·µÄpid£¬²¢Í¨¹ıpid»ñµÃCart
+		// 1.è·å–å•†å“çš„pidï¼Œå¹¶é€šè¿‡pidè·å¾—Cart
 		String pid = request.getParameter("pid");
 		Cart cart = getCart(request);
 
-		// 2.Í¨¹ıpidÉ¾³ımap
+		// 2.é€šè¿‡pidåˆ é™¤map
 		CartItem removeItem = cart.getMap().remove(pid);
 
-		// 3.ĞŞ¸Ä½ğ¶î
+		// 3.ä¿®æ”¹é‡‘é¢
 		cart.setTotal(cart.getTotal() - removeItem.getSubtotal());
 
-		// 4.ÖØ¶¨Ïò
+		// 4.é‡å®šå‘
 		response.sendRedirect(request.getContextPath() + "/user/jsp/cart.jsp");
 		return null;
 	}
 
 	/**
-	 * Çå¿Õ¹ºÎï³µ
+	 * æ¸…ç©ºè´­ç‰©è½¦
 	 */
 	public String clear(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		// »ñÈ¡¹ºÎï³µ Çå¿Õ
+		// è·å–è´­ç‰©è½¦ æ¸…ç©º
 		Cart cart = getCart(request);
-		// 1.mapÖÃ¿Õ
+		// 1.mapç½®ç©º
 		cart.getMap().clear();
 
-		// 2.½ğ¶î¹éÁã
+		// 2.é‡‘é¢å½’é›¶
 		cart.setTotal(0.0);
 		response.sendRedirect(request.getContextPath() + "/user/jsp/cart.jsp");
 		return null;

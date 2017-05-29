@@ -17,9 +17,7 @@ public class ChangeStarServlet extends HttpServlet {
 		String flag = request.getParameter("flag");
 		String bid = request.getParameter("bid");
 
-		System.out.println(flag);
-
-		// 调用AdminService
+		// 璋冪敤AdminService
 		ABusinessService aBusinessService = new ABusinessServiceImpl();
 		if ("zhenjia".equals(flag)) {
 			try {
@@ -35,7 +33,7 @@ public class ChangeStarServlet extends HttpServlet {
 			}
 		}
 		
-		// 转发
+		// 杞彂
 		request.getRequestDispatcher("/admin/AFindBusiness").forward(request, response);
 	}
 

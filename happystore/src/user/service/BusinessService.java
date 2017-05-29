@@ -4,6 +4,6 @@ import user.entity.Business;
 
 public interface BusinessService {
 	
-	// Í¨¹ıid»ñÈ¡Ò»¸öÉÌ¼Ò
+	// é€šè¿‡idè·å–ä¸€ä¸ªå•†å®¶
 	public Business getById(String bid) throws Exception;
 }

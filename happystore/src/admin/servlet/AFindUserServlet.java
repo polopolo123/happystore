@@ -18,7 +18,7 @@ public class AFindUserServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 1.调用AdminService
+		// 1.璋冪敤AdminService
 		AdminService adminService = new AdminServiceImpl();
 		List<User> listUser = null;
 		try {
@@ -27,7 +27,7 @@ public class AFindUserServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// 2.添加到request中，进行转发
+		// 2.娣诲姞鍒皉equest涓紝杩涜杞彂
 		request.setAttribute("listUser", listUser);
 		request.getRequestDispatcher("/admin/auser/list.jsp").forward(request, response);
 	}

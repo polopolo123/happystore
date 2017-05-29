@@ -4,18 +4,18 @@ import business.entity.Business;
 
 public interface BusinessUseDao {
 	
-	// ĞŞ¸ÄÃÜÂë
+	// ä¿®æ”¹å¯†ç 
 	public Business updatePwd(String bid, String pwd) throws Exception;
 	
-	// µÇÂ½
+	// ç™»é™†
 	public Business login(String bname,String pwd) throws Exception;
 	
-	// ×¢²á
+	// æ³¨å†Œ
 	public void regist(Business business) throws Exception;
 	
-	// ¼ì²éÊÇ·ñ±»×¢²á
+	// æ£€æŸ¥æ˜¯å¦è¢«æ³¨å†Œ
 	public boolean checkBusiness(String username) throws Exception;
 	
-	// ĞŞ¸Ä»ù´¡ĞÅÏ¢
+	// ä¿®æ”¹åŸºç¡€ä¿¡æ¯
 	public Business updateBusiness(Business business) throws Exception;
 }

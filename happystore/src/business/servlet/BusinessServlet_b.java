@@ -15,84 +15,84 @@ import business.service.BusinessService;
 import business.service.impl.BusinessServiceImpl;
 
 /**
- * ÉÌ¼Ò²úÆ·¹ÜÀíÄ£¿é
+ * å•†å®¶äº§å“ç®¡ç†æ¨¡å—
  */
 public class BusinessServlet_b extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * ²éÑ¯¸Ãµê¼ÒÌá¹©µÄÉÌÆ·£¬½øĞĞÁĞ±íÕ¹Ê¾
+	 * æŸ¥è¯¢è¯¥åº—å®¶æä¾›çš„å•†å“ï¼Œè¿›è¡Œåˆ—è¡¨å±•ç¤º
 	 */
 	public String findAllByBid(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-		// 1.»ñÈ¡bid
+		// 1.è·å–bid
 		Business business = (Business) request.getSession().getAttribute(
 				"Business");
 		String bid = business.getBid();
 
-		// 2.µ÷ÓÃBusinessService Í¨¹ıbid»ñÈ¡ÉÌÆ·ÁĞ±í
+		// 2.è°ƒç”¨BusinessService é€šè¿‡bidè·å–å•†å“åˆ—è¡¨
 		BusinessService businessService = new BusinessServiceImpl();
 		List<Product> productList = businessService.getListById(bid);
 
-		// 3.Ìí¼Óµ½requestÖĞ£¬½øĞĞ×ª·¢
+		// 3.æ·»åŠ åˆ°requestä¸­ï¼Œè¿›è¡Œè½¬å‘
 		request.setAttribute("productList", productList);
 		return "/business/product/list.jsp";
 	}
 
 	/**
-	 * ÏÈ²éÑ¯´ÙÏúÀàĞÍºÍ²úÆ··ÖÀà£¬Ìø×ªµ½Ìí¼ÓÒ³Ãæ£¬
+	 * å…ˆæŸ¥è¯¢ä¿ƒé”€ç±»å‹å’Œäº§å“åˆ†ç±»ï¼Œè·³è½¬åˆ°æ·»åŠ é¡µé¢ï¼Œ
 	 */
 	public String addUI(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
-		// µ÷ÓÃBusinessService »ñÈ¡²úÆ··ÖÀàÁĞ±í
+		// è°ƒç”¨BusinessService è·å–äº§å“åˆ†ç±»åˆ—è¡¨
 		BusinessService businessService = new BusinessServiceImpl();
 		List<Category> categoryList = businessService.findCategory();
 		List<Promotion> promotionList = businessService.findPromotion();
 
-		// Ìí¼Óµ½requestÖĞ£¬½øĞĞ×ª·¢
+		// æ·»åŠ åˆ°requestä¸­ï¼Œè¿›è¡Œè½¬å‘
 		request.setAttribute("categoryList", categoryList);
 		request.setAttribute("promotionList", promotionList);
 		return "/business/product/add.jsp";
 	}
 
 	/**
-	 * Í¨¹ıpidÉ¾³ıÉÌÆ·
+	 * é€šè¿‡pidåˆ é™¤å•†å“
 	 */
 	public String deleteById(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-		// 1.»ñÈ¡pid
+		// 1.è·å–pid
 		String pid = request.getParameter("pid");
 
-		// 2.µ÷ÓÃBusinessService Í¨¹ıpidÉ¾³ı²úÆ·
+		// 2.è°ƒç”¨BusinessService é€šè¿‡pidåˆ é™¤äº§å“
 		BusinessService businessService = new BusinessServiceImpl();
 		businessService.deleteById(pid);
 
-		// 3.½øĞĞ×ª·¢
+		// 3.è¿›è¡Œè½¬å‘
 		return "/Business_Pro?method=findAllByBid";
 	}
 
 	/**
-	 * »ñÈ¡µ½pid£¬²éÑ¯Êı¾İºó·µ»Øµ½edit.jsp
+	 * è·å–åˆ°pidï¼ŒæŸ¥è¯¢æ•°æ®åè¿”å›åˆ°edit.jsp
 	 */
 	public String editUI(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 
-		// 1.»ñÈ¡pid
+		// 1.è·å–pid
 		String pid = request.getParameter("pid");
 
-		// 2.µ÷ÓÃService Í¨¹ıpid»ñÈ¡²úÆ·
+		// 2.è°ƒç”¨Service é€šè¿‡pidè·å–äº§å“
 		ProductService ProductService = new ProductServiceImpl();
 		user.entity.Product product = ProductService.getByPid(pid);
 
-		// 3.µ÷ÓÃBusinessService »ñÈ¡²úÆ··ÖÀàÁĞ±í
+		// 3.è°ƒç”¨BusinessService è·å–äº§å“åˆ†ç±»åˆ—è¡¨
 		BusinessService businessService = new BusinessServiceImpl();
 		List<Category> categoryList = businessService.findCategory();
 		List<Promotion> promotionList = businessService.findPromotion();
 
-		// Ìí¼Óµ½requestÖĞ£¬½øĞĞ×ª·¢
+		// æ·»åŠ åˆ°requestä¸­ï¼Œè¿›è¡Œè½¬å‘
 		request.setAttribute("categoryList", categoryList);
 		request.setAttribute("promotionList", promotionList);
 		request.setAttribute("bproduct", product);

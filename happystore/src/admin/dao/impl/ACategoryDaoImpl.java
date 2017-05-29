@@ -8,7 +8,7 @@ import admin.utils.DataSourceUtils;
 
 public class ACategoryDaoImpl implements ACategoryDao {
 
-	//更新分类
+	//鏇存柊鍒嗙被
 	@Override
 	public void update(Category category) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -16,7 +16,7 @@ public class ACategoryDaoImpl implements ACategoryDao {
 		qr.update(sql,category.getCname(),category.getCid());
 	}
 
-	//删除分类
+	//鍒犻櫎鍒嗙被
 	@Override
 	public void delete(String cid) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -26,7 +26,7 @@ public class ACategoryDaoImpl implements ACategoryDao {
 		qr.update(sql,cid);
 	}
 
-	//添加分类
+	//娣诲姞鍒嗙被
 	@Override
 	public void add(Category category) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());

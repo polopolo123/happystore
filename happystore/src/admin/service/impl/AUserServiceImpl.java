@@ -7,7 +7,7 @@ import admin.service.AUserService;
 
 public class AUserServiceImpl implements AUserService{
 	
-	// ¸ü¸ÄÓÃ»§µÄ×´Ì¬
+	// æ›´æ”¹ç”¨æˆ·çš„çŠ¶æ€
 	public void changeState(String uid,String state) throws Exception {
 		AUserDao aUserDao= new AUserDaoImpl();
 		aUserDao.changeState(uid,state);

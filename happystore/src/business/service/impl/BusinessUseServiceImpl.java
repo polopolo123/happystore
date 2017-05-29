@@ -6,33 +6,33 @@ import business.entity.Business;
 import business.service.BusinessUseService;
 
 public class BusinessUseServiceImpl implements BusinessUseService {
-	// ĞŞ¸ÄÃÜÂë
+	// ä¿®æ”¹å¯†ç 
 	public Business updatePwd(String bid, String pwd) throws Exception {
 		BusinessUseDao bud = new BusinessUseDaoImpl();
 		return bud.updatePwd(bid, pwd);
 	}
 
-	// µÇÂ½
+	// ç™»é™†
 	@Override
 	public Business login(String bname, String pwd) throws Exception {
 		BusinessUseDao bud = new BusinessUseDaoImpl();
 		return bud.login(bname, pwd);
 	}
 
-	// ×¢²á
+	// æ³¨å†Œ
 	public void regist(Business business) throws Exception {
 		BusinessUseDao bud = new BusinessUseDaoImpl();
 		bud.regist(business);
 	}
 
-	// ¼ì²éÊÇ·ñ±»×¢²á
+	// æ£€æŸ¥æ˜¯å¦è¢«æ³¨å†Œ
 	@Override
 	public boolean checkBusiness(String username) throws Exception {
 		BusinessUseDao bud = new BusinessUseDaoImpl();
 		return bud.checkBusiness(username);	
 	}
 
-	// ĞŞ¸Ä»ù´¡ĞÅÏ¢
+	// ä¿®æ”¹åŸºç¡€ä¿¡æ¯
 	@Override
 	public Business updateBusiness(Business business) throws Exception {
 		BusinessUseDao bud = new BusinessUseDaoImpl();

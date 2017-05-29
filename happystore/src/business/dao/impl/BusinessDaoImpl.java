@@ -27,7 +27,7 @@ public class BusinessDaoImpl implements BusinessDao {
 		return qr.query(sql, new MyResultSetHandlerList(), bid);
 	}
 
-	// 通过id获取删除产品
+	// 閫氳繃id鑾峰彇鍒犻櫎浜у搧
 	@Override
 	public void deleteById(String pid) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -35,7 +35,7 @@ public class BusinessDaoImpl implements BusinessDao {
 		qr.update(sql, pid);
 	}
 
-	// 添加商品
+	// 娣诲姞鍟嗗搧
 	@Override
 	public void add(Product product) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -48,7 +48,7 @@ public class BusinessDaoImpl implements BusinessDao {
 						.getBusiness().getBid());
 	}
 
-	// 查询促销类型
+	// 鏌ヨ淇冮攢绫诲瀷
 	@Override
 	public List<Promotion> findPromotion() throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -56,7 +56,7 @@ public class BusinessDaoImpl implements BusinessDao {
 		return qr.query(sql, new BeanListHandler<>(Promotion.class));
 	}
 
-	// 查询产品分类
+	// 鏌ヨ浜у搧鍒嗙被
 	@Override
 	public List<Category> findCategory() throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -64,7 +64,7 @@ public class BusinessDaoImpl implements BusinessDao {
 		return qr.query(sql, new BeanListHandler<>(Category.class));
 	}
 
-	// 编辑商品
+	// 缂栬緫鍟嗗搧
 	@Override
 	public void update(Product product) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());

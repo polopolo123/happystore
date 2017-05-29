@@ -16,82 +16,82 @@ import user.service.OrderService;
 import user.service.impl.OrderServiceImpl;
 
 /**
- * ¶©µ¥Ä£¿é
+ * è®¢å•æ¨¡å—
  */
 public class OrderServlet extends BaseServlet {
 
-	// Ìí¼Ó¶©µ¥
+	// æ·»åŠ è®¢å•
 	public String add(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		// 0.ÅĞ¶ÏÓÃ»§ÊÇ·ñµÇÂ¼
+		// 0.åˆ¤æ–­ç”¨æˆ·æ˜¯å¦ç™»å½•
 		User user = (User) request.getSession().getAttribute("user");
 		if (user == null) {
 			request.setAttribute("msg",
-					"Äú»¹ÔİÎ´µÇÂ¼£¬ÇëÏÈ<a href='" + request.getContextPath()
-							+ "/User?method=loginUI'>µÇÂ¼</a>");
+					"æ‚¨è¿˜æš‚æœªç™»å½•ï¼Œè¯·å…ˆ<a href='" + request.getContextPath()
+							+ "/User?method=loginUI'>ç™»å½•</a>");
 			return "/user/jsp/msg.jsp";
 		}
 
-		// 1.·â×°Êı¾İ
+		// 1.å°è£…æ•°æ®
 		Order order = new Order();
-		// 1.1 ¶©µ¥id
+		// 1.1 è®¢å•id
 		order.setOid(UUID.randomUUID().toString().replace("-", "")
 				.toUpperCase());
 
-		// 1.2 ¶©µ¥Ê±¼ä
+		// 1.2 è®¢å•æ—¶é—´
 		order.setOrdertime(new Date());
 
-		// 1.3 ×Ü½ğ¶î
-		// »ñÈ¡sessionÖĞcart
+		// 1.3 æ€»é‡‘é¢
+		// è·å–sessionä¸­cart
 		Cart cart = (Cart) request.getSession().getAttribute("cart");
 
 		order.setTotal(cart.getTotal());
 
-		// 1.4 ¶©µ¥µÄËùÓĞ¶©µ¥Ïî
+		// 1.4 è®¢å•çš„æ‰€æœ‰è®¢å•é¡¹
 		for (CartItem cartItem : cart.getItem()) {
 			OrderItem oi = new OrderItem();
 
-			// ÉèÖÃid
+			// è®¾ç½®id
 			oi.setItemid(UUID.randomUUID().toString().replace("-", "")
 					.toUpperCase());
 
-			// ÉèÖÃ¹ºÂòÊıÁ¿
+			// è®¾ç½®è´­ä¹°æ•°é‡
 			oi.setCount(cartItem.getCount());
 
-			// ÉèÖÃĞ¡¼Æ
+			// è®¾ç½®å°è®¡
 			oi.setSubtotal(cartItem.getSubtotal());
 
-			// ÉèÖÃproduct
+			// è®¾ç½®product
 			oi.setProduct(cartItem.getProduct());
 
-			// ÉèÖÃorder
+			// è®¾ç½®order
 			oi.setOrder(order);
 
-			// Ìí¼Óµ½listÖĞ
+			// æ·»åŠ åˆ°listä¸­
 			order.getItems().add(oi);
 		}
 
-		// 1.5 ÉèÖÃÓÃ»§
+		// 1.5 è®¾ç½®ç”¨æˆ·
 		order.setUser(user);
 
-		// 2.µ÷ÓÃservice Ìí¼Ó¶©µ¥
+		// 2.è°ƒç”¨service æ·»åŠ è®¢å•
 		OrderService os = new OrderServiceImpl();
 		os.add(order);
 
-		// 3.½«order·ÅÈërequestÓòÖĞ,ÇëÇó×ª·¢
+		// 3.å°†orderæ”¾å…¥requeståŸŸä¸­,è¯·æ±‚è½¬å‘
 		request.setAttribute("bean", order);
 
-		// 4.Çå¿Õ¹ºÎï³µ
+		// 4.æ¸…ç©ºè´­ç‰©è½¦
 		request.getSession().removeAttribute("cart");
 		return "/user/jsp/order_info.jsp";
 	}
 
 	/*
-	 * ·ÖÒ³²éÑ¯ÎÒµÄ¶©µ¥
+	 * åˆ†é¡µæŸ¥è¯¢æˆ‘çš„è®¢å•
 	 */
 	public String findAllByPage(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// 1.»ñÈ¡µ±Ç°Ò³
+		// 1.è·å–å½“å‰é¡µ
 		int currPage = 0;
 		if (request.getParameter("currPage") == null) {
 			currPage = 1;
@@ -100,55 +100,55 @@ public class OrderServlet extends BaseServlet {
 		}
 		int pageSize = 3;
 
-		// 2.»ñÈ¡ÓÃ»§
+		// 2.è·å–ç”¨æˆ·
 		User user = (User) request.getSession().getAttribute("user");
 		if (user == null) {
 			request.setAttribute("msg",
-					"Äú»¹ÔİÎ´µÇÂ¼£¬ÇëÏÈ<a href='" + request.getContextPath()
-							+ "/User?method=loginUI'>µÇÂ¼</a>");
+					"æ‚¨è¿˜æš‚æœªç™»å½•ï¼Œè¯·å…ˆ<a href='" + request.getContextPath()
+							+ "/User?method=loginUI'>ç™»å½•</a>");
 			return "/user/jsp/msg.jsp";
 		}
 
-		// 3.µ÷ÓÃservice
+		// 3.è°ƒç”¨service
 		OrderService os = new OrderServiceImpl();
 		PageBean<Order> bean = os.findAllByPage(currPage, pageSize, user);
 
-		// 4.½«PageBean·ÅÈërequestÓòÖĞ
+		// 4.å°†PageBeanæ”¾å…¥requeståŸŸä¸­
 		request.setAttribute("pb", bean);
 
 		return "/user/jsp/order_list.jsp";
 	}
 
 	/*
-	 * Í¨¹ıid»ñÈ¡¶©µ¥
+	 * é€šè¿‡idè·å–è®¢å•
 	 */
 	public String getById(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// 1.»ñÈ¡oid
+		// 1.è·å–oid
 		String oid = request.getParameter("oid");
 
-		// 2.µ÷ÓÃservice Í¨¹ıoid ·µ»ØÖµ:order
+		// 2.è°ƒç”¨service é€šè¿‡oid è¿”å›å€¼:order
 		OrderService os = new OrderServiceImpl();
 		Order order = os.getById(oid);
 
-		// 3.½«order·ÅÈërequestÓòÖĞ
+		// 3.å°†orderæ”¾å…¥requeståŸŸä¸­
 		request.setAttribute("bean", order);
 
 		return "/user/jsp/order_info.jsp";
 	}
 
 	/*
-	 * Ìá½»Ö§¸¶µÄ¶©µ¥
+	 * æäº¤æ”¯ä»˜çš„è®¢å•
 	 */
 	public String pay(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		// ½ÓÊÜ²ÎÊı
+		// æ¥å—å‚æ•°
 		String address = request.getParameter("address");
 		String name = request.getParameter("name");
 		String telephone = request.getParameter("telephone");
 		String oid = request.getParameter("oid");
 
-		// Í¨¹ıid»ñÈ¡order
+		// é€šè¿‡idè·å–order
 		OrderService s = new OrderServiceImpl();
 		Order order = s.getById(oid);
 
@@ -156,77 +156,77 @@ public class OrderServlet extends BaseServlet {
 		order.setName(name);
 		order.setTelephone(telephone);
 
-		// ĞŞ¸Ä¶©µ¥×´Ì¬Îª ÒÑÖ§¸¶
+		// ä¿®æ”¹è®¢å•çŠ¶æ€ä¸º å·²æ”¯ä»˜
 		order.setState(1);
 
-		// ¸üĞÂorder
+		// æ›´æ–°order
 		s.update(order);
 
-		// ²éÑ¯ĞÂ¶©µ¥Çé¿ö£¬²¢Ìø×ªµ½¶©µ¥ÁĞ±íÒ³Ãæ
+		// æŸ¥è¯¢æ–°è®¢å•æƒ…å†µï¼Œå¹¶è·³è½¬åˆ°è®¢å•åˆ—è¡¨é¡µé¢
 		String spath = findAllByPage(request, response);
 		return spath;
 	}
 
 	/*
-	 * È·ÈÏÊÕ»õ
+	 * ç¡®è®¤æ”¶è´§
 	 */
 	public String updateState(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// 1.»ñÈ¡ oid
+		// 1.è·å– oid
 		String oid = request.getParameter("oid");
 
-		// 2.µ÷ÓÃservice ĞŞ¸Ä¶©µ¥×´Ì¬
+		// 2.è°ƒç”¨service ä¿®æ”¹è®¢å•çŠ¶æ€
 		OrderService os = new OrderServiceImpl();
 		Order order = os.getById(oid);
 		order.setState(3);
 		os.update(order);
 
-		// 3.ÖØ¶¨Ïò
+		// 3.é‡å®šå‘
 		response.sendRedirect(request.getContextPath()
 				+ "/Order?method=findAllByPage&currPage=1");
 		return null;
 	}
 
 	/*
-	 * ÍËµ¥
+	 * é€€å•
 	 */
 	public String quitItem(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// 1.»ñÈ¡ oid
+		// 1.è·å– oid
 		String oid = request.getParameter("oid");
 
-		// 2.µ÷ÓÃservice É¾³ı¶©µ¥
+		// 2.è°ƒç”¨service åˆ é™¤è®¢å•
 		OrderService os = new OrderServiceImpl();
 		Order order = os.getById(oid);
 		os.delete(order);
 
-		// 3.×ª·¢
-		request.setAttribute("msg", "ÍËµ¥³É¹¦");
+		// 3.è½¬å‘
+		request.setAttribute("msg", "é€€å•æˆåŠŸ");
 		return "/user/jsp/msg.jsp";
 	}
 	
 	/*
-	 * ÍË¿î
+	 * é€€æ¬¾
 	 */
 	public String quitMoney(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// 1.»ñÈ¡ oid
+		// 1.è·å– oid
 		String oid = request.getParameter("oid");
 		
-		// 2.½øĞĞÍË¿îµÄÒ»ÏµÁĞ½ğÇ®²Ù×÷
+		// 2.è¿›è¡Œé€€æ¬¾çš„ä¸€ç³»åˆ—é‡‘é’±æ“ä½œ
 		
-		// 3.µ÷ÓÃservice É¾³ı¶©µ¥
+		// 3.è°ƒç”¨service åˆ é™¤è®¢å•
 		OrderService os = new OrderServiceImpl();
 		
-		// 4.É¾³ı¶©µ¥
+		// 4.åˆ é™¤è®¢å•
 		Order order = os.getById(oid);
 		double money = 0.0;
 		money = order.getTotal();
 		
 		os.delete(order);
 
-		// 5.×ª·¢
-		request.setAttribute("msg", "ÍË¿î³É¹¦£¬ÄúµÄ£¤ '"+money+"' ÒÑ¾­ÍË»ØÄúÕËºÅ£¬Çë½øĞĞºË²é!!");
+		// 5.è½¬å‘
+		request.setAttribute("msg", "é€€æ¬¾æˆåŠŸï¼Œæ‚¨çš„ï¿¥ '"+money+"' å·²ç»é€€å›æ‚¨è´¦å·ï¼Œè¯·è¿›è¡Œæ ¸æŸ¥!!");
 		return "/user/jsp/msg.jsp";
 	}
 }

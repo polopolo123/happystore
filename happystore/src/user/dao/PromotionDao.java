@@ -4,6 +4,6 @@ import user.entity.Promotion;
 
 public interface PromotionDao {
 	
-	// 通过id获取一个促销分类
+	// 閫氳繃id鑾峰彇涓�涓績閿�鍒嗙被
 	public Promotion getById(String pnid) throws Exception;
 }

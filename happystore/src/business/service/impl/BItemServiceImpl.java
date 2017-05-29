@@ -9,14 +9,14 @@ import business.service.BItemService;
 
 public class BItemServiceImpl implements BItemService{
 
-	// Í¨¹ıid»ñÈ¡¸ÃÉÌ¼ÒµÄËùÓĞ¶©µ¥ÏîĞÅÏ¢
+	// é€šè¿‡idè·å–è¯¥å•†å®¶çš„æ‰€æœ‰è®¢å•é¡¹ä¿¡æ¯
 	@Override
 	public List<OrderItem> getListById(String bid) throws Exception {
 		BItemDao bItemServiceDao = new BItemDaoImpl(); 
 		return bItemServiceDao.getListById(bid);
 	}
 	
-	// Íê³É¶©µ¥µÄ·¢»õ´¦Àí
+	// å®Œæˆè®¢å•çš„å‘è´§å¤„ç†
 	public void send(String itemid) throws Exception {
 		BItemDao bItemServiceDao = new BItemDaoImpl(); 
 		bItemServiceDao.send(itemid);

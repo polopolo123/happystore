@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Í¨ÓÃµÄservlet
+ * é€šç”¨çš„servlet
  */
 public class BaseServlet extends HttpServlet {
 	
@@ -17,23 +17,23 @@ public class BaseServlet extends HttpServlet {
 	public void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			// 1.»ñÈ¡×ÓÀà ´´½¨×ÓÀà»òÕßµ÷ÓÃ×ÓÀàµÄÊ±ºò this´ú±íµÄÊÇ×ÓÀà¶ÔÏó
+			// 1.è·å–å­ç±» åˆ›å»ºå­ç±»æˆ–è€…è°ƒç”¨å­ç±»çš„æ—¶å€™ thisä»£è¡¨çš„æ˜¯å­ç±»å¯¹è±¡
 			Class clazz = this.getClass();
 
-			// 2.»ñÈ¡ÇëÇóµÄ·½·¨
+			// 2.è·å–è¯·æ±‚çš„æ–¹æ³•
 			String m = request.getParameter("method");
 			if (m == null) {
 				m = "index";
 			}
 
-			// 3.»ñÈ¡·½·¨¶ÔÏó
+			// 3.è·å–æ–¹æ³•å¯¹è±¡
 			Method method = clazz.getMethod(m, HttpServletRequest.class,
 					HttpServletResponse.class);
 
-			// 4.ÈÃ·½·¨Ö´ĞĞ ·µ»ØÖµÎªÇëÇó×ª·¢µÄÂ·¾¶
+			// 4.è®©æ–¹æ³•æ‰§è¡Œ è¿”å›å€¼ä¸ºè¯·æ±‚è½¬å‘çš„è·¯å¾„
 			String s = (String) method.invoke(this, request, response);
 
-			// 5.ÅĞ¶ÏsÊÇ·ñÎª¿Õ
+			// 5.åˆ¤æ–­sæ˜¯å¦ä¸ºç©º
 			if (s != null) {
 				request.getRequestDispatcher(s).forward(request, response);
 			}

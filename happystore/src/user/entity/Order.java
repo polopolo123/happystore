@@ -10,16 +10,16 @@ public class Order implements Serializable {
 	private Date ordertime;
 	private Double total;
 
-	private Integer state = 0;// ¶©µ¥×´Ì¬ 0:Î´Ö§¸¶ 1:ÒÑÖ§¸¶ 2£ºÒÑ·¢»õ 3£ºÈ·ÈÏÊÕ»õ
+	private Integer state = 0;// è®¢å•çŠ¶æ€ 0:æœªæ”¯ä»˜ 1:å·²æ”¯ä»˜ 2ï¼šå·²å‘è´§ 3ï¼šç¡®è®¤æ”¶è´§
 	private String address;
 	private String name;
 
 	private String telephone;
 
-	// ÊôÓÚÄÇ¸öÓÃ»§
+	// å±äºé‚£ä¸ªç”¨æˆ·
 	private User user;
 
-	// °üº¬ÄÇĞ©¶©µ¥Ïî
+	// åŒ…å«é‚£äº›è®¢å•é¡¹
 	private List<OrderItem> items = new LinkedList<>();
 
 	public String getOid() {

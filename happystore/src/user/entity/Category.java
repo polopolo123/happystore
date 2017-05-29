@@ -3,7 +3,7 @@ package user.entity;
 import java.io.Serializable;
 
 /**
- * 分类实体
+ * 鍒嗙被瀹炰綋
  */
 public class Category implements Serializable {
 	private String cid;

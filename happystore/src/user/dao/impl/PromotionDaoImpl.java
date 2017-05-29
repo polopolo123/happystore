@@ -10,7 +10,7 @@ import user.utils.DataSourceUtils;
 public class PromotionDaoImpl implements PromotionDao {
 
 	/*
-	 * Í¨¹ıid»ñÈ¡Ò»¸ö·ÖÀà
+	 * é€šè¿‡idè·å–ä¸€ä¸ªåˆ†ç±»
 	 */
 	@Override
 	public Promotion getById(String pnid) throws Exception {

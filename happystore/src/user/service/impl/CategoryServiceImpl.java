@@ -9,20 +9,20 @@ import user.service.CategoryService;
 
 public class CategoryServiceImpl implements CategoryService {
 
-	// ´ÓÊı¾İ¿âÖĞ²éÑ¯³öËùÓĞµÄ·ÖÀà
+	// ä»æ•°æ®åº“ä¸­æŸ¥è¯¢å‡ºæ‰€æœ‰çš„åˆ†ç±»
 	@Override
 	public List<Category> findAll() throws Exception {
 
-		// ´ÓÊı¾İ¿âÖĞ»ñÈ¡
+		// ä»æ•°æ®åº“ä¸­è·å–
 		CategoryDao categoryDao = new CategoryDaoImpl();
 
 		return categoryDao.findAll();
 	}
 	
-	// Í¨¹ıid»ñÈ¡Ò»¸ö·ÖÀà
+	// é€šè¿‡idè·å–ä¸€ä¸ªåˆ†ç±»
 	public Category getById(String cid) throws Exception {
 		
-		// ´ÓÊı¾İ¿âÖĞ»ñÈ¡
+		// ä»æ•°æ®åº“ä¸­è·å–
 		CategoryDao categoryDao = new CategoryDaoImpl();
 
 		return categoryDao.getById(cid);

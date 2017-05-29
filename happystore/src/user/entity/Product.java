@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * ÉÌÆ·ÊµÌå
+ * å•†å“å®ä½“
  */
 public class Product implements Serializable {
 	private String pid;
@@ -14,16 +14,16 @@ public class Product implements Serializable {
 	private Double shop_price;
 	private String pimage;
 	private Date pdate;
-	private Integer is_hot = 0;// ÊÇ·ñÈÈÃÅ 1:ÈÈÃÅ 0:·ñ
-	private String pdesc; // ÎïÆ·ÃèÊö
+	private Integer is_hot = 0;// æ˜¯å¦çƒ­é—¨ 1:çƒ­é—¨ 0:å¦
+	private String pdesc; // ç‰©å“æè¿°
 
-	// ÊôÓÚÄÇ¸ö·ÖÀà
+	// å±äºé‚£ä¸ªåˆ†ç±»
 	private Category category;
 
-	// ÊôÓÚÄÇÖÖ´ÙÏú·ÖÀà
+	// å±äºé‚£ç§ä¿ƒé”€åˆ†ç±»
 	private Promotion promotion;
 
-	// ÊôÓÚÄÇ¸öÉÌ¼Ò
+	// å±äºé‚£ä¸ªå•†å®¶
 	private Business business;
 
 	public String getPid() {

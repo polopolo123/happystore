@@ -7,7 +7,7 @@ import admin.utils.DataSourceUtils;
 
 public class ABusinessDaoImpl implements ABusinessDao {
 
-	// ÉıĞÇ
+	// å‡æ˜Ÿ
 	@Override
 	public void changeaddStar(String bid) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -15,7 +15,7 @@ public class ABusinessDaoImpl implements ABusinessDao {
 		qr.update(sql,bid);
 	}
 
-	// ½µĞÇ
+	// é™æ˜Ÿ
 	@Override
 	public void changejianStar(String bid) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -23,7 +23,7 @@ public class ABusinessDaoImpl implements ABusinessDao {
 		qr.update(sql,bid);
 	}
 
-	// ½ûÓÃÓÃ»§
+	// ç¦ç”¨ç”¨æˆ·
 	@Override
 	public void stopBusiness(String bid) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -31,7 +31,7 @@ public class ABusinessDaoImpl implements ABusinessDao {
 		qr.update(sql,bid);
 	}
 
-	// ½â½ûÓÃ»§
+	// è§£ç¦ç”¨æˆ·
 	@Override
 	public void openBusiness(String bid) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -39,7 +39,7 @@ public class ABusinessDaoImpl implements ABusinessDao {
 		qr.update(sql,bid);
 	}
 
-	//ÔÊĞíµêÆÌ×¢²á
+	//å…è®¸åº—é“ºæ³¨å†Œ
 	@Override
 	public void okbusiness(String bid) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());

@@ -9,24 +9,24 @@ import business.entity.Promotion;
 
 public interface BusinessDao {
 	
-	// Í¨¹ıid»ñÈ¡Ò»¸öÉÌ¼Ò
+	// é€šè¿‡idè·å–ä¸€ä¸ªå•†å®¶
 	public Business getById(String bid) throws Exception;
 	
-	// Í¨¹ıid»ñÈ¡¸ÃÉÌ¼ÒÌá¹©µÄÉÌÆ·ÁĞ±í
+	// é€šè¿‡idè·å–è¯¥å•†å®¶æä¾›çš„å•†å“åˆ—è¡¨
 	public List<Product> getListById(String bid) throws Exception;
 	
-	// Í¨¹ıid»ñÈ¡É¾³ı²úÆ·
+	// é€šè¿‡idè·å–åˆ é™¤äº§å“
 	public void deleteById(String pid) throws Exception;
 	
-	// Ìí¼ÓÉÌÆ·
+	// æ·»åŠ å•†å“
 	public void add(Product product) throws Exception;
 	
-	// ±à¼­ÉÌÆ·
+	// ç¼–è¾‘å•†å“
 	public void update(Product product) throws Exception;
 	
-	// ²éÑ¯´ÙÏúÀàĞÍ
+	// æŸ¥è¯¢ä¿ƒé”€ç±»å‹
 	public List<Promotion> findPromotion() throws Exception;
 	
-	// ²éÑ¯²úÆ··ÖÀà
+	// æŸ¥è¯¢äº§å“åˆ†ç±»
 	public List<Category> findCategory() throws Exception;
 }

@@ -15,61 +15,61 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * ±àÂë´¦ÀíÍ³Ò»Ğ´µ½ÕâÀï(servletÖĞ²»ĞèÒªÔÙ´¦Àí±àÂë)
+ * ç¼–ç å¤„ç†ç»Ÿä¸€å†™åˆ°è¿™é‡Œ(servletä¸­ä¸éœ€è¦å†å¤„ç†ç¼–ç )
  */
 public class EncodingFilter implements Filter {
 
-	// ¹ıÂËÆ÷ÒµÎñ´¦Àí·½·¨£º´¦ÀíµÄ¹«ÓÃµÄÒµÎñÂß¼­²Ù×÷
+	// è¿‡æ»¤å™¨ä¸šåŠ¡å¤„ç†æ–¹æ³•ï¼šå¤„ç†çš„å…¬ç”¨çš„ä¸šåŠ¡é€»è¾‘æ“ä½œ
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse res,
 			FilterChain chain) throws IOException, ServletException {
 
-		// ×ªĞÍ
+		// è½¬å‹
 		final HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) res;
 
-		// Ò»¡¢´¦Àí¹«ÓÃÒµÎñ
-		request.setCharacterEncoding("UTF-8"); // POSTÌá½»ÓĞĞ§
+		// ä¸€ã€å¤„ç†å…¬ç”¨ä¸šåŠ¡
+		request.setCharacterEncoding("UTF-8"); // POSTæäº¤æœ‰æ•ˆ
 		response.setContentType("text/html;charset=UTF-8");
 
 		/*
-		 * ³öÏÖGETÖĞÎÄÂÒÂë£¬ÊÇÒòÎªÔÚrequest.getParameter·½·¨ÄÚ²¿Ã»ÓĞ½øĞĞÌá½»·½Ê½ÅĞ¶Ï²¢´¦Àí¡£ String name =
+		 * å‡ºç°GETä¸­æ–‡ä¹±ç ï¼Œæ˜¯å› ä¸ºåœ¨request.getParameteræ–¹æ³•å†…éƒ¨æ²¡æœ‰è¿›è¡Œæäº¤æ–¹å¼åˆ¤æ–­å¹¶å¤„ç†ã€‚ String name =
 		 * request.getParameter("userName");
 		 * 
-		 * ½â¾ö£º¶ÔÖ¸¶¨½Ó¿ÚµÄÄ³Ò»¸ö·½·¨½øĞĞ¹¦ÄÜÀ©Õ¹£¬¿ÉÒÔÊ¹ÓÃ´úÀí! ¶Ôrequest¶ÔÏó(Ä¿±ê¶ÔÏó)£¬´´½¨´úÀí¶ÔÏó£¡
+		 * è§£å†³ï¼šå¯¹æŒ‡å®šæ¥å£çš„æŸä¸€ä¸ªæ–¹æ³•è¿›è¡ŒåŠŸèƒ½æ‰©å±•ï¼Œå¯ä»¥ä½¿ç”¨ä»£ç†! å¯¹requestå¯¹è±¡(ç›®æ ‡å¯¹è±¡)ï¼Œåˆ›å»ºä»£ç†å¯¹è±¡ï¼
 		 */
 		HttpServletRequest proxy = (HttpServletRequest) Proxy.newProxyInstance(
-				request.getClass().getClassLoader(), // Ö¸¶¨µ±Ç°Ê¹ÓÃµÄÀÛ¼ÓÔØÆ÷
-				new Class[] { HttpServletRequest.class }, // ¶ÔÄ¿±ê¶ÔÏóÊµÏÖµÄ½Ó¿ÚÀàĞÍ
-				new InvocationHandler() { // ÊÂ¼ş´¦ÀíÆ÷
+				request.getClass().getClassLoader(), // æŒ‡å®šå½“å‰ä½¿ç”¨çš„ç´¯åŠ è½½å™¨
+				new Class[] { HttpServletRequest.class }, // å¯¹ç›®æ ‡å¯¹è±¡å®ç°çš„æ¥å£ç±»å‹
+				new InvocationHandler() { // äº‹ä»¶å¤„ç†å™¨
 					@Override
 					public Object invoke(Object proxy, Method method,
 							Object[] args) throws Throwable {
-						// ¶¨Òå·½·¨·µ»ØÖµ
+						// å®šä¹‰æ–¹æ³•è¿”å›å€¼
 						Object returnValue = null;
-						// »ñÈ¡·½·¨Ãû
+						// è·å–æ–¹æ³•å
 						String methodName = method.getName();
-						// ÅĞ¶Ï£º¶ÔgetParameter·½·¨½øĞĞGETÌá½»ÖĞÎÄ´¦Àí
+						// åˆ¤æ–­ï¼šå¯¹getParameteræ–¹æ³•è¿›è¡ŒGETæäº¤ä¸­æ–‡å¤„ç†
 						if ("getParameter".equals(methodName)) {
 
-							// »ñÈ¡ÇëÇóÊı¾İÖµ¡¾ <input type="text" name="userName">¡¿
+							// è·å–è¯·æ±‚æ•°æ®å€¼ã€ <input type="text" name="userName">ã€‘
 							String value = request.getParameter(args[0]
-									.toString()); // µ÷ÓÃÄ¿±ê¶ÔÏóµÄ·½·¨
+									.toString()); // è°ƒç”¨ç›®æ ‡å¯¹è±¡çš„æ–¹æ³•
 
-							// »ñÈ¡Ìá½»·½Ê½
-							String methodSubmit = request.getMethod(); // Ö±½Óµ÷ÓÃÄ¿±ê¶ÔÏóµÄ·½·¨
+							// è·å–æäº¤æ–¹å¼
+							String methodSubmit = request.getMethod(); // ç›´æ¥è°ƒç”¨ç›®æ ‡å¯¹è±¡çš„æ–¹æ³•
 
-							// ÅĞ¶ÏÈç¹ûÊÇGETÌá½»£¬ĞèÒª¶ÔÊı¾İ½øĞĞ´¦Àí (POSTÌá½»ÒÑ¾­´¦Àí¹ıÁË)
+							// åˆ¤æ–­å¦‚æœæ˜¯GETæäº¤ï¼Œéœ€è¦å¯¹æ•°æ®è¿›è¡Œå¤„ç† (POSTæäº¤å·²ç»å¤„ç†è¿‡äº†)
 							if ("GET".equals(methodSubmit)) {
 								if (value != null && !"".equals(value.trim())) {
-									// ´¦ÀíGETÖĞÎÄ
+									// å¤„ç†GETä¸­æ–‡
 									value = new String(value
 											.getBytes("ISO8859-1"), "UTF-8");
 								}
 							}
 							return value;
 						} else {
-							// Ö´ĞĞrequest¶ÔÏóµÄÆäËû·½·¨
+							// æ‰§è¡Œrequestå¯¹è±¡çš„å…¶ä»–æ–¹æ³•
 							returnValue = method.invoke(request, args);
 						}
 
@@ -77,8 +77,8 @@ public class EncodingFilter implements Filter {
 					}
 				});
 
-		// ¶ş¡¢·ÅĞĞ (Ö´ĞĞÏÂÒ»¸ö¹ıÂËÆ÷»òÕßservlet)
-		chain.doFilter(proxy, response); // ´«Èë´úÀí¶ÔÏó
+		// äºŒã€æ”¾è¡Œ (æ‰§è¡Œä¸‹ä¸€ä¸ªè¿‡æ»¤å™¨æˆ–è€…servlet)
+		chain.doFilter(proxy, response); // ä¼ å…¥ä»£ç†å¯¹è±¡
 	}
 
 	@Override

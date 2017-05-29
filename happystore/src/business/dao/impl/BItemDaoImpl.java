@@ -18,15 +18,15 @@ import business.utils.DataSourceUtils;
 
 public class BItemDaoImpl implements BItemDao {
 
-	// Í¨¹ıid»ñÈ¡¸ÃÉÌ¼ÒµÄËùÓĞ¶©µ¥ÏîĞÅÏ¢
+	// é€šè¿‡idè·å–è¯¥å•†å®¶çš„æ‰€æœ‰è®¢å•é¡¹ä¿¡æ¯
 	@Override
 	public List<OrderItem> getListById(String bid) throws Exception {
 		List<OrderItem> orderItemList = new LinkedList<OrderItem>();
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
 		String sql = "select * from orders where state >= 1";
-		// ²éÑ¯ËùÓĞµÄ¶©µ¥ĞÅÏ¢
+		// æŸ¥è¯¢æ‰€æœ‰çš„è®¢å•ä¿¡æ¯
 		List<Order> olist = qr.query(sql, new BeanListHandler<>(Order.class));
-		// ²éÑ¯ÉÌ¼ÒËùÓĞµÄ²úÆ·ĞÅÏ¢
+		// æŸ¥è¯¢å•†å®¶æ‰€æœ‰çš„äº§å“ä¿¡æ¯
 		List<Product> plist = new BusinessDaoImpl().getListById(bid);
 		
 		for (Order order : olist) {
@@ -43,7 +43,7 @@ public class BItemDaoImpl implements BItemDao {
 		return orderItemList;
 	}
 	
-	// Íê³É¶©µ¥µÄ·¢»õ´¦Àí
+	// å®Œæˆè®¢å•çš„å‘è´§å¤„ç†
 	public void send(String itemid) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
 		String sql = "update orderitem set is_ok = 1 where itemid = ?";
@@ -65,7 +65,7 @@ public class BItemDaoImpl implements BItemDao {
 		},itemid);
 		String oid = oItem.getOrder().getOid();
 		
-		// ´ËÊ±Òª½øĞĞÅĞ¶Ï£¬Èç¹ûorderitem±íÖĞµÄoidÏàÍ¬µÄÊı¾İÖĞ¶¼·¢»õÁË
+		// æ­¤æ—¶è¦è¿›è¡Œåˆ¤æ–­ï¼Œå¦‚æœorderitemè¡¨ä¸­çš„oidç›¸åŒçš„æ•°æ®ä¸­éƒ½å‘è´§äº†
 		sql = "select * from orderitem where oid  = ?";
 		List<OrderItem> orderItemlist = qr.query(sql, new BeanListHandler<>(OrderItem.class),oid);
 		boolean flag = true;

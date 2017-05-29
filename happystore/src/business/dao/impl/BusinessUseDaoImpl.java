@@ -10,7 +10,7 @@ import business.entity.Business;
 
 public class BusinessUseDaoImpl implements BusinessUseDao {
 
-	// ĞŞ¸ÄÃÜÂë
+	// ä¿®æ”¹å¯†ç 
 	@Override
 	public Business updatePwd(String bid, String pwd) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -20,7 +20,7 @@ public class BusinessUseDaoImpl implements BusinessUseDao {
 		return qr.query(sql, new BeanHandler<>(Business.class), bid);
 	}
 
-	// µÇÂ½
+	// ç™»é™†
 	@Override
 	public Business login(String bname, String pwd) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -28,7 +28,7 @@ public class BusinessUseDaoImpl implements BusinessUseDao {
 		return qr.query(sql, new BeanHandler<>(Business.class), bname, pwd);
 	}
 
-	// ×¢²á
+	// æ³¨å†Œ
 	@Override
 	public void regist(Business business) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -40,7 +40,7 @@ public class BusinessUseDaoImpl implements BusinessUseDao {
 				business.getState(), business.getCreatedate());
 	}
 
-	// ¼ì²éÊÇ·ñ±»×¢²á
+	// æ£€æŸ¥æ˜¯å¦è¢«æ³¨å†Œ
 	@Override
 	public boolean checkBusiness(String username) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -53,7 +53,7 @@ public class BusinessUseDaoImpl implements BusinessUseDao {
 		return false;
 	}
 
-	// ĞŞ¸Ä»ù´¡ĞÅÏ¢
+	// ä¿®æ”¹åŸºç¡€ä¿¡æ¯
 	@Override
 	public Business updateBusiness(Business business) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());

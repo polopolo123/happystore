@@ -2,6 +2,6 @@ package admin.dao;
 
 public interface AUserDao {
 
-	// ¸ü¸ÄÓÃ»§µÄ×´Ì¬
+	// æ›´æ”¹ç”¨æˆ·çš„çŠ¶æ€
 	public void changeState(String uid,String state) throws Exception;
 }

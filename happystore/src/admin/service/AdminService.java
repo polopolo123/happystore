@@ -8,21 +8,21 @@ import admin.entity.User;
 
 public interface AdminService {
 	
-	// Í¨¹ıÕËºÅºÍÃÜÂë»ñÈ¡Admin
+	// é€šè¿‡è´¦å·å’Œå¯†ç è·å–Admin
 	public Admin  findAdmin(String aname,String password) throws Exception;
 	
-	// »ñÈ¡ÓÃ»§ÁĞ±í
+	// è·å–ç”¨æˆ·åˆ—è¡¨
 	public List<User> findUser() throws Exception;
 
-	// Í¨¹ı×´Ì¬£¬»ñÈ¡ÓÃ»§ÁĞ±í
+	// é€šè¿‡çŠ¶æ€ï¼Œè·å–ç”¨æˆ·åˆ—è¡¨
 	public List<User> findUserByState(String viewstate) throws Exception;
 
-	// »ñÈ¡ÉÌµêÁĞ±í
+	// è·å–å•†åº—åˆ—è¡¨
 	public List<Business> findBusiness() throws Exception;
 
-	// ²éÑ¯½ûÓÃµÄµêÆÌ
+	// æŸ¥è¯¢ç¦ç”¨çš„åº—é“º
 	public List<Business> findJYBusiness() throws Exception;
 
-	// ²éÑ¯ÉêÇë×¢²áµÄµêÆÌ
+	// æŸ¥è¯¢ç”³è¯·æ³¨å†Œçš„åº—é“º
 	public List<Business> findSQBusiness() throws Exception;
 }

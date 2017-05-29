@@ -4,25 +4,25 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * µêÆÌÊµÌå
+ * åº—é“ºå®ä½“
  */
 public class Business implements Serializable{
 
 	private String bid;		// id
-	private String bname;	// µêÆÌÃû³Æ
-	private String address;	// µêÆÌµØÖ·
-	private Date createdate;  // µêÆÌ´´½¨Ê±¼ä
+	private String bname;	// åº—é“ºåç§°
+	private String address;	// åº—é“ºåœ°å€
+	private Date createdate;  // åº—é“ºåˆ›å»ºæ—¶é—´
 	
-	private String buserpwd; // µêÆÌÃÜÂë £¨Í¨¹ıµêÆÌÃûµÇÂ¼£©
+	private String buserpwd; // åº—é“ºå¯†ç  ï¼ˆé€šè¿‡åº—é“ºåç™»å½•ï¼‰
 	
-	private String busername; // µêÆÌËùÓĞÕßĞÕÃû
-	private String telephone; // µêÆÌËùÓĞÕßµç»°
-	private String email; 	  // µêÆÌËùÓĞÕßemail
-	private String sex;	      // µêÆÌËùÓĞÕßĞÔ±ğ
+	private String busername; // åº—é“ºæ‰€æœ‰è€…å§“å
+	private String telephone; // åº—é“ºæ‰€æœ‰è€…ç”µè¯
+	private String email; 	  // åº—é“ºæ‰€æœ‰è€…email
+	private String sex;	      // åº—é“ºæ‰€æœ‰è€…æ€§åˆ«
 	
-	private Integer stars;	   // µêÆÌµÄĞÇ¼¶£¨1-5ĞÇ£©
-	private Integer state = 0; // µêÆÌµÄ×´Ì¬
-	// ¼¤»î×´Ì¬ 0:Õı³£ 1:±»×¢Ïú 2±»¹ÒÆğ£¨µêÆÌĞÅÓÃ²»ºÃ£¬»òÎ¥·¨µÈµÈ)
+	private Integer stars;	   // åº—é“ºçš„æ˜Ÿçº§ï¼ˆ1-5æ˜Ÿï¼‰
+	private Integer state = 0; // åº—é“ºçš„çŠ¶æ€
+	// æ¿€æ´»çŠ¶æ€ 0:æ­£å¸¸ 1:è¢«æ³¨é”€ 2è¢«æŒ‚èµ·ï¼ˆåº—é“ºä¿¡ç”¨ä¸å¥½ï¼Œæˆ–è¿æ³•ç­‰ç­‰)
 	public String getBid() {
 		return bid;
 	}

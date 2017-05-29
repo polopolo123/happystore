@@ -18,7 +18,7 @@ public class ALoginServlet extends HttpServlet {
 		String aname = request.getParameter("username");
 		String password = request.getParameter("password");
 		
-		// µ÷ÓÃservice½øĞĞ
+		// è°ƒç”¨serviceè¿›è¡Œ
 		AdminService adminService = new AdminServiceImpl();
 		Admin admin = null;
 		try {
@@ -28,11 +28,11 @@ public class ALoginServlet extends HttpServlet {
 		}
 		
 		if (admin == null) {
-			// ÕËºÅÃÜÂë²»Æ¥Åä
-			request.setAttribute("msg", "ÕËºÅÃÜÂë²»Æ¥Åä,ÇëÖØĞÂµÇÂ½");
+			// è´¦å·å¯†ç ä¸åŒ¹é…
+			request.setAttribute("msg", "è´¦å·å¯†ç ä¸åŒ¹é…,è¯·é‡æ–°ç™»é™†");
 			request.getRequestDispatcher("/admin/jsp/login.jsp").forward(request, response);
 		} else {
-			// 4.½«admin·ÅÈësessionÖĞ ÖØ¶¨Ïò
+			// 4.å°†adminæ”¾å…¥sessionä¸­ é‡å®šå‘
 			request.getSession().setAttribute("Admin", admin);
 			response.sendRedirect(request.getContextPath() + "/admin/jsp/home.jsp" );
 		}

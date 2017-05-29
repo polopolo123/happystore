@@ -9,22 +9,22 @@ import user.entity.Product;
 public interface ProductService {
 
 	/*
-	 * Í¨¹ıpid»ñµÃÏêÏ¸ĞÅÏ¢
+	 * é€šè¿‡pidè·å¾—è¯¦ç»†ä¿¡æ¯
 	 */
 	public Product getByPid(String pid) throws Exception;
 
 	/*
-	 * ·ÖÒ³²éÑ¯ÎïÆ·
+	 * åˆ†é¡µæŸ¥è¯¢ç‰©å“
 	 */
 	public PageBean<Product> findByPage(int currPage, int pageSize, String cid) throws Exception;
 
 	/*
-	 * ²éÑ¯×îĞÂÉÌÆ·
+	 * æŸ¥è¯¢æœ€æ–°å•†å“
 	 */
 	public List<Product> findNew() throws Exception;
 
 	/*
-	 * ²éÑ¯ÈÈÃÅÉÌÆ·
+	 * æŸ¥è¯¢çƒ­é—¨å•†å“
 	 */
 	public List<Product> findHot() throws Exception;
 	

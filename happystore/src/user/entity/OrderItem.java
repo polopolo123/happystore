@@ -17,10 +17,10 @@ public class OrderItem implements Serializable {
 		this.is_ok = is_ok;
 	}
 	
-	// 包含那个商品
+	// 鍖呭惈閭ｄ釜鍟嗗搧
 	private Product product;
 
-	// 属于那个订单
+	// 灞炰簬閭ｄ釜璁㈠崟
 	private Order order;
 
 	public String getItemid() {

@@ -3,6 +3,6 @@ package admin.service;
 
 public interface AUserService {
 	
-	// ¸ü¸ÄÓÃ»§µÄ×´Ì¬
+	// æ›´æ”¹ç”¨æˆ·çš„çŠ¶æ€
 	public void changeState(String uid,String state) throws Exception;
 }

@@ -14,7 +14,7 @@ import user.utils.DataSourceUtils;
 
 public class ProductDaoImpl implements ProductDao {
 	/*
-	 * Í¨¹ıpid²éÑ¯ÎïÆ·µÄĞÅÏ¢
+	 * é€šè¿‡pidæŸ¥è¯¢ç‰©å“çš„ä¿¡æ¯
 	 */
 	@Override
 	public Product getByPid(String pid) throws Exception {
@@ -24,7 +24,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	/*
-	 * ·ÖÒ³²éÑ¯ÎïÆ·ÁĞ±í
+	 * åˆ†é¡µæŸ¥è¯¢ç‰©å“åˆ—è¡¨
 	 */
 	@Override
 	public List<Product> findByPage(int currPage, int pageSize, String cid)
@@ -36,7 +36,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	/*
-	 * ²éÑ¯×Ü¼ÇÂ¼Êı
+	 * æŸ¥è¯¢æ€»è®°å½•æ•°
 	 */
 	@Override
 	public int getTotalCount(String cid) throws Exception {
@@ -46,7 +46,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	/*
-	 * ²éÑ¯×îĞÂÉÌÆ·
+	 * æŸ¥è¯¢æœ€æ–°å•†å“
 	 */
 	@Override
 	public List<Product> findNew() throws Exception {
@@ -56,7 +56,7 @@ public class ProductDaoImpl implements ProductDao {
 	}
 
 	/*
-	 * ²éÑ¯ÈÈÃÅÉÌÆ·
+	 * æŸ¥è¯¢çƒ­é—¨å•†å“
 	 */
 	@Override
 	public List<Product> findHot() throws Exception {

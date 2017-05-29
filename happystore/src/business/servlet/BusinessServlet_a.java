@@ -17,75 +17,75 @@ public class BusinessServlet_a extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * ÓÃ»§ÕËºÅÃÜÂëĞŞ¸Ä
+	 * ç”¨æˆ·è´¦å·å¯†ç ä¿®æ”¹
 	 */
 	public String updatePwd(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		// Í¨¹ısession£¬»ñÈ¡ÕË»§µÄbid
+		// é€šè¿‡sessionï¼Œè·å–è´¦æˆ·çš„bid
 		HttpSession session = request.getSession();
 		Business businessUse = (Business) session.getAttribute("Business");
 		String bid = businessUse.getBid();
 
-		// »ñµÃÕË»§µÄ¾ÉÃÜÂë
+		// è·å¾—è´¦æˆ·çš„æ—§å¯†ç 
 		String oldpwd = request.getParameter("oldpwd");
 		if(!MD5Utils.md5(oldpwd).equals(businessUse.getBuserpwd())) {
-			request.setAttribute("msg", "ĞŞ¸ÄÊ±£¬ÃÜÂë³ö´í!!");
+			request.setAttribute("msg", "ä¿®æ”¹æ—¶ï¼Œå¯†ç å‡ºé”™!!");
 			return "/business/jsp/msg.jsp";
 		}
 		
-		// »ñµÃÕË»§µÄĞÂÃÜÂë
+		// è·å¾—è´¦æˆ·çš„æ–°å¯†ç 
 		String newPwd = request.getParameter("newpwd");
 		if(newPwd == null) {
-			request.setAttribute("msg", "ĞÂÃÜÂëÎª¿Õ!!");
+			request.setAttribute("msg", "æ–°å¯†ç ä¸ºç©º!!");
 			return "/business/jsp/msg.jsp";
 		}
-		// ¼ÓÃÜÃÜÂë
+		// åŠ å¯†å¯†ç 
 		String pwd = MD5Utils.md5(newPwd);
 
-		// µ÷ÓÃService£¬×¢ÏúÕËºÅ
+		// è°ƒç”¨Serviceï¼Œæ³¨é”€è´¦å·
 		BusinessUseService bus = new BusinessUseServiceImpl();
 		Business newBusiness = null;
 		try {
-			// »ñÈ¡×îĞÂµÄBusiness£¬±£´æµ½sessionÖĞ
+			// è·å–æœ€æ–°çš„Businessï¼Œä¿å­˜åˆ°sessionä¸­
 			newBusiness = bus.updatePwd(bid, pwd);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		// ¸Éµôsession
+		// å¹²æ‰session
 		session.invalidate();
-		// ½«ĞÂÓÃ»§±£´æµ½sessionÖĞ
+		// å°†æ–°ç”¨æˆ·ä¿å­˜åˆ°sessionä¸­
 		request.getSession().setAttribute("Business", newBusiness);
-		request.setAttribute("msg", "ÃÜÂëĞŞ¸Ä³É¹¦!!!");
+		request.setAttribute("msg", "å¯†ç ä¿®æ”¹æˆåŠŸ!!!");
 		return "/business/jsp/msg.jsp";
 	}
 	
 	/**
-	 * ÕËºÅ×¢²á
+	 * è´¦å·æ³¨å†Œ
 	 */
 	public String register(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		// »ñÈ¡²ÎÊı
+		// è·å–å‚æ•°
 		String busername = request.getParameter("username");
 		String email = request.getParameter("email");
-		String bname = request.getParameter("name"); //µêÃû
+		String bname = request.getParameter("name"); //åº—å
 		String address = request.getParameter("address");
 		String telephone = request.getParameter("telephone");
 		String buserpwd = request.getParameter("password");
 		
-		// ÑéÖ¤ÂëÑéÖ¤
+		// éªŒè¯ç éªŒè¯
 		String code = request.getParameter("code");
 		String yzmsg = (String) request.getSession(false).getAttribute(
 				"yzmsg");
 
 		if (!code.equalsIgnoreCase(yzmsg)) {
-			request.setAttribute("msg", "ÔÚ½øĞĞµêÆÌ¹ÜÀíÏµÍ³×¢²áÊ±,ÑéÖ¤Âë³ö´í!!");
+			request.setAttribute("msg", "åœ¨è¿›è¡Œåº—é“ºç®¡ç†ç³»ç»Ÿæ³¨å†Œæ—¶,éªŒè¯ç å‡ºé”™!!");
 			return "/user/jsp/msg.jsp";
 		}
 		
-		// ÉèÖÃ²ÎÊı
+		// è®¾ç½®å‚æ•°
 		Business business = new Business();
 		business.setAddress(address);
 		business.setBid(UUID.randomUUID().toString().replace("-", "").toUpperCase());
@@ -94,13 +94,13 @@ public class BusinessServlet_a extends BaseServlet {
 		business.setBuserpwd(MD5Utils.md5(buserpwd));
 		business.setCreatedate(new Date());
 		business.setEmail(email);
-		// ³õÊ¼Ê±£¬state=0 Ìá½»Íê×¢²á »¹Î´¿ÉÓÃ 
+		// åˆå§‹æ—¶ï¼Œstate=0 æäº¤å®Œæ³¨å†Œ è¿˜æœªå¯ç”¨ 
 		business.setState(0);
 		business.setTelephone(telephone);
-		// Ä¬ÈÏ£¬µêÆÌ´´½¨Ê±ĞÇ¼¶Îª3
+		// é»˜è®¤ï¼Œåº—é“ºåˆ›å»ºæ—¶æ˜Ÿçº§ä¸º3
 		business.setStars(3);
 		
-		// µ÷ÓÃserviceÍê³É×¢²á
+		// è°ƒç”¨serviceå®Œæˆæ³¨å†Œ
 		BusinessUseService bus = new BusinessUseServiceImpl();
 		try {
 			bus.regist(business);
@@ -109,21 +109,21 @@ public class BusinessServlet_a extends BaseServlet {
 			throw new RuntimeException();
 		}
 
-		// Ò³ÃæÇëÇó×ª·¢
+		// é¡µé¢è¯·æ±‚è½¬å‘
 		request.setAttribute("msg",
-				"µêÆÌ×¢²áÒÑ³É¹¦,µÈ´ıÔËÓªÉÌÅú×¼£¬Çëµã»÷<a href='" + request.getContextPath()
-						+ "/business/jsp/index.jsp'>µÇÂ½</a>");
+				"åº—é“ºæ³¨å†Œå·²æˆåŠŸ,ç­‰å¾…è¿è¥å•†æ‰¹å‡†ï¼Œè¯·ç‚¹å‡»<a href='" + request.getContextPath()
+						+ "/business/jsp/index.jsp'>ç™»é™†</a>");
 
 		return "/user/jsp/msg.jsp";
 	}
 	
 
 	/**
-	 * µÇÂ¼
+	 * ç™»å½•
 	 */
 	public String login(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		// 1.»ñÈ¡ÓÃ»§ÃûºÍÃÜÂë
+		// 1.è·å–ç”¨æˆ·åå’Œå¯†ç 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String logincode = request.getParameter("yz");
@@ -132,30 +132,30 @@ public class BusinessServlet_a extends BaseServlet {
 				"yzmsg");
 
 		if (!logincode.equalsIgnoreCase(loginmsg)) {
-			request.setAttribute("msg", "ÔÚ½øĞĞµêÆÌ¹ÜÀíÏµÍ³µÇÂ½Ê±,ÑéÖ¤Âë³ö´í!!");
+			request.setAttribute("msg", "åœ¨è¿›è¡Œåº—é“ºç®¡ç†ç³»ç»Ÿç™»é™†æ—¶,éªŒè¯ç å‡ºé”™!!");
 			return "/business/jsp/index.jsp";
 		}
 
 		password = MD5Utils.md5(password);
 
-		// 2.µ÷ÓÃseriveÍê³ÉµÇÂ¼²Ù×÷ ·µ»Øuser
+		// 2.è°ƒç”¨seriveå®Œæˆç™»å½•æ“ä½œ è¿”å›user
 		BusinessUseService bus = new BusinessUseServiceImpl();
 		Business business = bus.login(username, password);
 
-		// 3.ÅĞ¶ÏÓÃ»§
+		// 3.åˆ¤æ–­ç”¨æˆ·
 		if (business == null) {
-			// ÕËºÅÃÜÂë²»Æ¥Åä
-			request.setAttribute("msg", "ÕËºÅÃÜÂë²»Æ¥Åä,ÇëÖØĞÂµÇÂ½");
+			// è´¦å·å¯†ç ä¸åŒ¹é…
+			request.setAttribute("msg", "è´¦å·å¯†ç ä¸åŒ¹é…,è¯·é‡æ–°ç™»é™†");
 			return "/business/jsp/index.jsp";
 		} else {
-			// ¼ÌĞøÅĞ¶ÏÓÃ»§µÄ×´Ì¬ÊÇ·ñ¿ÉÒÔÕı³£Ê¹ÓÃ
+			// ç»§ç»­åˆ¤æ–­ç”¨æˆ·çš„çŠ¶æ€æ˜¯å¦å¯ä»¥æ­£å¸¸ä½¿ç”¨
 			if (1 != business.getState()) {
-				request.setAttribute("msg", "ÕËºÅ²»ÄÜÕı³£Ê¹ÓÃ,¿ÉÄÜÎ´ÔÊĞí×¢²á,»ò±»½ûÓÃµÈ,ÇëÓëÏµÍ³¹ÜÀíÔ±ÁªÏµ!!");
+				request.setAttribute("msg", "è´¦å·ä¸èƒ½æ­£å¸¸ä½¿ç”¨,å¯èƒ½æœªå…è®¸æ³¨å†Œ,æˆ–è¢«ç¦ç”¨ç­‰,è¯·ä¸ç³»ç»Ÿç®¡ç†å‘˜è”ç³»!!");
 				return "/business/jsp/index.jsp";
 			}
 		}
 
-		// 4.½«user·ÅÈësessionÖĞ ÖØ¶¨Ïò
+		// 4.å°†useræ”¾å…¥sessionä¸­ é‡å®šå‘
 		request.getSession().setAttribute("Business", business);
 		response.sendRedirect(request.getContextPath() + "/business/jsp/home.jsp" );
 
@@ -163,7 +163,7 @@ public class BusinessServlet_a extends BaseServlet {
 	}
 	
 	/**
-	 * ajax ¼ìÑéÕËºÅÊÇ·ñÖØ¸´
+	 * ajax æ£€éªŒè´¦å·æ˜¯å¦é‡å¤
 	 */
 	public String checkBusiness(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -183,25 +183,25 @@ public class BusinessServlet_a extends BaseServlet {
 		return null;
 	}
 	
-	// ÕËºÅĞÅÏ¢ĞŞ¸Ä
+	// è´¦å·ä¿¡æ¯ä¿®æ”¹
 	public String updateBusiness(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		// »ñÈ¡²ÎÊı
+		// è·å–å‚æ•°
 		String busername = request.getParameter("busername");
 		String email = request.getParameter("email");
-//		String bname = request.getParameter("bname"); //µêÃû
+//		String bname = request.getParameter("bname"); //åº—å
 		String address = request.getParameter("address");
 		String telephone = request.getParameter("telephone");
 		
-		// ÉèÖÃ²ÎÊı
+		// è®¾ç½®å‚æ•°
 		Business business = (Business) request.getSession().getAttribute("Business");
 		business.setAddress(address);
 		business.setBusername(busername);
 		business.setEmail(email);
 		business.setTelephone(telephone);
 		
-		// µ÷ÓÃserviceÍê³É×¢²á
+		// è°ƒç”¨serviceå®Œæˆæ³¨å†Œ
 		BusinessUseService bus = new BusinessUseServiceImpl();
 		try {
 			bus.updateBusiness(business);
@@ -210,12 +210,12 @@ public class BusinessServlet_a extends BaseServlet {
 			throw new RuntimeException();
 		}
 
-		// ¸Éµôsession,²¢ÖØĞÂ°ÑÌí¼Óµ½sessionÖĞ
+		// å¹²æ‰session,å¹¶é‡æ–°æŠŠæ·»åŠ åˆ°sessionä¸­
 		request.getSession().invalidate();
 		request.getSession().setAttribute("Business", business);
 		
-		// Ò³ÃæÇëÇó×ª·¢
-		request.setAttribute("msg","µêÆÌ»ù´¡ĞÅÏ¢ĞŞ¸Ä³É¹¦!!!");
+		// é¡µé¢è¯·æ±‚è½¬å‘
+		request.setAttribute("msg","åº—é“ºåŸºç¡€ä¿¡æ¯ä¿®æ”¹æˆåŠŸ!!!");
 		return "/business/jsp/msg.jsp";
 	}
 	

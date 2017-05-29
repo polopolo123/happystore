@@ -6,19 +6,19 @@ import user.entity.Promotion;
 
 public interface APromotionDao {
 
-	// ²éÑ¯ËùÓĞµÄ´ÙÏúÀàĞÍ
+	// æŸ¥è¯¢æ‰€æœ‰çš„ä¿ƒé”€ç±»å‹
 	public List<Promotion> findAll() throws Exception;
 	
-	// Í¨¹ıid»ñÈ¡Ò»¸ö·ÖÀà
+	// é€šè¿‡idè·å–ä¸€ä¸ªåˆ†ç±»
 	public Promotion getById(String pnid) throws Exception;
 	
-	//¸üĞÂ´ÙÏúÀàĞÍ
+	//æ›´æ–°ä¿ƒé”€ç±»å‹
 	public void update(Promotion promotion) throws Exception;
 	
-	//É¾³ı´ÙÏúÁªÏë
+	//åˆ é™¤ä¿ƒé”€è”æƒ³
 	public void delete(String pnid) throws Exception;
 	
-	//Ìí¼Ó·ÖÀà
+	//æ·»åŠ åˆ†ç±»
 	public void add(Promotion promotion) throws Exception;
 
 }

@@ -17,10 +17,10 @@ public class AFindUserByStateServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 0.»ñÈ¡²ÎÊı
+		// 0.è·å–å‚æ•°
 		String viewstate = request.getParameter("viewstate");
 		
-		// 1.µ÷ÓÃAdminService
+		// 1.è°ƒç”¨AdminService
 		AdminService adminService = new AdminServiceImpl();
 		List<User> listUser = null;
 		try {
@@ -29,11 +29,11 @@ public class AFindUserByStateServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// 2 °ÑÒ³ÃæµÄÀàĞÍÇø·Ö±êÖ¾±£´æµ½requestÖĞ
-		// Èç¹ûÔÚlist2.jspÖĞ¶Áµ½viewnumber==1£¬±íÊ¾ÊÇ×¢ÏúÒ³Ãæ
+		// 2 æŠŠé¡µé¢çš„ç±»å‹åŒºåˆ†æ ‡å¿—ä¿å­˜åˆ°requestä¸­
+		// å¦‚æœåœ¨list2.jspä¸­è¯»åˆ°viewnumber==1ï¼Œè¡¨ç¤ºæ˜¯æ³¨é”€é¡µé¢
 		request.setAttribute("viewnumber", Integer.parseInt(viewstate));
 		
-		// 3.°ÑlistUserÌí¼Óµ½requestÖĞ£¬½øĞĞ×ª·¢
+		// 3.æŠŠlistUseræ·»åŠ åˆ°requestä¸­ï¼Œè¿›è¡Œè½¬å‘
 		request.setAttribute("listUser", listUser);
 		request.getRequestDispatcher("/admin/auser/list2.jsp").forward(request, response);
 	}

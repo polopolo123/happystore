@@ -14,10 +14,10 @@ public class OpenBusinessServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 1. 获取参数
+		// 1. 鑾峰彇鍙傛暟
 		String bid = request.getParameter("bid");
 
-		// 2.调用ABusinessService
+		// 2.璋冪敤ABusinessService
 		ABusinessService aBusinessService = new ABusinessServiceImpl();
 		try {
 			aBusinessService.openBusiness(bid);
@@ -25,7 +25,7 @@ public class OpenBusinessServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// 3.回到list页面
+		// 3.鍥炲埌list椤甸潰
 		request.getRequestDispatcher("/admin/AFindBusiness").forward(request,
 				response);
 

@@ -8,22 +8,22 @@ import business.entity.Promotion;
 
 public interface BusinessService {
 	
-	// 通过id获取该商家提供的商品列表
+	// 閫氳繃id鑾峰彇璇ュ晢瀹舵彁渚涚殑鍟嗗搧鍒楄〃
 	public List<Product> getListById(String bid) throws Exception;
 	
-	// 通过id获取删除产品
+	// 閫氳繃id鑾峰彇鍒犻櫎浜у搧
 	public void deleteById(String pid) throws Exception;
 	
-	// 添加商品
+	// 娣诲姞鍟嗗搧
 	public void add(Product product) throws Exception;
 	
-	// 编辑商品
+	// 缂栬緫鍟嗗搧
 	public void update(Product product) throws Exception;
 	
-	// 查询促销类型
+	// 鏌ヨ淇冮攢绫诲瀷
 	public List<Promotion> findPromotion() throws Exception;
 	
-	// 查询产品分类
+	// 鏌ヨ浜у搧鍒嗙被
 	public List<Category> findCategory() throws Exception;
 	
 }

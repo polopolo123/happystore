@@ -37,7 +37,7 @@ public class MyResultSetHandlerList implements ResultSetHandler {
 			product.setPdesc(rs.getString("pdesc"));
 
 			String pro_id = rs.getString("pro_id");
-			// ∑‚◊∞Promotion
+			// Â∞ÅË£ÖPromotion
 			PromotionService promotionService = new PromotionServiceImpl();
 			Promotion promotion = null;
 			try {
@@ -48,7 +48,7 @@ public class MyResultSetHandlerList implements ResultSetHandler {
 			product.setPromotion(promotion);
 
 			String cid = rs.getString("cid");
-			// ∑‚◊∞Category
+			// Â∞ÅË£ÖCategory
 			CategoryService categoryService = new CategoryServiceImpl();
 			Category category = null;
 			try {
@@ -59,7 +59,7 @@ public class MyResultSetHandlerList implements ResultSetHandler {
 			product.setCategory(category);
 
 			String bid = rs.getString("bid");
-			// ∑‚◊∞Business
+			// Â∞ÅË£ÖBusiness
 			BusinessService BusinessService = new BusinessServiceImpl();
 			Business business = null;
 			try {

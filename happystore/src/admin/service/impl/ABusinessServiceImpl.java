@@ -18,21 +18,21 @@ public class ABusinessServiceImpl implements ABusinessService {
 		aBusinessDao.changejianStar(bid);
 	}
 
-	//禁用用户
+	//绂佺敤鐢ㄦ埛
 	@Override
 	public void stopBusiness(String bid) throws Exception {
 		ABusinessDao aBusinessDao = new ABusinessDaoImpl();	
 		aBusinessDao.stopBusiness(bid);	
 	}
 
-	//解禁用户
+	//瑙ｇ鐢ㄦ埛
 	@Override
 	public void openBusiness(String bid) throws Exception {
 		ABusinessDao aBusinessDao = new ABusinessDaoImpl();	
 		aBusinessDao.openBusiness(bid);		
 	}
 
-	//允许店铺注册
+	//鍏佽搴楅摵娉ㄥ唽
 	@Override
 	public void okbusiness(String bid) throws Exception {
 		ABusinessDao aBusinessDao = new ABusinessDaoImpl();	

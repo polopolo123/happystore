@@ -21,12 +21,12 @@ import user.service.impl.UserServiceImpl;
 import user.utils.MD5Utils;
 
 /**
- * ºÍÓÃ»§Ïà¹ØµÄservlet
+ * å’Œç”¨æˆ·ç›¸å…³çš„servlet
  */
 public class UserServlet extends BaseServlet {
 
 	/**
-	 * ajax ¼ìÑéÕËºÅÊÇ·ñÖØ¸´
+	 * ajax æ£€éªŒè´¦å·æ˜¯å¦é‡å¤
 	 */
 	public String checkUser(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -47,45 +47,45 @@ public class UserServlet extends BaseServlet {
 	}
 
 	/**
-	 * ÓÃ»§×¢²á
+	 * ç”¨æˆ·æ³¨å†Œ
 	 */
 	public String regist(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// 1.·â×°Êı¾İ
+		// 1.å°è£…æ•°æ®
 		User user = new User();
 
 		String yzmcode = request.getParameter("yzmcode");
 
 		String zcmsg = (String) request.getSession(false).getAttribute("yzmsg");
 		if (!yzmcode.equalsIgnoreCase(zcmsg)) {
-			request.setAttribute("msg", "ÑéÖ¤Âë³ö´í!!");
+			request.setAttribute("msg", "éªŒè¯ç å‡ºé”™!!");
 			return "/user/jsp/msg.jsp";
 		}
 
-		// ×¢²á×Ô¶¨Òå×ª»¯Æ÷
+		// æ³¨å†Œè‡ªå®šä¹‰è½¬åŒ–å™¨
 		ConvertUtils.register(new MyConventer(), Date.class);
 		BeanUtils.populate(user, request.getParameterMap());
 
-		// ÉèÖÃÓÃ»§id
+		// è®¾ç½®ç”¨æˆ·id
 		user.setUid(UUID.randomUUID().toString().replace("-", "").toUpperCase());
 
-		// ¼ÓÃÜÃÜÂë
+		// åŠ å¯†å¯†ç 
 		user.setPassword(MD5Utils.md5(user.getPassword()));
 
-		// µ÷ÓÃserviceÍê³É×¢²á
+		// è°ƒç”¨serviceå®Œæˆæ³¨å†Œ
 		UserService s = new UserServiceImpl();
 		s.regist(user);
 
-		// Ò³ÃæÇëÇó×ª·¢
+		// é¡µé¢è¯·æ±‚è½¬å‘
 		request.setAttribute("msg",
-				"ÓÃ»§×¢²áÒÑ³É¹¦,Çëµã»÷<a href='" + request.getContextPath()
-						+ "/user/jsp/login.jsp'>µÇÂ½</a>");
+				"ç”¨æˆ·æ³¨å†Œå·²æˆåŠŸ,è¯·ç‚¹å‡»<a href='" + request.getContextPath()
+						+ "/user/jsp/login.jsp'>ç™»é™†</a>");
 
 		return "/user/jsp/msg.jsp";
 	}
 
 	/**
-	 * Ìø×ªµ½µÇÂ¼Ò³Ãæ
+	 * è·³è½¬åˆ°ç™»å½•é¡µé¢
 	 */
 	public String loginUI(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
@@ -93,11 +93,11 @@ public class UserServlet extends BaseServlet {
 	}
 
 	/**
-	 * µÇÂ¼
+	 * ç™»å½•
 	 */
 	public String login(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		// 1.»ñÈ¡ÓÃ»§ÃûºÍÃÜÂë
+		// 1.è·å–ç”¨æˆ·åå’Œå¯†ç 
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String logincode = request.getParameter("logincode");
@@ -106,30 +106,30 @@ public class UserServlet extends BaseServlet {
 				"yzmsg");
 
 		if (!logincode.equalsIgnoreCase(loginmsg)) {
-			request.setAttribute("msg", "ÑéÖ¤Âë³ö´í!!");
+			request.setAttribute("msg", "éªŒè¯ç å‡ºé”™!!");
 			return "/user/jsp/login.jsp";
 		}
 
 		password = MD5Utils.md5(password);
 
-		// 2.µ÷ÓÃseriveÍê³ÉµÇÂ¼²Ù×÷ ·µ»Øuser
+		// 2.è°ƒç”¨seriveå®Œæˆç™»å½•æ“ä½œ è¿”å›user
 		UserService s = new UserServiceImpl();
 		User user = s.login(username, password);
 
-		// 3.ÅĞ¶ÏÓÃ»§
+		// 3.åˆ¤æ–­ç”¨æˆ·
 		if (user == null) {
-			// ÓÃ»§ÃûÃÜÂë²»Æ¥Åä
-			request.setAttribute("msg", "ÕËºÅÃÜÂë²»Æ¥Åä,ÇëÖØĞÂµÇÂ½");
+			// ç”¨æˆ·åå¯†ç ä¸åŒ¹é…
+			request.setAttribute("msg", "è´¦å·å¯†ç ä¸åŒ¹é…,è¯·é‡æ–°ç™»é™†");
 			return "/user/jsp/login.jsp";
 		} else {
-			// ¼ÌĞøÅĞ¶ÏÓÃ»§µÄ×´Ì¬ÊÇ·ñ¿ÉÒÔÕı³£Ê¹ÓÃ
+			// ç»§ç»­åˆ¤æ–­ç”¨æˆ·çš„çŠ¶æ€æ˜¯å¦å¯ä»¥æ­£å¸¸ä½¿ç”¨
 			if (0 != user.getState()) {
-				request.setAttribute("msg", "ÕËºÅ²»ÄÜÕı³£Ê¹ÓÃ,¿ÉÄÜ±»×¢Ïú»ò±»½ûÓÃ,ÇëÓëÏµÍ³¹ÜÀíÔ±ÁªÏµ!!");
+				request.setAttribute("msg", "è´¦å·ä¸èƒ½æ­£å¸¸ä½¿ç”¨,å¯èƒ½è¢«æ³¨é”€æˆ–è¢«ç¦ç”¨,è¯·ä¸ç³»ç»Ÿç®¡ç†å‘˜è”ç³»!!");
 				return "/user/jsp/msg.jsp";
 			}
 		}
 
-		// 4.½«user·ÅÈësessionÖĞ ÖØ¶¨Ïò
+		// 4.å°†useræ”¾å…¥sessionä¸­ é‡å®šå‘
 		request.getSession().setAttribute("user", user);
 		response.sendRedirect(request.getContextPath());
 
@@ -137,35 +137,35 @@ public class UserServlet extends BaseServlet {
 	}
 
 	/**
-	 * ÓÃ»§µÇ³ö
+	 * ç”¨æˆ·ç™»å‡º
 	 */
 	public String logout(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		// ¸Éµôsession
+		// å¹²æ‰session
 		request.getSession().invalidate();
 
-		// ÖØ¶¨Ïò
+		// é‡å®šå‘
 		response.sendRedirect(request.getContextPath() + "/");
 
 		return null;
 	}
 
 	/**
-	 * ÓÃ»§ÕËºÅ×¢Ïú
+	 * ç”¨æˆ·è´¦å·æ³¨é”€
 	 */
 	public String stopUser(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		// Í¨¹ısession£¬»ñÈ¡ÕË»§µÄuid
+		// é€šè¿‡sessionï¼Œè·å–è´¦æˆ·çš„uid
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		String uid = user.getUid();
 
-		// ¸Éµôsession
+		// å¹²æ‰session
 		session.invalidate();
 
-		// µ÷ÓÃService£¬×¢ÏúÕËºÅ
+		// è°ƒç”¨Serviceï¼Œæ³¨é”€è´¦å·
 		UserService s = new UserServiceImpl();
 		try {
 			s.cancel(uid);
@@ -173,22 +173,22 @@ public class UserServlet extends BaseServlet {
 			e.printStackTrace();
 		}
 
-		// ÖØ¶¨Ïò
+		// é‡å®šå‘
 		response.sendRedirect(request.getContextPath() + "/");
 		return null;
 	}
 
 	/**
-	 * ÓÃ»§ÕËºÅ»ù´¡ĞÅÏ¢ĞŞ¸Ä
+	 * ç”¨æˆ·è´¦å·åŸºç¡€ä¿¡æ¯ä¿®æ”¹
 	 */
 	public String updateUser(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		// Í¨¹ısession£¬»ñÈ¡ÕË»§µÄuid
+		// é€šè¿‡sessionï¼Œè·å–è´¦æˆ·çš„uid
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 
-		// »ñµÃÇ°Ì¨È¡µÃµÄÊı¾İ
+		// è·å¾—å‰å°å–å¾—çš„æ•°æ®
 		String email = request.getParameter("email");
 		user.setEmail(email);
 		String name = request.getParameter("name");
@@ -206,7 +206,7 @@ public class UserServlet extends BaseServlet {
 		String telephone = request.getParameter("telephone");
 		user.setTelephone(telephone);
 
-		// µ÷ÓÃService£¬¸ü¸ÄĞÅÏ¢
+		// è°ƒç”¨Serviceï¼Œæ›´æ”¹ä¿¡æ¯
 		UserService s = new UserServiceImpl();
 		User newUser = null;
 		try {
@@ -215,55 +215,55 @@ public class UserServlet extends BaseServlet {
 			e.printStackTrace();
 		}
 
-		// ¸Éµôsession,²¢ÖØĞÂ°ÑÓÃ»§Ìí¼Óµ½sessionÖĞ
+		// å¹²æ‰session,å¹¶é‡æ–°æŠŠç”¨æˆ·æ·»åŠ åˆ°sessionä¸­
 		session.invalidate();
 		request.getSession().setAttribute("user", newUser);
 
-		// ÖØ¶¨Ïò
+		// é‡å®šå‘
 		response.sendRedirect(request.getContextPath() + "/");
 		return null;
 	}
 
 	/**
-	 * ÓÃ»§ÕËºÅÃÜÂëĞŞ¸Ä
+	 * ç”¨æˆ·è´¦å·å¯†ç ä¿®æ”¹
 	 */
 	public String updatePwd(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		// Í¨¹ısession£¬»ñÈ¡ÕË»§µÄuid
+		// é€šè¿‡sessionï¼Œè·å–è´¦æˆ·çš„uid
 		HttpSession session = request.getSession();
 		User user = (User) session.getAttribute("user");
 		String uid = user.getUid();
 
-		// »ñµÃÕË»§µÄÃÜÂë
+		// è·å¾—è´¦æˆ·çš„å¯†ç 
 		String oldpwd = request.getParameter("oldpwd");
 		if(!MD5Utils.md5(oldpwd).equals(user.getPassword())) {
-			request.setAttribute("msg", "ĞŞ¸ÄÊ±£¬ÃÜÂë³ö´í!!");
+			request.setAttribute("msg", "ä¿®æ”¹æ—¶ï¼Œå¯†ç å‡ºé”™!!");
 			return "/user/jsp/msg.jsp";
 		}
 		
-		// »ñµÃÕË»§µÄÃÜÂë
+		// è·å¾—è´¦æˆ·çš„å¯†ç 
 		String newPwd = request.getParameter("newpwd");
 		if(newPwd == null) {
-			request.setAttribute("msg", "ĞÂÃÜÂëÎª¿Õ!!");
+			request.setAttribute("msg", "æ–°å¯†ç ä¸ºç©º!!");
 			return "/user/jsp/msg.jsp";
 		}
-		// ¼ÓÃÜÃÜÂë
+		// åŠ å¯†å¯†ç 
 		String pwd = MD5Utils.md5(newPwd);
 
-		// µ÷ÓÃService£¬×¢ÏúÕËºÅ
+		// è°ƒç”¨Serviceï¼Œæ³¨é”€è´¦å·
 		UserService s = new UserServiceImpl();
 		User newUser = null;
 		try {
-			// »ñÈ¡×îĞÂµÄUser£¬±£´æµ½sessionÖĞ
+			// è·å–æœ€æ–°çš„Userï¼Œä¿å­˜åˆ°sessionä¸­
 			newUser = s.updatePwd(uid, pwd);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		// ¸Éµôsession
+		// å¹²æ‰session
 		session.invalidate();
-		// ½«ĞÂÓÃ»§±£´æµ½sessionÖĞ
+		// å°†æ–°ç”¨æˆ·ä¿å­˜åˆ°sessionä¸­
 		request.getSession().setAttribute("user", newUser);
 		response.sendRedirect(request.getContextPath());
 

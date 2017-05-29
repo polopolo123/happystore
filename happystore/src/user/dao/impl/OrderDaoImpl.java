@@ -18,7 +18,7 @@ import user.utils.DataSourceUtils;
 
 public class OrderDaoImpl implements OrderDao {
 
-	// Ìí¼Ó¶©µ¥
+	// æ·»åŠ è®¢å•
 	@Override
 	public void add(Order order) throws Exception {
 		QueryRunner qr = new QueryRunner();
@@ -29,7 +29,7 @@ public class OrderDaoImpl implements OrderDao {
 				order.getUser().getUid());
 	}
 
-	// Ìí¼Ó¶©µ¥Ïî
+	// æ·»åŠ è®¢å•é¡¹
 	@Override
 	public void addItem(OrderItem oi) throws Exception {
 		QueryRunner qr = new QueryRunner();
@@ -39,7 +39,7 @@ public class OrderDaoImpl implements OrderDao {
 				.getOrder().getOid(),0);
 	}
 
-	// ·ÖÒ³²éÑ¯ÎÒµÄ¶©µ¥
+	// åˆ†é¡µæŸ¥è¯¢æˆ‘çš„è®¢å•
 	@Override
 	public List<Order> findAllByPage(int currPage, int pageSize, String uid)
 			throws Exception {
@@ -48,32 +48,32 @@ public class OrderDaoImpl implements OrderDao {
 		List<Order> list = qr.query(sql, new BeanListHandler<>(Order.class),
 				uid, (currPage - 1) * pageSize, pageSize);
 
-		// ±éÀú¶©µ¥¼¯ºÏ ·â×°Ã¿¸ö¶©µ¥µÄ¶©µ¥ÏîÁĞ±í
+		// éå†è®¢å•é›†åˆ å°è£…æ¯ä¸ªè®¢å•çš„è®¢å•é¡¹åˆ—è¡¨
 		sql = "select * from orderitem oi,product p where oi.pid=p.pid and oi.oid = ?";
 		for (Order order : list) {
-			// µ±Ç°¶©µ¥°üº¬µÄËùÓĞÄÚÈİ
+			// å½“å‰è®¢å•åŒ…å«çš„æ‰€æœ‰å†…å®¹
 			List<Map<String, Object>> mList = qr.query(sql,
 					new MapListHandler(), order.getOid());
-			// mapµÄkey:×Ö¶ÎÃû value:×Ö¶ÎÖµ
+			// mapçš„key:å­—æ®µå value:å­—æ®µå€¼
 			for (Map<String, Object> map : mList) {
-				// ·â×°product
+				// å°è£…product
 				Product p = new Product();
 				BeanUtils.populate(p, map);
 
-				// ·â×°orderItem
+				// å°è£…orderItem
 				OrderItem oi = new OrderItem();
 				BeanUtils.populate(oi, map);
 
 				oi.setProduct(p);
 
-				// ½«orderItem¶ÔÏóÌí¼Óµ½¶ÔÓ¦µÄorder¶ÔÏóµÄlist¼¯ºÏÖĞ
+				// å°†orderItemå¯¹è±¡æ·»åŠ åˆ°å¯¹åº”çš„orderå¯¹è±¡çš„listé›†åˆä¸­
 				order.getItems().add(oi);
 			}
 		}
 		return list;
 	}
 
-	// Í¨¹ıid²éÑ¯¶©µ¥×Ü¼Æ
+	// é€šè¿‡idæŸ¥è¯¢è®¢å•æ€»è®¡
 	@Override
 	public int getTotalCount(String uid) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -81,34 +81,34 @@ public class OrderDaoImpl implements OrderDao {
 		return ((Long) qr.query(sql, new ScalarHandler(), uid)).intValue();
 	}
 
-	// Í¨¹ı¶©µ¥id»ñÈ¡¶©µ¥
+	// é€šè¿‡è®¢å•idè·å–è®¢å•
 	@Override
 	public Order getById(String oid) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
 		String sql = "select * from orders where oid = ?";
 		Order order = qr.query(sql, new BeanHandler<>(Order.class), oid);
 
-		// ·â×°orderitems
+		// å°è£…orderitems
 		sql = "select * from orderitem oi,product p where oi.pid = p.pid and oi.oid = ?";
 		List<Map<String, Object>> query = qr.query(sql, new MapListHandler(),
 				oid);
 		for (Map<String, Object> map : query) {
-			// ·â×°product
+			// å°è£…product
 			Product product = new Product();
 			BeanUtils.populate(product, map);
 
-			// ·â×°orderitem
+			// å°è£…orderitem
 			OrderItem oi = new OrderItem();
 			BeanUtils.populate(oi, map);
 			oi.setProduct(product);
 
-			// ½«orderitem¼ÙÈçÖĞorderµÄitemsÖĞ
+			// å°†orderitemå‡å¦‚ä¸­orderçš„itemsä¸­
 			order.getItems().add(oi);
 		}
 		return order;
 	}
 
-	// ¸üĞÂ¶©µ¥ĞÅÏ¢
+	// æ›´æ–°è®¢å•ä¿¡æ¯
 	@Override
 	public void update(Order order) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -117,7 +117,7 @@ public class OrderDaoImpl implements OrderDao {
 				order.getTelephone(), order.getOid());
 	}
 
-	// É¾³ı¶©µ¥ĞÅÏ¢
+	// åˆ é™¤è®¢å•ä¿¡æ¯
 	@Override
 	public void delete(Order order) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());

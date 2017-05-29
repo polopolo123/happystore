@@ -4,22 +4,22 @@ import user.entity.User;
 
 public interface UserDao {
 
-	// 用户注册
+	// 鐢ㄦ埛娉ㄥ唽
 	public void add(User user) throws Exception;
 
-	// 用户基础信息修改
+	// 鐢ㄦ埛鍩虹淇℃伅淇敼
 	public void updateUser(User user) throws Exception;
 
-	// 通过用户名和密码获得用户
+	// 閫氳繃鐢ㄦ埛鍚嶅拰瀵嗙爜鑾峰緱鐢ㄦ埛
 	public User getByUsernameAndPwd(String username, String password) throws Exception;
 
-	// 修改密码
+	// 淇敼瀵嗙爜
 	public User updatePwd(String uid,String pwd) throws Exception;
 	
-	// 用户注销
+	// 鐢ㄦ埛娉ㄩ攢
 	public void cancel(String uid) throws Exception;
 	
-	// 检查是否被注册
+	// 妫�鏌ユ槸鍚﹁娉ㄥ唽
 	public boolean checkUser(String uid) throws Exception;
 
 }

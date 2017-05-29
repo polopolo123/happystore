@@ -4,13 +4,13 @@ import user.entity.Category;
 
 public interface ACategoryDao {
 
-	//更新分类
+	//鏇存柊鍒嗙被
 	public void update(Category category) throws Exception;
 
-	//删除分类
+	//鍒犻櫎鍒嗙被
 	public void delete(String cid) throws Exception;
 
-	//添加分类
+	//娣诲姞鍒嗙被
 	public void add(Category category) throws Exception;
 
 }

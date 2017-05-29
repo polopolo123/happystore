@@ -7,10 +7,10 @@ import user.service.PromotionService;
 
 public class PromotionServiceImpl implements PromotionService {
 
-	// Í¨¹ıid»ñÈ¡Ò»¸ö´ÙÏúÀàĞÍ
+	// é€šè¿‡idè·å–ä¸€ä¸ªä¿ƒé”€ç±»å‹
 	public Promotion getById(String pnid) throws Exception {
 
-		// ´ÓÊı¾İ¿âÖĞ»ñÈ¡
+		// ä»æ•°æ®åº“ä¸­è·å–
 		PromotionDao promotionDao = new PromotionDaoImpl();
 		return promotionDao.getById(pnid);
 	}

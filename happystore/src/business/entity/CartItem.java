@@ -3,12 +3,12 @@ package business.entity;
 import java.io.Serializable;
 
 /**
- * 购物车项
+ * 璐墿杞﹂」
  */
 public class CartItem implements Serializable {
-	private Product product;// 商品对象
-	private Integer count;// 购买数量
-	private Double subtotal = 0.0;// 小计
+	private Product product;// 鍟嗗搧瀵硅薄
+	private Integer count;// 璐拱鏁伴噺
+	private Double subtotal = 0.0;// 灏忚
 
 	public Product getProduct() {
 		return product;

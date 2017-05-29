@@ -16,28 +16,28 @@ public class APromotionServiceImpl implements APromotionService {
 		return aPromotionDao.findAll();
 	}
 
-	// Í¨¹ıid»ñÈ¡Ò»¸ö·ÖÀà
+	// é€šè¿‡idè·å–ä¸€ä¸ªåˆ†ç±»
 	@Override
 	public Promotion getById(String pnid) throws Exception {
 		APromotionDao aPromotionDao = new APromotionDaoImpl();
 		return aPromotionDao.getById(pnid);
 	}
 
-	//¸üĞÂ´ÙÏúÀàĞÍ
+	//æ›´æ–°ä¿ƒé”€ç±»å‹
 	@Override
 	public void update(Promotion promotion) throws Exception {
 		APromotionDao aPromotionDao = new APromotionDaoImpl();
 		aPromotionDao.update(promotion);
 	}
 
-	//É¾³ı´ÙÏúÁªÏë
+	//åˆ é™¤ä¿ƒé”€è”æƒ³
 	@Override
 	public void delete(String pnid) throws Exception {
 		APromotionDao aPromotionDao = new APromotionDaoImpl();
 		aPromotionDao.delete(pnid);
 	}
 
-	//Ìí¼Ó·ÖÀà
+	//æ·»åŠ åˆ†ç±»
 	@Override
 	public void add(Promotion promotion) throws Exception {
 		APromotionDao aPromotionDao = new APromotionDaoImpl();

@@ -9,7 +9,7 @@ import user.utils.DataSourceUtils;
 
 public class UserDaoImpl implements UserDao {
 
-	// 用户注册
+	// 鐢ㄦ埛娉ㄥ唽
 	public void add(User user) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
 		String sql = "insert into user values(?,?,?,?,?,?,?,?,?);";
@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao {
 
 	}
 
-	// 用户基础信息修改
+	// 鐢ㄦ埛鍩虹淇℃伅淇敼
 	public void updateUser(User user) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
 		String sql = "update user set username = ?,name = ?,email = ?,birthday = ?,telephone = ?,sex = ? where uid =? ";
@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
 				user.getUid());
 	}
 
-	// 通过用户名和密码获得用户
+	// 閫氳繃鐢ㄦ埛鍚嶅拰瀵嗙爜鑾峰緱鐢ㄦ埛
 	public User getByUsernameAndPwd(String username, String password)
 			throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -36,7 +36,7 @@ public class UserDaoImpl implements UserDao {
 		return qr.query(sql, new BeanHandler<>(User.class), username, password);
 	}
 
-	// 修改密码
+	// 淇敼瀵嗙爜
 	@Override
 	public User updatePwd(String uid, String pwd) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDao {
 		return qr.query(sql, new BeanHandler<>(User.class), uid);
 	}
 
-	// 用户注销
+	// 鐢ㄦ埛娉ㄩ攢
 	@Override
 	public void cancel(String uid) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -54,7 +54,7 @@ public class UserDaoImpl implements UserDao {
 		qr.update(sql, 1, uid);
 	}
 
-	// 检查是否被注册
+	// 妫�鏌ユ槸鍚﹁娉ㄥ唽
 	@Override
 	public boolean checkUser(String userName) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());

@@ -13,23 +13,23 @@ import user.utils.DataSourceUtils;
 
 public class OrderServiceImpl implements OrderService {
 	
-	// Ìí¼Ó¶©µ¥
+	// æ·»åŠ è®¢å•
 	@Override
 	public void add(Order order) throws Exception {
 		try {
-			// 1.¿ªÆôÊÂÎñ
+			// 1.å¼€å¯äº‹åŠ¡
 			DataSourceUtils.startTransaction();
 
 			OrderDao od = new OrderDaoImpl();
-			// 2.Ïòorders±íÖĞÌí¼ÓÒ»¸öÊı¾İ
+			// 2.å‘ordersè¡¨ä¸­æ·»åŠ ä¸€ä¸ªæ•°æ®
 			od.add(order);
 
-			// 3.ÏòorderitemÖĞÌí¼ÓnÌõÊı¾İ
+			// 3.å‘orderitemä¸­æ·»åŠ næ¡æ•°æ®
 			for (OrderItem oi : order.getItems()) {
 				od.addItem(oi);
 			}
 
-			// 4.ÊÂÎñ´¦Àí
+			// 4.äº‹åŠ¡å¤„ç†
 			DataSourceUtils.commitAndClose();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -39,35 +39,35 @@ public class OrderServiceImpl implements OrderService {
 
 	}
 
-	// ·ÖÒ³²éÑ¯ÎÒµÄ¶©µ¥
+	// åˆ†é¡µæŸ¥è¯¢æˆ‘çš„è®¢å•
 	@Override
 	public PageBean<Order> findAllByPage(int currPage, int pageSize, User user)
 			throws Exception {
 		OrderDao od = new OrderDaoImpl();
 
-		// ²éÑ¯µ±Ç°Ò³Êı¾İ
+		// æŸ¥è¯¢å½“å‰é¡µæ•°æ®
 		List<Order> list = od.findAllByPage(currPage, pageSize, user.getUid());
 
-		// ²éÑ¯×ÜÌõÊı
+		// æŸ¥è¯¢æ€»æ¡æ•°
 		int totalCount = od.getTotalCount(user.getUid());
 		return new PageBean<>(list, currPage, pageSize, totalCount);
 	}
 
-	// Í¨¹ı¶©µ¥id»ñÈ¡¶©µ¥
+	// é€šè¿‡è®¢å•idè·å–è®¢å•
 	@Override
 	public Order getById(String oid) throws Exception {
 		OrderDao od = new OrderDaoImpl();
 		return od.getById(oid);
 	}
 
-	// ¸üĞÂ¶©µ¥ĞÅÏ¢
+	// æ›´æ–°è®¢å•ä¿¡æ¯
 	@Override
 	public void update(Order order) throws Exception {
 		OrderDao od = new OrderDaoImpl();
 		od.update(order);
 	}
 	
-	// É¾³ı¶©µ¥
+	// åˆ é™¤è®¢å•
 	@Override
 	public void delete(Order order) throws Exception {
 		OrderDao od = new OrderDaoImpl();

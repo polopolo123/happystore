@@ -7,27 +7,27 @@ import user.entity.Product;
 public interface ProductDao {
 
 	/*
-	 * Í¨¹ıpid²éÑ¯ÎïÆ·µÄĞÅÏ¢
+	 * é€šè¿‡pidæŸ¥è¯¢ç‰©å“çš„ä¿¡æ¯
 	 */
 	public Product getByPid(String pid) throws Exception;
 
 	/*
-	 * ·ÖÒ³²éÑ¯ÎïÆ·ÁĞ±í 
+	 * åˆ†é¡µæŸ¥è¯¢ç‰©å“åˆ—è¡¨ 
 	 */
 	public List<Product> findByPage(int currPage, int pageSize, String cid) throws Exception;
 
 	/*
-	 * ²éÑ¯×Ü¼ÇÂ¼Êı 
+	 * æŸ¥è¯¢æ€»è®°å½•æ•° 
 	 */
 	public int getTotalCount(String cid) throws Exception;
 	
 	/*
-	 * ²éÑ¯×îĞÂÉÌÆ·
+	 * æŸ¥è¯¢æœ€æ–°å•†å“
 	 */
 	public List<Product> findNew() throws Exception;
 
 	/*
-	 * ²éÑ¯ÈÈÃÅÉÌÆ·
+	 * æŸ¥è¯¢çƒ­é—¨å•†å“
 	 */
 	public List<Product> findHot() throws Exception;
 }

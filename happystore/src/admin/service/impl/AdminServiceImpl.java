@@ -11,41 +11,41 @@ import admin.service.AdminService;
 
 public class AdminServiceImpl implements AdminService {
 
-	// Í¨¹ıÕËºÅºÍÃÜÂë»ñÈ¡Admin
+	// é€šè¿‡è´¦å·å’Œå¯†ç è·å–Admin
 	@Override
 	public Admin findAdmin(String aname, String password) throws Exception {
 		AdminDao adminDao = new AdminDaoImpl();
 		return adminDao.findAdmin(aname,password);
 	}
 	
-	// »ñÈ¡ÓÃ»§ÁĞ±í
+	// è·å–ç”¨æˆ·åˆ—è¡¨
 	public List<User> findUser() throws Exception {
 		AdminDao adminDao = new AdminDaoImpl();
 		return adminDao.findUser();
 	}
 
-	// Í¨¹ı×´Ì¬»ñÈ¡ÓÃ»§ÁĞ±í
+	// é€šè¿‡çŠ¶æ€è·å–ç”¨æˆ·åˆ—è¡¨
 	@Override
 	public List<User> findUserByState(String viewstate) throws Exception {
 		AdminDao adminDao = new AdminDaoImpl();
 		return adminDao.findUserByState(viewstate);
 	}
 
-	// »ñÈ¡ÉÌµêÁĞ±í
+	// è·å–å•†åº—åˆ—è¡¨
 	@Override
 	public List<Business> findBusiness() throws Exception {
 		AdminDao adminDao = new AdminDaoImpl();
 		return adminDao.findBusiness();
 	}
 
-	// ²éÑ¯½ûÓÃµÄµêÆÌ
+	// æŸ¥è¯¢ç¦ç”¨çš„åº—é“º
 	@Override
 	public List<Business> findJYBusiness() throws Exception {
 		AdminDao adminDao = new AdminDaoImpl();
 		return adminDao.findJYBusiness();
 	}
 
-	// ²éÑ¯ÉêÇë×¢²áµÄµêÆÌ
+	// æŸ¥è¯¢ç”³è¯·æ³¨å†Œçš„åº—é“º
 	@Override
 	public List<Business> findSQBusiness() throws Exception {
 		AdminDao adminDao = new AdminDaoImpl();

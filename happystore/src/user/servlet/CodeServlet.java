@@ -19,36 +19,36 @@ public class CodeServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// Ê¹ÓÃjavaÍ¼ĞÎ½çÃæ¼¼Êõ»æÖÆÒ»ÕÅÍ¼Æ¬
+		// ä½¿ç”¨javaå›¾å½¢ç•Œé¢æŠ€æœ¯ç»˜åˆ¶ä¸€å¼ å›¾ç‰‡
 
 		int charNum = 4;
 		int width = 30 * 4;
 		int height = 30;
 
-		// 1. ´´½¨Ò»ÕÅÄÚ´æÍ¼Æ¬
+		// 1. åˆ›å»ºä¸€å¼ å†…å­˜å›¾ç‰‡
 		BufferedImage bufferedImage = new BufferedImage(width, height,
 				BufferedImage.TYPE_INT_RGB);
 
-		// 2.»ñµÃ»æÍ¼¶ÔÏó
+		// 2.è·å¾—ç»˜å›¾å¯¹è±¡
 		Graphics graphics = bufferedImage.getGraphics();
 
-		// 3¡¢»æÖÆ±³¾°ÑÕÉ«
+		// 3ã€ç»˜åˆ¶èƒŒæ™¯é¢œè‰²
 		graphics.setColor(Color.YELLOW);
 		graphics.fillRect(0, 0, width, height);
 
-		// 4¡¢»æÖÆÍ¼Æ¬±ß¿ò
+		// 4ã€ç»˜åˆ¶å›¾ç‰‡è¾¹æ¡†
 		graphics.setColor(Color.BLUE);
 		graphics.drawRect(0, 0, width - 1, height - 1);
 
-		// 5¡¢Êä³öÑéÖ¤ÂëÄÚÈİ
+		// 5ã€è¾“å‡ºéªŒè¯ç å†…å®¹
 		graphics.setColor(Color.RED);
-		graphics.setFont(new Font("ËÎÌå", Font.BOLD, 20));
+		graphics.setFont(new Font("å®‹ä½“", Font.BOLD, 20));
 
-		// Ëæ»úÊä³ö4¸ö×Ö·û
+		// éšæœºè¾“å‡º4ä¸ªå­—ç¬¦
 		Graphics2D graphics2d = (Graphics2D) graphics;
 		String s = "ABCDEFGHGKLMNPQRSTUVWXYZ23456789";
 		Random random = new Random();
-		// sessionÖĞÒªÓÃµ½
+		// sessionä¸­è¦ç”¨åˆ°
 		String msg = "";
 		int x = 5;
 		for (int i = 0; i < 4; i++) {
@@ -56,14 +56,14 @@ public class CodeServlet extends HttpServlet {
 			String content = String.valueOf(s.charAt(index));
 			msg += content;
 			double theta = random.nextInt(45) * Math.PI / 180;
-			// ÈÃ×ÖÌåÅ¤Çú
+			// è®©å­—ä½“æ‰­æ›²
 			graphics2d.rotate(theta, x, 18);
 			graphics2d.drawString(content, x, 18);
 			graphics2d.rotate(-theta, x, 18);
 			x += 30;
 		}
 
-		// 6¡¢»æÖÆ¸ÉÈÅÏß
+		// 6ã€ç»˜åˆ¶å¹²æ‰°çº¿
 		graphics.setColor(Color.GRAY);
 		for (int i = 0; i < 5; i++) {
 			int x1 = random.nextInt(width);
@@ -76,10 +76,10 @@ public class CodeServlet extends HttpServlet {
 
 		request.getSession().setAttribute("yzmsg", msg);
 		
-		// ÊÍ·Å×ÊÔ´
+		// é‡Šæ”¾èµ„æº
 		graphics.dispose();
 
-		// Í¼Æ¬Êä³ö ImageIO
+		// å›¾ç‰‡è¾“å‡º ImageIO
 		ImageIO.write(bufferedImage, "jpg", response.getOutputStream());
 
 	}

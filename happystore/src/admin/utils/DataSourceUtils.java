@@ -14,44 +14,44 @@ public class DataSourceUtils {
 	private static ThreadLocal<Connection> tl=new ThreadLocal<>();
 	
 	/**
-	 * ´ÓÏß³ÌÖĞ»ñÈ¡Á¬½Ó
+	 * ä»çº¿ç¨‹ä¸­è·å–è¿æ¥
 	 * @return
 	 * @throws SQLException
 	 */
 	public static Connection getConnection() throws SQLException {
-		//´ÓÏß³ÌÖĞ»ñÈ¡conneciton
+		//ä»çº¿ç¨‹ä¸­è·å–conneciton
 		Connection conn = tl.get();
 		if(conn==null){
 			conn=ds.getConnection();
-			//ºÍµ±Ç°Ïß³Ì°ó¶¨
+			//å’Œå½“å‰çº¿ç¨‹ç»‘å®š
 			tl.set(conn);
 		}
 		return conn;
 	}
 
-	// »ñÈ¡Êı¾İÔ´
+	// è·å–æ•°æ®æº
 	public static DataSource getDataSource() {
 		return ds;
 	}
 
-	// ÊÍ·Å×ÊÔ´
+	// é‡Šæ”¾èµ„æº
 	public static void closeResource( Statement st, ResultSet rs) {
 		closeResultSet(rs);
 		closeStatement(st);
 	}
 	
-	// ÊÍ·Å×ÊÔ´
+	// é‡Šæ”¾èµ„æº
 	public static void closeResource(Connection conn, Statement st, ResultSet rs) {
 		closeResource(st, rs);
 		closeConn(conn);
 	}
 
-	// ÊÍ·Å connection
+	// é‡Šæ”¾ connection
 	public static void closeConn(Connection conn) {
 		if (conn != null) {
 			try {
 				conn.close();
-				//ºÍÏß³Ì½â°ó
+				//å’Œçº¿ç¨‹è§£ç»‘
 				tl.remove();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -60,7 +60,7 @@ public class DataSourceUtils {
 		}
 	}
 
-	// ÊÍ·Å statement 
+	// é‡Šæ”¾ statement 
 	public static void closeStatement(Statement st) {
 		if (st != null) {
 			try {
@@ -72,7 +72,7 @@ public class DataSourceUtils {
 		}
 	}
 
-	// ÊÍ·Å½á¹û¼¯
+	// é‡Šæ”¾ç»“æœé›†
 	public static void closeResultSet(ResultSet rs) {
 		if (rs != null) {
 			try {
@@ -85,23 +85,23 @@ public class DataSourceUtils {
 	}
 	
 	
-	//¿ªÆôÊÂÎñ
+	//å¼€å¯äº‹åŠ¡
 	public static void startTransaction() throws SQLException{
 		getConnection().setAutoCommit(false);
 	}
 	
 	/**
-	 * ÊÂÎñÌá½»ÇÒÊÍ·ÅÁ¬½Ó
+	 * äº‹åŠ¡æäº¤ä¸”é‡Šæ”¾è¿æ¥
 	 */
 	public static void commitAndClose(){
 		Connection conn = null;
 		try {
 			conn=getConnection();
-			//ÊÂÎñÌá½»
+			//äº‹åŠ¡æäº¤
 			conn.commit();
-			//¹Ø±Õ×ÊÔ´
+			//å…³é—­èµ„æº
 			conn.close();
-			//½â³ı°æ¶¨
+			//è§£é™¤ç‰ˆå®š
 			tl.remove();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -109,17 +109,17 @@ public class DataSourceUtils {
 	}
 	
 	/**
-	 * ÊÂÎñ»Ø¹öÇÒÊÍ·Å×ÊÔ´
+	 * äº‹åŠ¡å›æ»šä¸”é‡Šæ”¾èµ„æº
 	 */
 	public static void rollbackAndClose(){
 		Connection conn = null;
 		try {
 			conn=getConnection();
-			//ÊÂÎñ»Ø¹ö
+			//äº‹åŠ¡å›æ»š
 			conn.rollback();
-			//¹Ø±Õ×ÊÔ´
+			//å…³é—­èµ„æº
 			conn.close();
-			//½â³ı°æ¶¨
+			//è§£é™¤ç‰ˆå®š
 			tl.remove();
 		} catch (SQLException e) {
 			e.printStackTrace();

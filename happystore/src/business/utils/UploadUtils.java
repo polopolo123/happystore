@@ -5,7 +5,7 @@ import java.util.UUID;
 public class UploadUtils {
 
 	/**
-	 * 获取随机名称
+	 * 鑾峰彇闅忔満鍚嶇О
 	 */
 	public static String getUUIDName(String realName) {
 		int index = realName.lastIndexOf(".");
@@ -18,7 +18,7 @@ public class UploadUtils {
 	}
 
 	/**
-	 * 获取文件真实名称
+	 * 鑾峰彇鏂囦欢鐪熷疄鍚嶇О
 	 */
 	public static String getRealName(String name) {
 		int index = name.lastIndexOf("\\");
@@ -26,7 +26,7 @@ public class UploadUtils {
 	}
 
 	/**
-	 * 获取文件目录
+	 * 鑾峰彇鏂囦欢鐩綍
 	 */
 	public static String getDir(String name) {
 		int i = name.hashCode();

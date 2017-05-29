@@ -6,9 +6,9 @@ import user.entity.Category;
 
 public interface CategoryDao {
 	
-	// ´ÓÊı¾İ¿âÖĞ²éÑ¯³öËùÓĞµÄ·ÖÀà
+	// ä»æ•°æ®åº“ä¸­æŸ¥è¯¢å‡ºæ‰€æœ‰çš„åˆ†ç±»
 	public List<Category> findAll() throws Exception;
 	
-	// Í¨¹ıid»ñÈ¡Ò»¸ö·ÖÀà
+	// é€šè¿‡idè·å–ä¸€ä¸ªåˆ†ç±»
 	public Category getById(String cid) throws Exception;
 }

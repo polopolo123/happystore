@@ -2,19 +2,19 @@ package admin.service;
 
 public interface ABusinessService {
 
-	//增加星级
+	//澧炲姞鏄熺骇
 	public void changeaddStar(String bid) throws Exception;
 	
-	//减少星级
+	//鍑忓皯鏄熺骇
 	public void changejianStar(String bid) throws Exception;
 
-	//禁用用户
+	//绂佺敤鐢ㄦ埛
 	public void stopBusiness(String bid) throws Exception;
 
-	//解禁用户
+	//瑙ｇ鐢ㄦ埛
 	public void openBusiness(String bid) throws Exception;
 
-	//允许店铺注册
+	//鍏佽搴楅摵娉ㄥ唽
 	public void okbusiness(String bid) throws Exception;
 	
 }

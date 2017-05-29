@@ -7,7 +7,7 @@ import user.service.UserService;
 
 public class UserServiceImpl implements UserService {
 
-	// 用户注册
+	// 鐢ㄦ埛娉ㄥ唽
 	@Override
 	public void regist(User user) throws Exception {
 		UserDao dao = new UserDaoImpl();
@@ -17,14 +17,14 @@ public class UserServiceImpl implements UserService {
 		dao.add(user);
 	}
 
-	// 密码修改
+	// 瀵嗙爜淇敼
 	@Override
 	public User updatePwd(String uid, String pwd) throws Exception {
 		UserDao dao = new UserDaoImpl();
 		return dao.updatePwd(uid, pwd);
 	}
 
-	// 用户注销
+	// 鐢ㄦ埛娉ㄩ攢
 	@Override
 	public void cancel(String uid) throws Exception {
 		UserDao dao = new UserDaoImpl();
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
 		dao.cancel(uid);
 	}
 
-	// 账号基础信息修改
+	// 璐﹀彿鍩虹淇℃伅淇敼
 	@Override
 	public User updateUser(User user) throws Exception {
 		UserDao dao = new UserDaoImpl();
@@ -45,14 +45,14 @@ public class UserServiceImpl implements UserService {
 		return dao.getByUsernameAndPwd(user.getUsername(),user.getPassword());
 	}
 
-	// 用户登陆
+	// 鐢ㄦ埛鐧婚檰
 	@Override
 	public User login(String username, String password) throws Exception {
 		UserDao dao = new UserDaoImpl();
 		return dao.getByUsernameAndPwd(username, password);
 	}
 
-	// 检查是否被注册
+	// 妫�鏌ユ槸鍚﹁娉ㄥ唽
 	@Override
 	public boolean checkUser(String username) throws Exception {
 		UserDao dao = new UserDaoImpl();

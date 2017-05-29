@@ -13,7 +13,7 @@ import user.utils.DataSourceUtils;
 public class CategoryDaoImpl implements CategoryDao{
 
 	/*
-	 * ²éÑ¯ËùÓĞ·ÖÀà
+	 * æŸ¥è¯¢æ‰€æœ‰åˆ†ç±»
 	 */
 	@Override
 	public List<Category> findAll() throws Exception {
@@ -23,7 +23,7 @@ public class CategoryDaoImpl implements CategoryDao{
 	}
 	
 	/*
-	 * Í¨¹ıid»ñÈ¡Ò»¸ö·ÖÀà
+	 * é€šè¿‡idè·å–ä¸€ä¸ªåˆ†ç±»
 	 */
 	@Override
 	public Category getById(String cid) throws Exception {

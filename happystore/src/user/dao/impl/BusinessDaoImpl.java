@@ -9,7 +9,7 @@ import user.utils.DataSourceUtils;
 
 public class BusinessDaoImpl implements BusinessDao {
 
-	// Í¨¹ıid»ñÈ¡Ò»¸öÉÌ¼Ò
+	// é€šè¿‡idè·å–ä¸€ä¸ªå•†å®¶
 	@Override
 	public Business getById(String bid) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());

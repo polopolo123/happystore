@@ -14,11 +14,11 @@ public class ChangeStateServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// 1. 获取参数
+		// 1. 鑾峰彇鍙傛暟
 		String uid = request.getParameter("uid");
 		String state = request.getParameter("state");
 		
-		// 2.调用AdminService
+		// 2.璋冪敤AdminService
 		AUserService aUserService = new AUserServiceImpl();
 		try {
 			aUserService.changeState(uid,state);
@@ -26,7 +26,7 @@ public class ChangeStateServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		// 3.回到list页面
+		// 3.鍥炲埌list椤甸潰
 		request.getRequestDispatcher("/admin/AFindUser").forward(request, response);
 		
 	}

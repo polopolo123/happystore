@@ -6,9 +6,9 @@ import business.entity.OrderItem;
 
 public interface BItemDao {
 
-	// Í¨¹ıid»ñÈ¡¸ÃÉÌ¼ÒµÄËùÓĞ¶©µ¥ÏîĞÅÏ¢
+	// é€šè¿‡idè·å–è¯¥å•†å®¶çš„æ‰€æœ‰è®¢å•é¡¹ä¿¡æ¯
 	public List<OrderItem> getListById(String bid) throws Exception;
 	
-	// Íê³É¶©µ¥µÄ·¢»õ´¦Àí
+	// å®Œæˆè®¢å•çš„å‘è´§å¤„ç†
 	public void send(String itemid) throws Exception;
 }

@@ -7,26 +7,26 @@ import user.entity.OrderItem;
 
 public interface OrderDao {
 	
-	// Ìí¼Ó¶©µ¥
+	// æ·»åŠ è®¢å•
 	public void add(Order order) throws Exception;
 
-	// Ìí¼Ó¶©µ¥Ïî
+	// æ·»åŠ è®¢å•é¡¹
 	public void addItem(OrderItem oi) throws Exception;
 
-	// ·ÖÒ³²éÑ¯ÎÒµÄ¶©µ¥
+	// åˆ†é¡µæŸ¥è¯¢æˆ‘çš„è®¢å•
 	public List<Order> findAllByPage(int currPage, int pageSize, String uid)
 			throws Exception;
 
-	// Í¨¹ıid²éÑ¯¶©µ¥×Ü¼Æ
+	// é€šè¿‡idæŸ¥è¯¢è®¢å•æ€»è®¡
 	public int getTotalCount(String uid) throws Exception;
 
-	// Í¨¹ı¶©µ¥id»ñÈ¡¶©µ¥
+	// é€šè¿‡è®¢å•idè·å–è®¢å•
 	public Order getById(String oid) throws Exception;
 
-	// ¸üĞÂ¶©µ¥ĞÅÏ¢
+	// æ›´æ–°è®¢å•ä¿¡æ¯
 	public void update(Order order) throws Exception;
 	
-	// É¾³ı¶©µ¥
+	// åˆ é™¤è®¢å•
 	public void delete(Order order) throws Exception;
 	
 }

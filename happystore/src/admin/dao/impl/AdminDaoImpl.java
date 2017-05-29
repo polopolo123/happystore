@@ -1,21 +1,20 @@
 package admin.dao.impl;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
-import admin.utils.DataSourceUtils;
 import admin.dao.AdminDao;
 import admin.entity.Admin;
 import admin.entity.Business;
 import admin.entity.User;
+import admin.utils.DataSourceUtils;
 
 public class AdminDaoImpl implements AdminDao {
 
-	// Í¨¹ıÕËºÅºÍÃÜÂë»ñÈ¡Admin
+	// é€šè¿‡è´¦å·å’Œå¯†ç è·å–Admin
 	@Override
 	public Admin findAdmin(String aname, String password) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -23,7 +22,7 @@ public class AdminDaoImpl implements AdminDao {
 		return qr.query(sql, new BeanHandler<>(Admin.class), aname, password);
 	}
 
-	// »ñÈ¡ÓÃ»§ÁĞ±í
+	// è·å–ç”¨æˆ·åˆ—è¡¨
 	@Override
 	public List<User> findUser() throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -31,7 +30,7 @@ public class AdminDaoImpl implements AdminDao {
 		return qr.query(sql, new BeanListHandler<>(User.class));
 	}
 
-	// Í¨¹ı×´Ì¬£¬»ñÈ¡ÓÃ»§ÁĞ±í
+	// é€šè¿‡çŠ¶æ€ï¼Œè·å–ç”¨æˆ·åˆ—è¡¨
 	@Override
 	public List<User> findUserByState(String viewstate) throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -39,7 +38,7 @@ public class AdminDaoImpl implements AdminDao {
 		return qr.query(sql, new BeanListHandler<>(User.class),Integer.parseInt(viewstate));
 	}
 
-	// »ñÈ¡ÉÌµêÁĞ±í
+	// è·å–å•†åº—åˆ—è¡¨
 	@Override
 	public List<Business> findBusiness() throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -47,7 +46,7 @@ public class AdminDaoImpl implements AdminDao {
 		return qr.query(sql, new BeanListHandler<>(Business.class));
 	}
 
-	// ²éÑ¯½ûÓÃµÄµêÆÌ
+	// æŸ¥è¯¢ç¦ç”¨çš„åº—é“º
 	@Override
 	public List<Business> findJYBusiness() throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());
@@ -55,7 +54,7 @@ public class AdminDaoImpl implements AdminDao {
 		return qr.query(sql, new BeanListHandler<>(Business.class));
 	}
 
-	// ²éÑ¯ÉêÇë×¢²áµÄµêÆÌ
+	// æŸ¥è¯¢ç”³è¯·æ³¨å†Œçš„åº—é“º
 	@Override
 	public List<Business> findSQBusiness() throws Exception {
 		QueryRunner qr = new QueryRunner(DataSourceUtils.getDataSource());

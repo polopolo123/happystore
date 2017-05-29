@@ -18,7 +18,7 @@ public class AFindSQBusinessServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		// 1.调用AdminService
+		// 1.璋冪敤AdminService
 		AdminService adminService = new AdminServiceImpl();
 		List<Business> listBusiness = null;
 		try {
@@ -27,7 +27,7 @@ public class AFindSQBusinessServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// 2.把listBusiness添加到request中，进行转发
+		// 2.鎶妉istBusiness娣诲姞鍒皉equest涓紝杩涜杞彂
 		request.setAttribute("listBusiness", listBusiness);
 		request.getRequestDispatcher("/admin/abusiness/list1.jsp").forward(
 				request, response);

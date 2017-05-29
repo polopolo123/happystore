@@ -6,18 +6,18 @@ import user.entity.User;
 
 public interface OrderService {
 	
-	// 添加订单
+	// 娣诲姞璁㈠崟
 	public void add(Order order) throws Exception;
 
-	// 分页查询我的订单
+	// 鍒嗛〉鏌ヨ鎴戠殑璁㈠崟
 	public PageBean<Order> findAllByPage(int currPage, int pageSize, User user) throws Exception;
 
-	// 通过订单id获取订单
+	// 閫氳繃璁㈠崟id鑾峰彇璁㈠崟
 	public Order getById(String oid) throws Exception;
 
-	// 更新订单信息
+	// 鏇存柊璁㈠崟淇℃伅
 	public void update(Order order) throws Exception;
 	
-	// 删除订单
+	// 鍒犻櫎璁㈠崟
 	public void delete(Order order) throws Exception;
 }

@@ -7,21 +7,21 @@ import admin.service.ACategoryService;
 
 public class ACategoryServiceImpl implements ACategoryService {
 
-	//更新分类
+	//鏇存柊鍒嗙被
 	@Override
 	public void update(Category category) throws Exception {
 		ACategoryDao aCategoryDao = new ACategoryDaoImpl();
 		aCategoryDao.update(category);
 	}
 
-	//删除分类
+	//鍒犻櫎鍒嗙被
 	@Override
 	public void delete(String cid) throws Exception {
 		ACategoryDao aCategoryDao = new ACategoryDaoImpl();
 		aCategoryDao.delete(cid);
 	}
 
-	//添加分类
+	//娣诲姞鍒嗙被
 	@Override
 	public void add(Category category) throws Exception {
 		ACategoryDao aCategoryDao = new ACategoryDaoImpl();

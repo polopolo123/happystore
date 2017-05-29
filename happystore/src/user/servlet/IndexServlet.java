@@ -16,12 +16,12 @@ public class IndexServlet extends HttpServlet {
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// È¥Êı¾İ¿âÖĞ²éÑ¯×îĞÂÉÌÆ·ºÍÈÈÃÅÉÌÆ· ½«ËûÃÇ·ÅÈërequestÓòÖĞ ÇëÇó×ª·¢
+		// å»æ•°æ®åº“ä¸­æŸ¥è¯¢æœ€æ–°å•†å“å’Œçƒ­é—¨å•†å“ å°†ä»–ä»¬æ”¾å…¥requeståŸŸä¸­ è¯·æ±‚è½¬å‘
 		ProductService productService = new ProductServiceImpl();
 
-		// ×îĞÂÉÌÆ·
+		// æœ€æ–°å•†å“
 		List<Product> newList = null;
-		// ÈÈÃÅÉÌÆ·
+		// çƒ­é—¨å•†å“
 		List<Product> hotList = null;
 
 		try {
@@ -31,11 +31,11 @@ public class IndexServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		// ½«Á©¸ölist·ÅÈëÓòÖĞ
+		// å°†ä¿©ä¸ªlistæ”¾å…¥åŸŸä¸­
 		request.setAttribute("newList", newList);
 		request.setAttribute("hotList", hotList);
 
-		// ×ª·¢µ½index.jspÒ³Ãæ
+		// è½¬å‘åˆ°index.jspé¡µé¢
 		request.getRequestDispatcher("/user/jsp/index.jsp").forward(request, response);
 	}
 

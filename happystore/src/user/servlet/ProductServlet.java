@@ -15,7 +15,7 @@ import user.service.ProductService;
 import user.service.impl.ProductServiceImpl;
 
 /**
- * ÉÌÆ·servlet
+ * å•†å“servlet
  */
 public class ProductServlet extends BaseServlet {
 
@@ -32,37 +32,37 @@ public class ProductServlet extends BaseServlet {
 			}
 		}
 		
-		// null»òÃ»ÓĞprodHist
+		// nullæˆ–æ²¡æœ‰prodHist
 		if(cookies==null || prodHist==null){
-			//Ö±½Ó·µ»Ø´«ÈëµÄid
+			//ç›´æ¥è¿”å›ä¼ å…¥çš„id
 			return id;
 		}
 		
-		//String -> String[] ->  Collection :ÎªÁË·½±ãÅĞ¶ÏÖØ¸´id
+		//String -> String[] ->  Collection :ä¸ºäº†æ–¹ä¾¿åˆ¤æ–­é‡å¤id
 		String[] ids = prodHist.split("-");
 		Collection colls = Arrays.asList(ids); 
 		// Collection -> LinkedList
 		LinkedList list = new LinkedList(colls);
 		
-		//²»³¬¹ı7¸ö
+		//ä¸è¶…è¿‡7ä¸ª
 		if(list.size()<7){
-			//idÖØ¸´
+			//idé‡å¤
 			if(list.contains(id)){
-				//È¥³ıÖØ¸´id£¬°Ñ´«ÈëµÄid·Å×îÇ°Ãæ
+				//å»é™¤é‡å¤idï¼ŒæŠŠä¼ å…¥çš„idæ”¾æœ€å‰é¢
 				list.remove(id);
 				list.addFirst(id);
 			}else{
-				//Ö±½Ó°Ñ´«ÈëµÄid·Å×îÇ°Ãæ
+				//ç›´æ¥æŠŠä¼ å…¥çš„idæ”¾æœ€å‰é¢
 				list.addFirst(id);
 			}
 		}else{
-			//idÖØ¸´
+			//idé‡å¤
 			if(list.contains(id)){
-				//È¥³ıÖØ¸´id£¬°Ñ´«ÈëµÄid·Å×îÇ°Ãæ
+				//å»é™¤é‡å¤idï¼ŒæŠŠä¼ å…¥çš„idæ”¾æœ€å‰é¢
 				list.remove(id);
 				list.addFirst(id);
 			}else{
-				//È¥×îºóµÄid£¬°Ñ´«ÈëµÄid·Å×îÇ°Ãæ
+				//å»æœ€åçš„idï¼ŒæŠŠä¼ å…¥çš„idæ”¾æœ€å‰é¢
 				list.removeLast();
 				list.addFirst(id);
 			}
@@ -73,50 +73,50 @@ public class ProductServlet extends BaseServlet {
 		for (Object object : list) {
 			sb.append(object+"-");
 		}
-		//È¥µô×îºóµÄ-ºÅ
+		//å»æ‰æœ€åçš„-å·
 		String result = sb.toString();
 		result = result.substring(0, result.length()-1);
 		return result;
 	}
 	
 	/**
-	 * Í¨¹ıid²éÑ¯µ¥¸öÉÌÆ·ÏêÇé
+	 * é€šè¿‡idæŸ¥è¯¢å•ä¸ªå•†å“è¯¦æƒ…
 	 */
 	public String getById(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// 1.»ñÈ¡ÉÌÆ·µÄid
+		// 1.è·å–å•†å“çš„id
 		String pid = request.getParameter("pid");
 
-		// 2.µ÷ÓÃservice
+		// 2.è°ƒç”¨service
 		ProductService ps = new ProductServiceImpl();
 		Product product = ps.getByPid(pid);
 		
-		// 3.´Ë´¦ĞèÒª´¦Àíä¯ÀÀ¼ÇÂ¼
-		// 3.1.´´½¨cookie
+		// 3.æ­¤å¤„éœ€è¦å¤„ç†æµè§ˆè®°å½•
+		// 3.1.åˆ›å»ºcookie
 		Cookie cookie = new Cookie("prodHist",createValue(request,pid));
-		cookie.setMaxAge(1*7*24*60*60);//Ò»ÖÜ
-		// 3.2.·¢ËÍcookie
+		cookie.setMaxAge(1*7*24*60*60);//ä¸€å‘¨
+		// 3.2.å‘é€cookie
 		response.addCookie(cookie);
 		
-		// 4.½«½á¹û·ÅÈërequestÖĞ ÇëÇó×ª·¢
+		// 4.å°†ç»“æœæ”¾å…¥requestä¸­ è¯·æ±‚è½¬å‘
 		request.setAttribute("product", product);
 		return "/user/jsp/product_info.jsp";
 	}
 
 	/**
-	 * ·ÖÒ³²éÑ¯Êı¾İ
+	 * åˆ†é¡µæŸ¥è¯¢æ•°æ®
 	 */
 	public String findByPage(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		String cid = request.getParameter("cid");
 		int currPage = Integer.parseInt(request.getParameter("currPage"));
-		int pageSize = 12; // ÉèÖÃÃ¿Ò³ÏÔÊ¾µÄÌõÊı
+		int pageSize = 12; // è®¾ç½®æ¯é¡µæ˜¾ç¤ºçš„æ¡æ•°
 
-		// 2.µ÷ÓÃservice ·µ»ØÖµpagebean
+		// 2.è°ƒç”¨service è¿”å›å€¼pagebean
 		ProductService productService = new ProductServiceImpl();;
 		PageBean<Product> pageBean = productService.findByPage(currPage, pageSize, cid);
 
-		// 3.ÏÔÊ¾ä¯ÀÀ¹ıµÄÉÌÆ·
+		// 3.æ˜¾ç¤ºæµè§ˆè¿‡çš„å•†å“
 		Cookie[] cookies = request.getCookies();
 		if(cookies!=null){
 			List<Product> hisList = new LinkedList<Product>();
@@ -124,7 +124,7 @@ public class ProductServlet extends BaseServlet {
 				if(cookie.getName().equals("prodHist")){
 					String prodHist = cookie.getValue(); 
 					String[] ids = prodHist.split("-");
-					//±éÀúä¯ÀÀ¹ıµÄÉÌÆ·id
+					//éå†æµè§ˆè¿‡çš„å•†å“id
 					for (String id : ids) {
 						Product product = productService.getByPid(id);
 						hisList.add(product);
@@ -135,7 +135,7 @@ public class ProductServlet extends BaseServlet {
 			request.setAttribute("hisList", hisList);
 		}
 		
-		// 4.½«½á¹û·ÅÈërequestÖĞ ÇëÇó×ª·¢
+		// 4.å°†ç»“æœæ”¾å…¥requestä¸­ è¯·æ±‚è½¬å‘
 		request.setAttribute("pageBean", pageBean);
 		return "/user/jsp/product_list.jsp";
 	}

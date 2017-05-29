@@ -7,10 +7,10 @@ import user.service.BusinessService;
 
 public class BusinessServiceImpl implements BusinessService {
 
-	// Í¨¹ıid»ñÈ¡Ò»¸öÉÌ¼Ò
+	// é€šè¿‡idè·å–ä¸€ä¸ªå•†å®¶
 	public Business getById(String bid) throws Exception {
 		
-		// ´ÓÊı¾İ¿âÖĞ»ñÈ¡
+		// ä»æ•°æ®åº“ä¸­è·å–
 		BusinessDao businessDao = new BusinessDaoImpl();
 
 		return businessDao.getById(bid);

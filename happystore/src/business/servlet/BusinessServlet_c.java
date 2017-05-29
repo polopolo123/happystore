@@ -12,20 +12,20 @@ import business.service.BItemService;
 import business.service.impl.BItemServiceImpl;
 
 /**
- * ÉÌ¼Ò¶©µ¥Ïî¹ÜÀíÄ£¿é
+ * å•†å®¶è®¢å•é¡¹ç®¡ç†æ¨¡å—
  */
 public class BusinessServlet_c extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 *	²éÑ¯¸Ãµê¼ÒºóÌ¨µÄ¶©µ¥Ïî£¬½øĞĞÁĞ±íÕ¹Ê¾ 
+	 *	æŸ¥è¯¢è¯¥åº—å®¶åå°çš„è®¢å•é¡¹ï¼Œè¿›è¡Œåˆ—è¡¨å±•ç¤º 
 	 */
 	public String findAllByBid(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
 		String bid = null;
 		
-		// 1.»ñÈ¡bid
+		// 1.è·å–bid
 		if(request.getSession().getAttribute("Business") == null) {
 			throw new RuntimeException();
 		}else {
@@ -33,24 +33,24 @@ public class BusinessServlet_c extends BaseServlet {
 			bid = business.getBid();
 		}
 
-		// 2.µ÷ÓÃBusinessService Í¨¹ıbid»ñÈ¡ÉÌÆ·ÁĞ±í
+		// 2.è°ƒç”¨BusinessService é€šè¿‡bidè·å–å•†å“åˆ—è¡¨
 		BItemService bItemService = new BItemServiceImpl();
 		List<OrderItem> orderItemList = bItemService.getListById(bid);
 
-		// 3.Ìí¼Óµ½requestÖĞ£¬½øĞĞ×ª·¢
+		// 3.æ·»åŠ åˆ°requestä¸­ï¼Œè¿›è¡Œè½¬å‘
 		request.setAttribute("orderItemList", orderItemList);
 		return "/business/orderItem/list.jsp";
 	}
 	
 	/**
-	 *	²éÑ¯¸Ãµê¼ÒºóÌ¨µÄ¶©µ¥Ïî£¬ÅĞ¶ÏÊÇ·ñ·¢»õ£¬ÏÔÊ¾Î´·¢»õµÄĞÅÏ¢
+	 *	æŸ¥è¯¢è¯¥åº—å®¶åå°çš„è®¢å•é¡¹ï¼Œåˆ¤æ–­æ˜¯å¦å‘è´§ï¼Œæ˜¾ç¤ºæœªå‘è´§çš„ä¿¡æ¯
 	 */
 	public String findNoByBid(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
 		String bid = null;
 		
-		// 1.»ñÈ¡bid
+		// 1.è·å–bid
 		if(request.getSession().getAttribute("Business") == null) {
 			throw new RuntimeException();
 		}else {
@@ -58,32 +58,32 @@ public class BusinessServlet_c extends BaseServlet {
 			bid = business.getBid();
 		}
 
-		// 2.µ÷ÓÃBusinessService Í¨¹ıbid»ñÈ¡ÉÌÆ·ÁĞ±í
+		// 2.è°ƒç”¨BusinessService é€šè¿‡bidè·å–å•†å“åˆ—è¡¨
 		BItemService bItemService = new BItemServiceImpl();
 		List<OrderItem> orderItemList = new LinkedList<OrderItem>();
 
 		
-		// 3.½øĞĞÅĞ¶Ï
+		// 3.è¿›è¡Œåˆ¤æ–­
 		for (OrderItem orderItem : bItemService.getListById(bid)) {
 			if(orderItem.getIs_ok() == 0 ) {
 				orderItemList.add(orderItem);
 			}
 		}
 		
-		// 4.Ìí¼Óµ½requestÖĞ£¬½øĞĞ×ª·¢
+		// 4.æ·»åŠ åˆ°requestä¸­ï¼Œè¿›è¡Œè½¬å‘
 		request.setAttribute("orderItemList", orderItemList);
 		return "/business/orderItem/list.jsp";
 	}
 	
 	/**
-	 *	²éÑ¯¸Ãµê¼ÒºóÌ¨µÄ¶©µ¥Ïî£¬ÅĞ¶ÏÊÇ·ñ·¢»õ£¬ÏÔÊ¾·¢»õµÄĞÅÏ¢
+	 *	æŸ¥è¯¢è¯¥åº—å®¶åå°çš„è®¢å•é¡¹ï¼Œåˆ¤æ–­æ˜¯å¦å‘è´§ï¼Œæ˜¾ç¤ºå‘è´§çš„ä¿¡æ¯
 	 */
 	public String findYesByBid(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
 		String bid = null;
 		
-		// 1.»ñÈ¡bid
+		// 1.è·å–bid
 		if(request.getSession().getAttribute("Business") == null) {
 			throw new RuntimeException();
 		}else {
@@ -91,37 +91,37 @@ public class BusinessServlet_c extends BaseServlet {
 			bid = business.getBid();
 		}
 
-		// 2.µ÷ÓÃBusinessService Í¨¹ıbid»ñÈ¡ÉÌÆ·ÁĞ±í
+		// 2.è°ƒç”¨BusinessService é€šè¿‡bidè·å–å•†å“åˆ—è¡¨
 		BItemService bItemService = new BItemServiceImpl();
 		List<OrderItem> orderItemList = new LinkedList<OrderItem>();
 
 		
-		// 3.½øĞĞÅĞ¶Ï
+		// 3.è¿›è¡Œåˆ¤æ–­
 		for (OrderItem orderItem : bItemService.getListById(bid)) {
 			if(orderItem.getIs_ok() == 1 ) {
 				orderItemList.add(orderItem);
 			}
 		}
 		
-		// 4.Ìí¼Óµ½requestÖĞ£¬½øĞĞ×ª·¢
+		// 4.æ·»åŠ åˆ°requestä¸­ï¼Œè¿›è¡Œè½¬å‘
 		request.setAttribute("orderItemList", orderItemList);
 		return "/business/orderItem/list.jsp";
 	}
 
 	/**
-	 *	½øĞĞ¶©µ¥ÏîµÄ·¢»õ´¦Àí
+	 *	è¿›è¡Œè®¢å•é¡¹çš„å‘è´§å¤„ç†
 	 */
 	public String send(HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
-		// 1.»ñÈ¡¶©µ¥Ïîid
+		// 1.è·å–è®¢å•é¡¹id
 		String itemid = request.getParameter("itemid");
 		
-		// 2.µ÷ÓÃBItemService Íê³É¶©µ¥µÄ·¢»õ´¦Àí
+		// 2.è°ƒç”¨BItemService å®Œæˆè®¢å•çš„å‘è´§å¤„ç†
 		BItemService bItemService = new BItemServiceImpl();
 		bItemService.send(itemid);
 
-		// 3.Ìí¼Óµ½requestÖĞ£¬½øĞĞ×ª·¢
+		// 3.æ·»åŠ åˆ°requestä¸­ï¼Œè¿›è¡Œè½¬å‘
 		return findAllByBid(request, response);
 	}
 	

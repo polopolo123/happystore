@@ -3,7 +3,7 @@ package business.entity;
 import java.io.Serializable;
 
 /**
- * 促销类型实体
+ * 淇冮攢绫诲瀷瀹炰綋
  */
 public class Promotion implements Serializable {
 	private String pnid;

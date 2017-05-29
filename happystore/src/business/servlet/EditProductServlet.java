@@ -35,78 +35,78 @@ public class EditProductServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		try {
-			// ´´½¨map ·ÅÈëÇ°Ì¨´«µİµÄÊı¾İ
+			// åˆ›å»ºmap æ”¾å…¥å‰å°ä¼ é€’çš„æ•°æ®
 			HashMap<String, Object> map = new HashMap<>();
-			// ´´½¨´ÅÅÌÎÄ¼şÏî
+			// åˆ›å»ºç£ç›˜æ–‡ä»¶é¡¹
 			DiskFileItemFactory factory = new DiskFileItemFactory();
-			// ´´½¨ºËĞÄÉÏ´«¶ÔÏó
+			// åˆ›å»ºæ ¸å¿ƒä¸Šä¼ å¯¹è±¡
 			ServletFileUpload upload = new ServletFileUpload(factory);
-			// ½âÎörequest
+			// è§£ærequest
 			List<FileItem> list = upload.parseRequest(request);
-			// ±éÀú¼¯ºÏ
+			// éå†é›†åˆ
 			for (FileItem fi : list) {
-				// ÅĞ¶ÏÊÇ·ñÊÇÆÕÍ¨µÄÉÏ´«×é¼ş
+				// åˆ¤æ–­æ˜¯å¦æ˜¯æ™®é€šçš„ä¸Šä¼ ç»„ä»¶
 				if (fi.isFormField()) {
-					// ÆÕÍ¨ÉÏ´«×é¼ş
+					// æ™®é€šä¸Šä¼ ç»„ä»¶
 					map.put(fi.getFieldName(), fi.getString("utf-8"));
 				} else {
-					// ÎÄ¼şÉÏ´«×é¼ş
-					// »ñÈ¡ÎÄ¼şÃû³Æ
+					// æ–‡ä»¶ä¸Šä¼ ç»„ä»¶
+					// è·å–æ–‡ä»¶åç§°
 					String name = fi.getName();
-					// »ñÈ¡ÎÄ¼şµÄÕæÊµÃû³Æ
+					// è·å–æ–‡ä»¶çš„çœŸå®åç§°
 					String realName = UploadUtils.getRealName(name);
-					// »ñÈ¡ÎÄ¼şµÄËæ»úÃû³Æ
+					// è·å–æ–‡ä»¶çš„éšæœºåç§°
 					String uuidName = UploadUtils.getUUIDName(realName);
-					// »ñÈ¡ÎÄ¼şµÄ´æ·ÅÂ·¾¶
+					// è·å–æ–‡ä»¶çš„å­˜æ”¾è·¯å¾„
 					String path = this.getServletContext().getRealPath(
 							"/user/image");
-					// »ñÈ¡ÎÄ¼şÁ÷
+					// è·å–æ–‡ä»¶æµ
 					InputStream is = fi.getInputStream();
-					// ±£´æÍ¼Æ¬
+					// ä¿å­˜å›¾ç‰‡
 					FileOutputStream os = new FileOutputStream(new File(path,
 							uuidName));
 					IOUtils.copy(is, os);
 					os.close();
 					is.close();
 
-					// É¾³ıÁÙÊ±ÎÄ¼ş
+					// åˆ é™¤ä¸´æ—¶æ–‡ä»¶
 					fi.delete();
 
-					// ÔÚmapÖĞÉèÖÃÎÄ¼şµÄÂ·¾¶
+					// åœ¨mapä¸­è®¾ç½®æ–‡ä»¶çš„è·¯å¾„
 					map.put(fi.getFieldName(), "/user/image/" + uuidName);
 
 				}
 			}
 
-			// 1.·â×°²ÎÊı
+			// 1.å°è£…å‚æ•°
 			Product p = new Product();
 			BeanUtils.populate(p, map);
-			// 1.1 ÉÌÆ·id
+			// 1.1 å•†å“id
 			p.setPid((String) map.get("pid"));
 
-			// 1.3 ·â×° cateogry
+			// 1.3 å°è£… cateogry
 			Category c = new Category();
 			c.setCid((String) map.get("cid"));
 			p.setCategory(c);
-			// 1.4 ·â×°promotion
+			// 1.4 å°è£…promotion
 			Promotion pro = new Promotion();
 			pro.setPnid((String) map.get("pnid"));
 			p.setPromotion(pro);
-			// 1.5 ·â×°business
+			// 1.5 å°è£…business
 			Business b = new Business();
 			b.setBid((String) map.get("bid"));
 			p.setBusiness(b);
 
-			// 2.µ÷ÓÃserviceÍê³ÉÌí¼Ó
+			// 2.è°ƒç”¨serviceå®Œæˆæ·»åŠ 
 			BusinessService businessService = new BusinessServiceImpl();
 			businessService.update(p);
 
-			// 3.Ò³ÃæÖØ¶¨Ïò
+			// 3.é¡µé¢é‡å®šå‘
 			response.sendRedirect(request.getContextPath()
 					+ "/Business_Pro?method=findAllByBid");
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("msg", "ĞŞ¸ÄÊ§°Ü");
+			request.setAttribute("msg", "ä¿®æ”¹å¤±è´¥");
 			request.getRequestDispatcher("/business/jsp/msg.jsp").forward(
 					request, response);
 			return;
