@@ -9,7 +9,7 @@ public class CartItem implements Serializable {
 	private Product product;// 商品对象
 	private Integer count;// 购买数量
 	private Double subtotal = 0.0;// 小计
-
+ 
 	public Product getProduct() {
 		return product;
 	}
